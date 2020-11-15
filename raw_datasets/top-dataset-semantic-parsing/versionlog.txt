@@ -1,0 +1,4 @@
+Version 1: Dataset released in Oct 2018.
+Version 1.1: The dataset was updated on Dec 7 2018 to include tokenized
+utterances. No change in the data. Released at the same URL as version 1 since
+there's no change in data.

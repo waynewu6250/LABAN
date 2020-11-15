@@ -1,0 +1,27 @@
+Task Oriented Parsing (TOP) representations for intent-slot based dialog systems.
+
+Provided under the CC-BY-SA license. Please cite the accompanying paper when using this dataset -
+
+@ARTICLE {
+    author  = "Sonal Gupta and Rushin Shah and Mrinal Mohit and Anuj Kumar and Michael Lewis",
+    title   = "Semantic Parsing for Task Oriented Dialog using Hierarchical Representations",
+    journal = "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    year    = "2018",
+    month   = "Oct"
+}
+
+We collected a total of 44783 annotations with 25 intents and 36 slots, randomly split into 31279 training, 4462 validation and 9042 test utterances.
+The dataset has utterances that are focused on navigation, events, and navigation to events.
+The median (mean) depth of the trees is 2 (2.54), and the median (mean) length of the utterances is 8 (8.93) tokens.
+35% of trees have depth more than 2. The dataset has 4646 utterances that contain both navigation and event intents.
+The training, evaluation and test sets are provided as tab-separated value (tsv) files.
+
+Each row is of the format:
+raw_utterance <tab> tokenized_utterance <tab> TOP-representation
+where the TOP-representation is an annotated version of the utterance
+e.g. Art fairs this weekend in Detroit <tab> [IN:GET_EVENT [SL:CATEGORY_EVENT Art fairs ] [SL:DATE_TIME this weekend ] in [SL:LOCATION Detroit ] ]
+Opening of a non-terminal node is marked by "[" (part of the non-terminal label), while a closing is marked by a standalone "]"
+
+The evaluation script can be run from evaluate.py (run with -h for options).
+The script is compatible with Python 3.6 and above.
+
