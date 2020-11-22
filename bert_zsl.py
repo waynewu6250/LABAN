@@ -53,6 +53,36 @@ def calc_score(outputs, labels):
                 acc += 1
     return corrects, totals, preds, acc
 
+def f1_score_intents(outputs, labels):
+    
+    P, R, F1, acc = 0, 0, 0, 0
+    outputs = torch.sigmoid(outputs)
+
+    for i in range(outputs.shape[0]):
+        TP, FP, FN = 0, 0, 0
+        for j in range(outputs.shape[1]):
+            if outputs[i][j] > 0.5 and labels[i][j] == 1:
+                TP += 1
+            elif outputs[i][j] <= 0.5 and labels[i][j] == 1:
+                FN += 1
+            elif outputs[i][j] > 0.5 and labels[i][j] == 0:
+                FP += 1
+        precision = TP / float(TP + FP) if (TP + FP) != 0 else 0
+        recall = TP / float(TP + FN) if (TP + FN) != 0 else 0
+        F1 += 2 * precision * recall / float(precision + recall) if (precision + recall) != 0 else 0
+        P += precision
+        R += recall
+
+        p = (torch.where(outputs[i]>0.5)[0])
+        r = (torch.where(labels[i]==1)[0])
+        if len(p) == len(r) and (p == r).all():
+            acc += 1
+        
+    P /= outputs.shape[0]
+    R /= outputs.shape[0]
+    F1 /= outputs.shape[0]
+    return P, R, F1, acc
+
 #####################################################################
 
 def train(**kwargs):
@@ -70,23 +100,26 @@ def train(**kwargs):
     print('Sentence Mode: ', opt.sentence_mode)
 
     # dataset
-    with open(opt.dic_path_with_tokens, 'rb') as f:
+    with open(opt.dic_path_with_tokens_test, 'rb') as f:
+    # with open(opt.dic_path_with_tokens, 'rb') as f:
         dic = pickle.load(f)
     with open(opt.train_path, 'rb') as f:
         train_data = pickle.load(f)
     if opt.test_path:
         with open(opt.test_path, 'rb') as f:
             test_data = pickle.load(f)
-    #train_data = train_data+test_data[:50]
+    train_data = train_data+test_data[:int(len(test_data)*0.1)]
+    print(int(len(test_data)*0.1))
+    print('Number of labels: ', len(dic))
 
     X_lengths_train = None
     X_lengths_test = None
     if opt.datatype == "semantic":
         # Semantic parsing Dataset
-        X_train, y_train = zip(*train_data)
-        X_test, y_test = zip(*test_data)
-        #X, y = zip(*train_data)
-        #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+        # X_train, y_train = zip(*train_data)
+        # X_test, y_test = zip(*test_data)
+        X, y = zip(*train_data)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
     elif opt.datatype == "e2e" or opt.datatype == "sgd":
         # Microsoft Dialogue Dataset / SGD Dataset
         all_data = []
@@ -124,8 +157,8 @@ def train(**kwargs):
             X_lengths_test = X_lengths[train_num:]
     elif 'mix' in opt.datatype:
         # Mix dataset
-        X_train, y_train, _ = zip(*train_data)
-        X_test, y_test, _ = zip(*test_data)
+        X, y = zip(*train_data)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
     
     X_train, mask_train = load_data(X_train, opt.maxlen)
     X_test, mask_test = load_data(X_test, opt.maxlen)
@@ -190,11 +223,12 @@ def train(**kwargs):
 
         # Training Phase
         total_train_loss = 0
-        train_corrects = 0
-        totals = 0
-        preds = 0
+        total_P = 0
+        total_R = 0
+        total_F1 = 0
         total_acc = 0
         model.train()
+        ccounter = 0
         for (captions_t, labels, masks) in tqdm(train_loader): #X_lengths
 
             captions_t = captions_t.to(device)
@@ -235,31 +269,29 @@ def train(**kwargs):
             optimizer.step()
 
             total_train_loss += train_loss
-            co, to, pr, acc = calc_score(outputs, labels)
-            train_corrects += co
-            totals += to
-            preds += pr
+            P, R, F1, acc = f1_score_intents(outputs, labels)
+            total_P += P
+            total_R += R
+            total_F1 += F1
             total_acc += acc
+            ccounter += 1
 
         print('Average train loss: {:.4f} '.format(total_train_loss / train_loader.dataset.num_data))
-        if opt.data_mode == 'single':
-            train_acc = train_corrects.double() / train_loader.dataset.num_data
-            print('Train accuracy: {:.4f}'.format(train_acc))
-        elif opt.data_mode == 'multi':
-            recall = train_corrects.double() / totals
-            precision = train_corrects.double() / preds
-            f1 = 2 * (precision*recall) / (precision + recall)
-            print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
-            print('Accuracy: ', total_acc/train_loader.dataset.num_data)
+        precision = total_P / ccounter
+        recall = total_R / ccounter
+        f1 = total_F1 / ccounter
+        print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
+        print('Accuracy: ', total_acc/train_loader.dataset.num_data)
         
 
         # Validation Phase
         total_val_loss = 0
-        val_corrects = 0
-        totals = 0
-        preds = 0
+        total_P = 0
+        total_R = 0
+        total_F1 = 0
         total_acc = 0
         model.eval()
+        ccounter = 0
         for (captions_t, labels, masks) in val_loader: #X_lengths
 
             captions_t = captions_t.to(device)
@@ -292,23 +324,21 @@ def train(**kwargs):
             # val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss
-            co, to, pr, acc = calc_score(outputs, labels)
-            val_corrects += co
-            totals += to
-            preds += pr
+            P, R, F1, acc = f1_score_intents(outputs, labels)
+            total_P += P
+            total_R += R
+            total_F1 += F1
             total_acc += acc
+            ccounter += 1
 
         print('Average val loss: {:.4f} '.format(total_val_loss / val_loader.dataset.num_data))
-        if opt.data_mode == 'single':
-            val_acc = val_corrects.double() / val_loader.dataset.num_data
-            print('Val accuracy: {:.4f}'.format(val_acc))
-        elif opt.data_mode == 'multi':
-            recall = val_corrects.double() / totals
-            precision = val_corrects.double() / preds
-            f1 = 2 * (precision*recall) / (precision + recall)
-            print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
-            print('Accuracy: ', total_acc/val_loader.dataset.num_data)
-            val_acc = total_acc/val_loader.dataset.num_data
+
+        precision = total_P / ccounter
+        recall = total_R / ccounter
+        f1 = total_F1 / ccounter
+        print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
+        print('Accuracy: ', total_acc/val_loader.dataset.num_data)
+        val_acc = total_acc/val_loader.dataset.num_data
         
         if val_acc > best_accuracy:
             print('saving with loss of {}'.format(total_val_loss),
@@ -316,7 +346,7 @@ def train(**kwargs):
             best_loss = total_val_loss
             best_accuracy = val_acc
 
-            torch.save(model.state_dict(), 'checkpoints/best_{}_{}.pth'.format(opt.datatype, opt.data_mode))
+            torch.save(model.state_dict(), 'checkpoints/best_{}_{}_{}_more.pth'.format(opt.datatype, opt.data_mode, opt.ratio))
         
         print()
     print('Best total val loss: {:.4f}'.format(total_val_loss))
@@ -340,15 +370,17 @@ def test(**kwargs):
 
     # dataset
     with open(opt.dic_path_with_tokens, 'rb') as f:
+        train_dic = pickle.load(f)
+    with open(opt.dic_path_with_tokens_test, 'rb') as f:
         dic = pickle.load(f)
-    # with open(opt.dic_path_with_tokens_test, 'rb') as f:
-    #     dic = pickle.load(f)
+    print(train_dic)
     print(dic)
-    #print(dic)
+    print('Number of labels: ', len(train_dic))
+    print('Number of labels: ', len(dic))
     reverse_dic = {v[0]: k for k,v in dic.items()}
     with open(opt.test_path, 'rb') as f:
         test_data = pickle.load(f)
-        #test_data = test_data[50:]
+        test_data = test_data[int(len(test_data)*0.1):]
 
     if opt.datatype == "atis":
         # ATIS Dataset
@@ -375,7 +407,7 @@ def test(**kwargs):
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
     elif 'mix' in opt.datatype:
         # Mix dataset
-        X_test, y_test, _ = zip(*test_data)
+        X_test, y_test = zip(*test_data)
 
     #X_train, mask_train = load_data(X_train, opt.maxlen)
     X_test, mask_test = load_data(X_test, opt.maxlen)
@@ -440,9 +472,10 @@ def test(**kwargs):
         test_loader = get_dataloader(X_test, y_test, mask_test, len(dic), opt)
         
         val_corrects = 0
-        totals = 0
-        preds = 0
-        total_acc = 0
+        total_P, total_R, total_F1, total_acc = 0, 0, 0, 0
+        total_P_seen, total_R_seen, total_F1_seen, total_acc_seen = 0, 0, 0, 0
+        total_P_unseen, total_R_unseen, total_F1_unseen, total_acc_unseen = 0, 0, 0, 0
+        ccounter = 0
         model.eval()
         for i, (captions_t, labels, masks) in enumerate(test_loader):
             print('Run prediction: ', i)
@@ -454,17 +487,44 @@ def test(**kwargs):
             with torch.no_grad():
                 _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
 
-            co, to, pr, acc = calc_score(outputs, labels)
-            val_corrects += co
-            totals += to
-            preds += pr
+            # total
+            P, R, F1, acc = f1_score_intents(outputs, labels)
+            total_P += P
+            total_R += R
+            total_F1 += F1
             total_acc += acc
+            # seen
+            P, R, F1, acc = f1_score_intents(outputs[:,:opt.real_num], labels[:,:opt.real_num])
+            total_P_seen += P
+            total_R_seen += R
+            total_F1_seen += F1
+            total_acc_seen += acc
+            # unseen
+            P, R, F1, acc = f1_score_intents(outputs[:,opt.real_num:], labels[:,opt.real_num:])
+            total_P_unseen += P
+            total_R_unseen += R
+            total_F1_unseen += F1
+            total_acc_unseen += acc
 
-        recall = val_corrects.double() / totals
-        precision = val_corrects.double() / preds
-        f1 = 2 * (precision*recall) / (precision + recall)
+            ccounter += 1
+
+        precision = total_P / ccounter
+        recall = total_R / ccounter
+        f1 = total_F1 / ccounter
         print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
         print('Accuracy: ', total_acc/test_loader.dataset.num_data)
+
+        precision = total_P_seen / ccounter
+        recall = total_R_seen / ccounter
+        f1 = total_F1_seen / ccounter
+        print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
+        print('Accuracy: ', total_acc_seen/test_loader.dataset.num_data)
+
+        precision = total_P_unseen / ccounter
+        recall = total_R_unseen / ccounter
+        f1 = total_F1_unseen / ccounter
+        print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
+        print('Accuracy: ', total_acc_unseen/test_loader.dataset.num_data)
     
     # Run test classification
     elif opt.test_mode == "data":
@@ -488,10 +548,10 @@ def test(**kwargs):
         error_ids = []
         pred_labels = []
         real_labels = []
-        test_corrects = 0
-        totals = 0
-        preds = 0
-        total_acc = 0
+        total_P, total_R, total_F1, total_acc = 0, 0, 0, 0
+        total_P_seen, total_R_seen, total_F1_seen, total_acc_seen = 0, 0, 0, 0
+        total_P_unseen, total_R_unseen, total_F1_unseen, total_acc_unseen = 0, 0, 0, 0
+        ccounter = 0
         model.eval()
         print(len(test_loader.dataset))
         for i, (captions_t, labels, masks) in enumerate(test_loader):
@@ -503,11 +563,27 @@ def test(**kwargs):
             
             with torch.no_grad():
                 _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
-                co, to, pr, acc = calc_score(outputs, labels)
-                test_corrects += co
-                totals += to
-                preds += pr
+
+                # total
+                P, R, F1, acc = f1_score_intents(outputs, labels)
+                total_P += P
+                total_R += R
+                total_F1 += F1
                 total_acc += acc
+                # seen
+                P, R, F1, acc = f1_score_intents(outputs[:,:opt.real_num], labels[:,:opt.real_num])
+                total_P_seen += P
+                total_R_seen += R
+                total_F1_seen += F1
+                total_acc_seen += acc
+                # unseen
+                P, R, F1, acc = f1_score_intents(outputs[:,opt.real_num:], labels[:,opt.real_num:])
+                total_P_unseen += P
+                total_R_unseen += R
+                total_F1_unseen += F1
+                total_acc_unseen += acc
+                
+                ccounter += 1
 
                 if opt.data_mode == 'single':
                     idx = torch.max(outputs, 1)[1] != labels
@@ -536,11 +612,23 @@ def test(**kwargs):
                 f.write('Predicted label: {}\n'.format(pred))
                 f.write('Real label: {}\n'.format(real))
                 f.write('------\n')
-        recall = test_corrects.double() / totals
-        precision = test_corrects.double() / preds
-        f1 = 2 * (precision*recall) / (precision + recall)
+        precision = total_P / ccounter
+        recall = total_R / ccounter
+        f1 = total_F1 / ccounter
         print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
         print('Accuracy: ', total_acc/test_loader.dataset.num_data)
+
+        precision = total_P_seen / ccounter
+        recall = total_R_seen / ccounter
+        f1 = total_F1_seen / ccounter
+        print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
+        print('Accuracy: ', total_acc_seen/test_loader.dataset.num_data)
+
+        precision = total_P_unseen / ccounter
+        recall = total_R_unseen / ccounter
+        f1 = total_F1_unseen / ccounter
+        print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
+        print('Accuracy: ', total_acc_unseen/test_loader.dataset.num_data)
 
     
     # User defined

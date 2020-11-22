@@ -343,11 +343,18 @@ class MIXData(Data):
                     if ' ' not in line:
                         print('data ', counter)
 
+                        # multi intents
                         intents = line.strip('\n').split('#')
                         for intent in intents:
                             if intent not in intent2id:
                                 intent2id[intent] = (icounter, self.text_prepare(intent, 'Bert')) #counter
                                 icounter += 1
+                        
+                        # single intent
+                        # intent = line.strip('\n')
+                        # if intent not in intent2id:
+                        #     intent2id[intent] = (icounter, self.text_prepare(intent, 'Bert'))
+                        #     icounter += 1
                         
                         sent, text, tag = self.tokenize(text, tag)
                         raw_data.append((text, [intent2id[intent][0] for intent in intents], tag))
@@ -403,6 +410,12 @@ if __name__ == "__main__":
     # intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
     # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
     
+    # snips
+    # data_path = "../raw_datasets/SNIPS/train.txt"
+    # rawdata_path = "snips/raw_data_train.pkl"
+    # intent2id_path = "snips/intent2id.pkl"
+    # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
+
     print(data.raw_data[10])
     print(data.intent2id)
 

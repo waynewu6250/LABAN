@@ -160,13 +160,13 @@ class SGDData(Data):
         
         ptime = time.time()
 
-        # if os.path.exists(self.intent2id_path):
-        #     with open(self.intent2id_path, "rb") as f:
-        #         intent2id = pickle.load(f)
-        #     counter = len(intent2id)
-        # else:
-        intent2id = {}
-        counter = 0
+        if os.path.exists(self.intent2id_path):
+            with open(self.intent2id_path, "rb") as f:
+                intent2id = pickle.load(f)
+            counter = len(intent2id)
+        else:
+            intent2id = {}
+            counter = 0
         
         aintent2id = {}
         acounter = 0
@@ -269,8 +269,8 @@ if __name__ == "__main__":
     # data = E2EData(data_path, rawdata_path, intent2id_path, done=False)
 
     # sgd dataset
-    data_path = "../raw_datasets/dstc8-schema-guided-dialogue/train"
-    rawdata_path = "sgd_dialogue/dialogue_data_multi.pkl"
+    data_path = "../raw_datasets/dstc8-schema-guided-dialogue/test"
+    rawdata_path = "sgd_dialogue/dialogue_data_multi_test.pkl"
     intent2id_path = "sgd_dialogue/intent2id_multi_with_tokens.pkl"
     turn_path = "sgd_dialogue/turns.pkl"
     data = SGDData(data_path, rawdata_path, intent2id_path, turn_path, done=False)
