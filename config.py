@@ -2,13 +2,14 @@ class Config:
 
     #################### For BERT fine-tuning ####################
     # control
-    datatype = "sgd"
+    datatype = "semantic"
     data_mode = "multi" #"multi"      # single or multi intent in data
-    sentence_mode = "one" #"two"      # one or two sentence in data
+    sentence_mode = "embedding" #"two"      # one or two sentence in data
     dialog_data_mode = False         # for dialogue-wise data (A+B)
-    retrain = False                  # Reuse trained model weights
-    real_num = 16
-    ratio = '9'
+    retrain = True                  # Reuse trained model weights
+    is_zero_shot = False                # For zero-shot training/testing
+    real_num = 3
+    ratio = '0'
     
 
 
@@ -29,37 +30,37 @@ class Config:
 
     elif datatype == "semantic":
         # semantic parsing dataset
-        # normal
-        train_path = "data/semantic/raw_data_se.pkl" if data_mode == "single" else "data/semantic/raw_data_multi_se.pkl"
-        test_path = "data/semantic/raw_data_multi_se_test.pkl"
-        dic_path = "data/semantic/intent2id_se.pkl" if data_mode == "single" else "data/semantic/intent2id_multi_se.pkl"
-        dic_path_with_tokens = "data/semantic/intent2id_multi_se_with_tokens.pkl"
-        embedding_path = "finetune_results/se_embeddings_with_hidden.pth"
-
-        # zero-shot/few-shot
-        # train_path = "data/semantic/raw_data_se.pkl" if data_mode == "single" else "data/semantic/zeroshot/raw_data_multi_se_zst_train{}.pkl".format(ratio)
-        # test_path = "data/semantic/zeroshot/raw_data_multi_se_zst_test{}.pkl".format(ratio)
-        # dic_path = "data/semantic/intent2id_se.pkl" if data_mode == "single" else "data/semantic/intent2id_multi_se.pkl"
-        # dic_path_with_tokens = "data/semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(ratio)
-        # dic_path_with_tokens_test = "data/semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(ratio)
-        # embedding_path = "finetune_results/se_embeddings_with_hidden.pth"
+        if not is_zero_shot:
+            # normal
+            train_path = "data/semantic/raw_data_se.pkl" if data_mode == "single" else "data/semantic/raw_data_multi_se.pkl"
+            test_path = "data/semantic/raw_data_multi_se_test.pkl"
+            dic_path = "data/semantic/intent2id_se.pkl" if data_mode == "single" else "data/semantic/intent2id_multi_se.pkl"
+            dic_path_with_tokens = "data/semantic/intent2id_multi_se_with_tokens.pkl"
+            embedding_path = "embeddings/se_embeddings_with_hidden.pth"
+        else:
+            # zero-shot/few-shot
+            train_path = "data/semantic/raw_data_se.pkl" if data_mode == "single" else "data/semantic/zeroshot/raw_data_multi_se_zst_train{}.pkl".format(ratio)
+            test_path = "data/semantic/zeroshot/raw_data_multi_se_zst_test{}.pkl".format(ratio)
+            dic_path = "data/semantic/intent2id_se.pkl" if data_mode == "single" else "data/semantic/intent2id_multi_se.pkl"
+            dic_path_with_tokens = "data/semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(ratio)
+            dic_path_with_tokens_test = "data/semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(ratio)
     
     elif datatype == "e2e":
         # Microsoft e2e dialogue dataset
         train_path = "data/e2e_dialogue/dialogue_data.pkl" if data_mode == "single" else "data/e2e_dialogue/dialogue_data_multi.pkl"
-        test_path = None
+        test_path = "data/e2e_dialogue/dialogue_data_multi.pkl"
         dic_path = "data/e2e_dialogue/intent2id.pkl" if data_mode == "single" else "data/e2e_dialogue/intent2id_multi.pkl"
         dic_path_with_tokens = "data/e2e_dialogue/intent2id_multi_with_tokens.pkl"
-        embedding_path = "finetune_results/e2e_embeddings_with_hidden.pth"
+        embedding_path = "embeddings/e2e_embeddings_with_hidden.pth"
         pretrain_path = "data/e2e_dialogue/dialogue_data_pretrain.pkl"
     
     elif datatype == "sgd":
         # dstc8-sgd dialogue dataset
         train_path = "data/sgd_dialogue/dialogue_data.pkl" if data_mode == "single" else "data/sgd_dialogue/dialogue_data_multi.pkl"
-        test_path = None
+        test_path = "data/sgd_dialogue/dialogue_data_multi.pkl"
         dic_path = "data/sgd_dialogue/intent2id.pkl" if data_mode == "single" else "data/sgd_dialogue/intent2id_multi.pkl"
         dic_path_with_tokens = "data/sgd_dialogue/intent2id_multi_with_tokens.pkl"
-        embedding_path = "finetune_results/sgd_embeddings_with_hidden.pth"
+        embedding_path = "embeddings/sgd_embeddings_with_hidden.pth"
         pretrain_path = "data/sgd_dialogue/dialogue_data_pretrain.pkl"
 
     elif datatype == "woz":
@@ -72,33 +73,42 @@ class Config:
     
     elif datatype == "mixatis":
         # mix atis dataset
-        train_path = "data/MixATIS_clean/raw_data_multi_ma_train.pkl"
-        dev_path =  "data/MixATIS_clean/raw_data_multi_ma_dev.pkl"
-        test_path = "data/MixATIS_clean/raw_data_multi_ma_test.pkl"
-        dic_path = "data/MixATIS_clean/intent2id_multi_ma_with_tokens.pkl" #with_tokens
-        # train_path = "data/MixATIS_clean/zeroshot/raw_data_multi_ma_train{}.pkl".format(ratio)
-        # test_path = "data/MixATIS_clean/zeroshot/raw_data_multi_ma_test{}.pkl".format(ratio)
-        # dic_path_with_tokens = "data/MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_train{}.pkl".format(ratio)
-        # dic_path_with_tokens_test = "data/MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_test{}.pkl".format(ratio)
+        if not is_zero_shot:
+            train_path = "data/MixATIS_clean/raw_data_multi_ma_train.pkl"
+            dev_path =  "data/MixATIS_clean/raw_data_multi_ma_dev.pkl"
+            test_path = "data/MixATIS_clean/raw_data_multi_ma_test.pkl"
+            dic_path_with_tokens = "data/MixATIS_clean/intent2id_multi_ma_with_tokens.pkl" 
+        else:
+            train_path = "data/MixATIS_clean/zeroshot/raw_data_multi_ma_train{}.pkl".format(ratio)
+            test_path = "data/MixATIS_clean/zeroshot/raw_data_multi_ma_test{}.pkl".format(ratio)
+            dic_path_with_tokens = "data/MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_train{}.pkl".format(ratio)
+            dic_path_with_tokens_test = "data/MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_test{}.pkl".format(ratio)
+        embedding_path = "embeddings/mixatis_embeddings_with_hidden.pth"
     
     elif datatype == "mixsnips":
         # mix snips dataset
-        # train_path = "data/MixSNIPS_clean/raw_data_multi_sn_train.pkl"
-        # dev_path =  "data/MixSNIPS_clean/raw_data_multi_sn_dev.pkl"
-        # test_path = "data/MixSNIPS_clean/raw_data_multi_sn_test.pkl"
-        # dic_path_with_tokens = "data/MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
-        train_path = "data/MixSNIPS_clean/zeroshot/raw_data_multi_sn_train{}.pkl".format(ratio)
-        test_path = "data/MixSNIPS_clean/zeroshot/raw_data_multi_sn_test{}.pkl".format(ratio)
-        dic_path_with_tokens = "data/MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_train{}.pkl".format(ratio)
-        dic_path_with_tokens_test = "data/MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_test{}.pkl".format(ratio)
+        if not is_zero_shot:
+            train_path = "data/MixSNIPS_clean/raw_data_multi_sn_train.pkl"
+            dev_path =  "data/MixSNIPS_clean/raw_data_multi_sn_dev.pkl"
+            test_path = "data/MixSNIPS_clean/raw_data_multi_sn_test.pkl"
+            dic_path_with_tokens = "data/MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
+        else:
+            train_path = "data/MixSNIPS_clean/zeroshot/raw_data_multi_sn_train{}.pkl".format(ratio)
+            test_path = "data/MixSNIPS_clean/zeroshot/raw_data_multi_sn_test{}.pkl".format(ratio)
+            dic_path_with_tokens = "data/MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_train{}.pkl".format(ratio)
+            dic_path_with_tokens_test = "data/MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_test{}.pkl".format(ratio)
+        embedding_path = "embeddings/mixsnips_embeddings_with_hidden.pth"
     
-    model_path = None if not retrain else "checkpoints/best_{}_{}_{}_more.pth".format(datatype, data_mode, ratio)
+    if not is_zero_shot:
+        model_path = None if not retrain else "checkpoints/best_{}_{}.pth".format(datatype, data_mode)
+    else:
+        model_path = None if not retrain else "checkpoints/best_{}_{}_{}.pth".format(datatype, data_mode, ratio)
 
 
     maxlen = 50 #20
     batch_size = 128 #16
-    epochs = 100 #30, 5
-    learning_rate_bert = 1e-3 #2e-5
+    epochs = 30 #30, 5
+    learning_rate_bert = 2e-5 #1e-3
     learning_rate_classifier = 1e-3
     max_dialog_size = 25 if datatype == "e2e" else 50
     dialog_batch_size = 100

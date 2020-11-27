@@ -1,0 +1,3956 @@
+----------- Wrong Examples ------------
+0
+what can i do with my friends tomorrow night
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+1
+when does run through the lights start
+Predicted label: ['unsupported navigation']
+Real label: ['get event']
+------
+2
+best place to go bowling
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+3
+how do i get to the concert
+Predicted label: ['get directions', 'get event']
+Real label: ['unsupported']
+------
+4
+which nightclub ##s are in walking distance
+Predicted label: ['get location', 'get distance']
+Real label: ['unsupported']
+------
+5
+how many weeks until thanksgiving
+Predicted label: []
+Real label: ['unsupported']
+------
+6
+will is rain at the zoo tomorrow
+Predicted label: ['get location', 'get info road condition']
+Real label: ['unsupported']
+------
+7
+what can i get into
+Predicted label: []
+Real label: ['unsupported event']
+------
+8
+did disney on ice sold out
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+9
+who will show the new star wars move next month
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+10
+where should i go skiing this weekend in ct
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+11
+help me find some archery places to check out that aren ##t more than 45 minutes away
+Predicted label: []
+Real label: ['unsupported']
+------
+12
+when is the bus leaving for the soccer game tomorrow
+Predicted label: []
+Real label: ['unsupported']
+------
+13
+star wars movie rating
+Predicted label: []
+Real label: ['unsupported']
+------
+14
+bookstore ##s near mexico city that open at 8 ##am
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+15
+what painting does painting with a twist in keller have wednesday night
+Predicted label: ['get event']
+Real label: ['unsupported event']
+------
+16
+where are the most ski runs open right now in north lake ta ##hoe
+Predicted label: []
+Real label: ['unsupported']
+------
+17
+what christmas deals are available this weekend
+Predicted label: ['unsupported event']
+Real label: ['unsupported']
+------
+18
+pumpkin patches open in october near me
+Predicted label: ['get location', 'get event']
+Real label: ['unsupported']
+------
+19
+trunk or treat locations
+Predicted label: ['unsupported event']
+Real label: ['unsupported']
+------
+20
+what are people talking about doing this weekend
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+21
+museum suggestions for washington dc on tuesday
+Predicted label: []
+Real label: ['unsupported']
+------
+22
+is the festival going to have food trucks or should i eat before hand
+Predicted label: []
+Real label: ['unsupported event']
+------
+23
+are there any events which the elder would like to attend
+Predicted label: []
+Real label: ['get event']
+------
+24
+i want to go to a corn maze saturday where can i go
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+25
+event coordinator ##s that work with little people
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+26
+cheap ##est classical music concerts
+Predicted label: []
+Real label: ['get event']
+------
+27
+how many comedians will do a showcase in seattle in 2018
+Predicted label: []
+Real label: ['unsupported event']
+------
+28
+can i still get tickets for a broadway show next month in new york
+Predicted label: ['unsupported event']
+Real label: ['unsupported']
+------
+29
+is there an open swim
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+30
+free event ideas for next week
+Predicted label: []
+Real label: ['get event']
+------
+31
+what new video games release this month
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+32
+what are my movie choices this weekend
+Predicted label: []
+Real label: ['get event']
+------
+33
+are there any es ##ports bars near me
+Predicted label: []
+Real label: ['unsupported']
+------
+34
+authentic pulled noodles joint in 10 mile radius
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+35
+are there any nightclub ##s near me
+Predicted label: ['unsupported event']
+Real label: ['unsupported']
+------
+36
+best buffet ##s in my area next week
+Predicted label: ['get location', 'get event']
+Real label: ['unsupported']
+------
+37
+is maria ##s birthday tomorrow at noon
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+38
+best deals for christmas season vacation ##s
+Predicted label: []
+Real label: ['unsupported']
+------
+39
+how many buses go up and down maine st in water ##town ny
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+40
+food court fun time
+Predicted label: ['get location', 'get event']
+Real label: ['unsupported']
+------
+41
+i need last ##min ##ute to tickets to the nut ##cr ##acker is the new york city ballet performing it this weekend
+Predicted label: ['unsupported event']
+Real label: ['get event']
+------
+42
+where can i go snow ##boarding
+Predicted label: []
+Real label: ['unsupported']
+------
+43
+steak dinners in austin
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+44
+times of for the lego ##land discovery center in auburn hills for weekends in january
+Predicted label: ['get location', 'get event']
+Real label: ['unsupported']
+------
+45
+new york extra train hours
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+46
+what are you doing next week
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+47
+atlantis wai ##ki ##ki schedule this weekend
+Predicted label: ['unsupported']
+Real label: ['get location', 'get event']
+------
+48
+im really feeling like wanting to make something on thursday night
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+49
+what ##s the best new hot spot in town
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+50
+is fiesta texas still open for christmas events next week
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+51
+what cruise ships have ice skating rink ##s on board
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+52
+church event going on in atlanta this weekend
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+53
+does the movies have anything showing in horror genre today
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+54
+kid friendly museums in seattle
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+55
+need somewhere that can accommodate 20 of us for a dinner on sunday night
+Predicted label: []
+Real label: ['unsupported']
+------
+56
+im looking for events that involve food and are not too expensive
+Predicted label: []
+Real label: ['get event']
+------
+57
+where can i go inner tub ##ing
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+58
+restaurants open in hat ##ties ##burg after 9 pm tonight
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+59
+breakfast with santa this sunday at palm beach outlets
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+60
+live music places in san jose open on christmas day
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+61
+comedy shows in my area
+Predicted label: ['get location home', 'get event']
+Real label: ['get location', 'get event']
+------
+62
+i am looking for cooking workshops in ft walton in tampa
+Predicted label: ['unsupported']
+Real label: ['get location', 'get event']
+------
+63
+where is santa in walt disney world
+Predicted label: ['get location']
+Real label: ['get location', 'get event']
+------
+64
+where can i play golf when i visit charlotte in may
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+65
+what time is happy hour at tr ##ulu ##cks on sunday
+Predicted label: ['get event']
+Real label: ['unsupported event']
+------
+66
+list off local events taking place on monday
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+67
+how cold is out this morning
+Predicted label: ['unsupported', 'get info road condition']
+Real label: ['unsupported event']
+------
+68
+i wonder if i could create something like a clay thing ##thi ##s weekends ##ome ##pl ##ace
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+69
+all you can eat buffet restaurants in greenville
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+70
+look up best places to rock climb near me
+Predicted label: ['unsupported']
+Real label: ['get location', 'get event']
+------
+71
+where can i donate extra clothing this week
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+72
+where can i do a party
+Predicted label: ['get event']
+Real label: ['unsupported event']
+------
+73
+where can i find a tam ##ale sale
+Predicted label: ['get event']
+Real label: ['unsupported event']
+------
+74
+what is the cheap ##est ci ##r ##que du sole ##il show i can see this weekend
+Predicted label: []
+Real label: ['get event']
+------
+75
+bar crawl within walking distance
+Predicted label: ['unsupported navigation', 'unsupported']
+Real label: ['get location', 'get event']
+------
+76
+blue man group have tickets for tonight
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+77
+what are the dates for the boone hall wine and bluegrass nights next month
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+78
+event coordinator for a country themed party
+Predicted label: []
+Real label: ['unsupported event']
+------
+79
+any new bars near me
+Predicted label: []
+Real label: ['unsupported event']
+------
+80
+where have you been
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+81
+pet sit ##ters available next week
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+82
+i need to know if there are any tickets left for the 9 ##pm amtrak train leaving new york city to syracuse for next saturday
+Predicted label: []
+Real label: ['unsupported event']
+------
+83
+who is headlining the cancer sucks concert this year
+Predicted label: ['get event organizer']
+Real label: ['get event']
+------
+84
+what are the hours for the mission inn during the holidays
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+85
+can you bring children to this event
+Predicted label: []
+Real label: ['get event']
+------
+86
+anything snow ##rel ##ated this month
+Predicted label: []
+Real label: ['get event']
+------
+87
+what ##s on tv
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+88
+when is beg ##gs farm open for tours
+Predicted label: ['unsupported']
+Real label: ['get location', 'get event']
+------
+89
+discount show tickets for fremont street
+Predicted label: []
+Real label: ['unsupported event']
+------
+90
+half price movies wichita
+Predicted label: []
+Real label: ['get event']
+------
+91
+flights to pittsburgh next friday
+Predicted label: []
+Real label: ['unsupported']
+------
+92
+concerts by bruno mars during the next few months close to where i live
+Predicted label: ['get location', 'get event']
+Real label: ['get location', 'get location home', 'get event']
+------
+93
+what days is there kara ##oke
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+94
+which farmers market in tucson is open next
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+95
+when is sting coming to the area
+Predicted label: ['get event']
+Real label: ['get location home', 'get event']
+------
+96
+any good holiday market to go in new york city
+Predicted label: []
+Real label: ['get event']
+------
+97
+what are my friends doing this weekend
+Predicted label: ['unsupported']
+Real label: ['get event', 'get contact']
+------
+98
+help me find some friends
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+99
+is their a polar express train ride near me
+Predicted label: []
+Real label: ['get location', 'get event']
+------
+100
+tell me when garth brooks is playing the bo ##k next
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+101
+movie theaters with din ##e in option
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+102
+today going to be event perfect day
+Predicted label: []
+Real label: ['unsupported event']
+------
+103
+is there a zoo in nashville
+Predicted label: []
+Real label: ['unsupported event']
+------
+104
+what are some cheap things to do with family for christmas
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+105
+cool places for kids
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+106
+light up night
+Predicted label: []
+Real label: ['get event']
+------
+107
+find me a steak ##house with open reservations for 8 pm
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+108
+rooftop bars open on friday night
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+109
+are there any outdoor events this weekend in a 50 mile radius
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+110
+what upcoming church events are for both adults and children
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+111
+who is headlining the concert at the nut ##ter center next week
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+112
+how far is the nearest mm ##j di ##sp ##ens ##ary
+Predicted label: ['get location', 'get distance']
+Real label: ['unsupported']
+------
+113
+bookstore ##s serving coffee in greenville sc after 9 ##pm
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+114
+local tours
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+115
+where is the nearest book store open past midnight
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+116
+what clubs are hot now
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+117
+does the hayden planet ##arium still offer the late night rock show
+Predicted label: ['get location']
+Real label: ['get location', 'get event']
+------
+118
+are there any fun christmas events in my area
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+119
+is anything good on television tonight
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+120
+country music events in my area with garth brooks
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+121
+any classes in my neighborhood where i can learn to cook
+Predicted label: ['get event', 'unsupported']
+Real label: ['get location home', 'get event']
+------
+122
+is the af ##k ##gg gamer lounge in san jose open till midnight this weekend
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+123
+when is food trucks in orchard hills neighborhood
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+124
+ideas of school plays to attend in my area this month
+Predicted label: ['get location home', 'get event']
+Real label: ['get location', 'get event']
+------
+125
+disney on ice locations near me within the next month
+Predicted label: ['unsupported']
+Real label: ['get location', 'get event']
+------
+126
+windshield repair near me
+Predicted label: []
+Real label: ['unsupported event']
+------
+127
+what is good rest ##ura ##nt to eat vega ##n food in chicago this weekend
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+128
+we can hours for the sea life in michigan aquarium for friday and saturday
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+129
+where is a great place to have a date in houston
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+130
+kid friendly family restaurants in ole ##an ny
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+131
+where is the best place to get pizza
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+132
+where is the best place to view the boat parade in north palm beach
+Predicted label: ['get event']
+Real label: ['unsupported event']
+------
+133
+in which mall does santa show up this weekend and what time
+Predicted label: ['unsupported']
+Real label: ['get location', 'get event']
+------
+134
+looking for a christmas tree farm near me that has events today
+Predicted label: ['unsupported']
+Real label: ['get location', 'get event']
+------
+135
+any upcoming concerts by john mayer in my area
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+136
+what is happening on the high lines in new york next friday
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+137
+where can we go to get ice cream and cake tonight
+Predicted label: []
+Real label: ['unsupported']
+------
+138
+concerts by local bands in baltimore next week
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+139
+when is the best time to get tickets for the
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+140
+places to stay next week that are kid friendly in detroit
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+141
+let me know where i can find some cool art
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+142
+at what time is denver high school play next thursday
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+143
+looking for more suggestions of places like that grounds for sculpture place in trenton
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+144
+halftime fun will start at 7 ##pm on backstage
+Predicted label: ['get event']
+Real label: ['unsupported event']
+------
+145
+what are the holiday hours in the museum district in houston
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+146
+where can i go nearby to have fun
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+147
+local events this month
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+148
+movie theaters near me
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+149
+are there any happy hour specials near me right now
+Predicted label: ['get location']
+Real label: ['get location', 'get event']
+------
+150
+what is the busiest street in orlando after 10 pm
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported event']
+------
+151
+will the human society have a booth at the state fair and are there available pup ##pies
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+152
+tonight local music in boston 7 ##pm
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+153
+please find any hip hop clubs near me
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+154
+local events happening this weekend
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+155
+lakes in texas
+Predicted label: []
+Real label: ['unsupported']
+------
+156
+i have friends over this weekend what can we do
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+157
+when does the garbage truck come pick up garbage on 9th street in new york
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+158
+best clubs to be at during new years
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+159
+lets schedule some ##ting fun to do tomorrow
+Predicted label: ['get event']
+Real label: ['unsupported event']
+------
+160
+what is the best places to take a girl for a first date
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+161
+free food in lake ##land please
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+162
+is the flight to chicago tomorrow night
+Predicted label: []
+Real label: ['get event']
+------
+163
+any recommendations for a date tonight
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+164
+where is joel ol ##sten speaking in new orleans march 2018
+Predicted label: []
+Real label: ['get event']
+------
+165
+water parks in minneapolis
+Predicted label: ['unsupported']
+Real label: ['get location']
+------
+166
+where do millennia ##ls hang out in fort bend
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+167
+i want to find a pottery studio to go to
+Predicted label: ['get location', 'get directions']
+Real label: ['unsupported']
+------
+168
+where is the renaissance festival usually held and what are the admission rates
+Predicted label: ['unsupported event']
+Real label: ['get event', 'unsupported event', 'combine']
+------
+169
+what are some local events happening this weekend
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+170
+christmas parties in the area
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+171
+is the nut ##cr ##acker mat ##ine ##e at gamma ##ge sold out for this weekend
+Predicted label: []
+Real label: ['unsupported event']
+------
+172
+are there any museums near the lake
+Predicted label: []
+Real label: ['unsupported']
+------
+173
+are there spa appointments available for tomorrow near philadelphia
+Predicted label: []
+Real label: ['unsupported event']
+------
+174
+black hair braid ##ers near my home
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+175
+the best foods in los angles
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+176
+how many days left for the next total eclipse
+Predicted label: []
+Real label: ['get event']
+------
+177
+local events with ease of access for those in wheelchair ##s
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+178
+ok ##c events where they don ##t serve alcohol
+Predicted label: ['get event']
+Real label: ['get event', 'negation']
+------
+179
+do we have any board game nights planned at jack ##s house next week
+Predicted label: ['get event']
+Real label: ['get location home', 'get event']
+------
+180
+which venue is hosting the winter wonderland event this year
+Predicted label: []
+Real label: ['get event']
+------
+181
+where is the nearest brewery
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+182
+are there any churches having the singing christmas tree in houston
+Predicted label: []
+Real label: ['get location', 'get event']
+------
+183
+where can i get br ##un ##ch this sunday
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+184
+where is the nearest di ##sp ##ens ##ary in las vegas
+Predicted label: []
+Real label: ['unsupported event']
+------
+185
+is there anything happening in my area this week
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+186
+show light display locations in the medina area during the holidays
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+187
+great restaurants in minneapolis
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+188
+does the moon have two full cycles this month
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+189
+local events calendar
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+190
+what is going on tonight in a ten mile radius
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+191
+what day and time is light up night in new york
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+192
+any mas ##que ##rade parties in the area next month
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+193
+when is my mom coming
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+194
+popular venues around me
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+195
+library event tomorrow
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+196
+cell phone plans
+Predicted label: ['unsupported']
+Real label: ['unsupported event']
+------
+197
+when is the last day to see the sand tree in west palm beach
+Predicted label: ['unsupported']
+Real label: ['get event']
+------
+198
+include my family in the new events list
+Predicted label: []
+Real label: ['unsupported']
+------
+199
+does melbourne square mall have any events
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+200
+tourist attractions in denver in may
+Predicted label: []
+Real label: ['unsupported']
+------
+201
+dates for des ##cans ##o gardens light show in flint ##ridge ca
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+202
+jazz in the park in salt lake saturday
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+203
+gospel concert tonight at wells fargo
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+204
+does dream acres have any holiday events happening this month
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+205
+what bars have live music tonight
+Predicted label: []
+Real label: ['get location', 'get event']
+------
+206
+craft workshops in cambridge
+Predicted label: []
+Real label: ['get event']
+------
+207
+what ##s going on in my city this week
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+208
+who are they honoring on the square on saturday
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+209
+does the french market have christmas events
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+210
+give me a list of cruises leaving miami next spring
+Predicted label: []
+Real label: ['get event']
+------
+211
+any churches making christmas day dinners
+Predicted label: []
+Real label: ['get location', 'get event']
+------
+212
+winter events in my area
+Predicted label: ['get location', 'get event']
+Real label: ['get location home', 'get event']
+------
+213
+what are the church service times for cornerstone in davenport
+Predicted label: ['get event']
+Real label: ['get location', 'get event']
+------
+214
+i need the address for sam ##s lake ##house
+Predicted label: ['get location']
+Real label: ['unsupported']
+------
+215
+is li ##s home address near li ##s work address
+Predicted label: ['get location', 'get location home']
+Real label: ['unsupported']
+------
+216
+which br ##un ##ch item will each member of my yoga class bring
+Predicted label: []
+Real label: ['unsupported']
+------
+217
+how many cars was used in this movie
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+218
+does the jazz group play this weekend
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+219
+send a message to steve about erin ##s party
+Predicted label: []
+Real label: ['unsupported']
+------
+220
+is my 20 year high school reunion this year
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+221
+any events happening in chicago in june i will be visiting
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+222
+what time does april ##s party end
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+223
+are there more catholic churches in cedar ##town or rock ##mart
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+224
+who is all going to the concert tonight
+Predicted label: []
+Real label: ['unsupported']
+------
+225
+show me pictures from our first day at disney
+Predicted label: []
+Real label: ['unsupported']
+------
+226
+give me directions to the sandwich shop on franklin and south street
+Predicted label: ['get location', 'get directions']
+Real label: ['unsupported']
+------
+227
+what is the distance from my house to aunt joan
+Predicted label: ['get location home', 'get distance']
+Real label: ['unsupported']
+------
+228
+can we go inside the tallest building in the us
+Predicted label: ['get location', 'get directions']
+Real label: ['unsupported']
+------
+229
+do you know where the nearest mcdonald ##s is
+Predicted label: []
+Real label: ['unsupported']
+------
+230
+when are elections in south africa
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+231
+how many painting exhibits has mike had in los angeles over the last year
+Predicted label: []
+Real label: ['unsupported']
+------
+232
+what is the average miles between my families homes
+Predicted label: ['get distance']
+Real label: ['unsupported']
+------
+233
+do you know where the cowboys are playing this weekend
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+234
+what was the class trip for collins high school
+Predicted label: []
+Real label: ['unsupported']
+------
+235
+it traffic on surface streets light
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+236
+can you get me driving directions to get to newport news avoiding the construction on 64
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+237
+are there any traffic stops on my route
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+238
+will i make it before the barber closes at 2
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated arrival', 'get location']
+------
+239
+how long will it take me to get to manhattan if i take the expressway
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+240
+what is traffic like on 42nd street in new york
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+241
+what time does united flight 55 ##60 arrive
+Predicted label: []
+Real label: ['get estimated arrival']
+------
+242
+why is the street down to one lane
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+243
+how long will it take me to get to 154 jane street today
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+244
+is now a good time to leave or is traffic heavy
+Predicted label: []
+Real label: ['get info traffic']
+------
+245
+how long is the drive to norfolk if i take surface streets and the hr ##bt
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated duration', 'get location']
+------
+246
+is the traffic worse than normal here
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+247
+is h ##wy 80 open in truck ##ee
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+248
+downtown st augustine traffic please
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+249
+what time would we get to dinner if we take the route south of the district instead of the highway
+Predicted label: ['get estimated arrival', 'get location']
+Real label: ['unsupported navigation']
+------
+250
+will there be any det ##ours for fa ##sil night by ala ##tur ##ca connection
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+251
+how many minutes until the next mobile gas station
+Predicted label: ['get location']
+Real label: ['get estimated duration', 'get location']
+------
+252
+what time is the best time to drive to honolulu
+Predicted label: ['get estimated departure']
+Real label: ['unsupported navigation']
+------
+253
+my com ##mute is only 15 minutes everyday
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+254
+any traffic incidents on i ##10 in the tucson area
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+255
+will i make it to the 7 pm movie at am ##star if i leave now and take highway 21
+Predicted label: ['get estimated arrival', 'get event']
+Real label: ['get estimated arrival', 'get location', 'get event']
+------
+256
+is route 10 the quick ##est way to get to oklahoma
+Predicted label: ['get directions']
+Real label: ['unsupported navigation']
+------
+257
+are there any delays on my way to work how long is it going to take to get there
+Predicted label: ['get location work']
+Real label: ['get estimated duration', 'get info traffic', 'get location work', 'combine']
+------
+258
+is the res ##ler exit closed today
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+259
+how from is seattle from here
+Predicted label: ['get location']
+Real label: ['get location', 'get distance']
+------
+260
+how long is the wait time on i ##80
+Predicted label: []
+Real label: ['get info traffic']
+------
+261
+how long until i merge onto route 9
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+262
+can i avoid the highway and still get to the little leagues game on time
+Predicted label: ['get location', 'get directions', 'get event']
+Real label: ['get estimated arrival', 'get location', 'get event']
+------
+263
+what is the quick ##est way to get from home to west falls ny avoiding the construction on 23
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+264
+what is the distal from galveston texas to san antonio texas and from san antonio texas to con ##ro ##e without toll roads and what time will i get to con ##ro ##e texas
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated arrival', 'get distance', 'combine']
+------
+265
+direct me out of the traffic
+Predicted label: ['update directions']
+Real label: ['get directions']
+------
+266
+what time should i expect to meet sam tonight at the tribe ##cca film festival if i leave work during rush hour and im 55 miles away from the venue
+Predicted label: ['get location', 'get event', 'get location work']
+Real label: ['get estimated arrival', 'get event', 'get location work']
+------
+267
+can i make it from here to nashville in less than 4 hours if i don ##t make any stops along the way
+Predicted label: ['get estimated arrival', 'get location']
+Real label: ['get estimated duration', 'get location']
+------
+268
+how much longer until the traffic clears
+Predicted label: []
+Real label: ['get info traffic']
+------
+269
+is there traffic at la ##guard ##ia
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+270
+what time does the morning traffic clear
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+271
+is there more traffic at 6
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+272
+what is the best time to reach downtown
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+273
+what time will the storm arrive and will it effect traffic
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+274
+i want to go to watkins glen state park how far is that from here and how long should it take me to drive there
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['get estimated duration', 'get location', 'get distance', 'combine']
+------
+275
+route to os ##we ##go with least amount of stop lights
+Predicted label: ['unsupported navigation']
+Real label: ['get directions']
+------
+276
+is the bridge on paul ##ding road accessible
+Predicted label: ['unsupported navigation', 'get location']
+Real label: ['get location', 'get info traffic']
+------
+277
+how long will it take to get to my appointment at dr blackwell ##s office
+Predicted label: ['get estimated duration', 'get event', 'get location work']
+Real label: ['get estimated duration', 'get location', 'get event']
+------
+278
+will the roads be blocked off for the b ##lm protest
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+279
+what is the nearest movie theatre
+Predicted label: []
+Real label: ['get location']
+------
+280
+route with less traffic to my home
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'update directions']
+------
+281
+when is rush hour traffic in hartford
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+282
+find me the fastest way home from where i am
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+283
+help me find the best ro ##ut to go to my sister house now
+Predicted label: ['get directions']
+Real label: ['get location home', 'get directions']
+------
+284
+can i make it from here to lexington kentucky by 7 pm tomorrow night if i only stop on the way from 12 am to 5 am
+Predicted label: ['get estimated arrival', 'get location']
+Real label: ['unsupported navigation']
+------
+285
+how long must i sit in traffic
+Predicted label: ['get info traffic']
+Real label: ['get estimated duration']
+------
+286
+if i leave now will i avoid traffic on i ##10
+Predicted label: ['get directions']
+Real label: ['get info traffic']
+------
+287
+are the roads to ellen ##s house clear
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get location home', 'get info road condition']
+------
+288
+how long is the nearest elementary school from home
+Predicted label: ['get location', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+289
+what time is rush hour on i ##75 in the evening around tampa
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+290
+what is the quick ##est way to get to the airport after i pick up jan
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+291
+where is the closest target
+Predicted label: []
+Real label: ['get location']
+------
+292
+det ##ours by ma ##hn ##ome ##n today
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+293
+get the time to arrive to man ##dos house using cairo ring road
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated arrival', 'get location home']
+------
+294
+when is traffic the light ##est in downtown chicago
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+295
+how long will it take me to drive from sk ##ope ##los to scenic heights elementary school if i leave at 145 pm
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['get estimated duration', 'get location school']
+------
+296
+show me the simplest route when i leave from work to go to my uncles house
+Predicted label: ['get location home', 'get directions', 'get location work']
+Real label: ['get location home', 'get directions', 'get location work', 'get contact']
+------
+297
+how long is the drive to cedar point
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+298
+if i leave home now will i make it to the atlanta opera by 5 ##pm
+Predicted label: ['get estimated arrival', 'get location home', 'get event']
+Real label: ['get estimated arrival', 'get location', 'get location home']
+------
+299
+do the road to eli ##ssa concert in sal ##ah salem will be blocked at 7 am
+Predicted label: ['get info traffic', 'get event']
+Real label: ['unsupported navigation']
+------
+300
+what ##s the heaviest congestion area in downtown atlanta right now
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+301
+if i leave my house at 8 ##pm how long will it take me to get to stephanie ##s house in dublin
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+302
+show me two alternative routes for work
+Predicted label: ['get location work']
+Real label: ['unsupported navigation']
+------
+303
+what exit will the construction zone end
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+304
+is helicopter checking traffic back up
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+305
+are there any delays on the way to the men ##s march
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+306
+is there any flooding around my house this morning
+Predicted label: ['get location home', 'get info road condition']
+Real label: ['get location', 'get location home', 'get info road condition']
+------
+307
+is the construction on 55 holding up traffic south bound
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+308
+when is the best time to leave work if i need beat rush hour traffic in h ##1
+Predicted label: ['get estimated departure']
+Real label: ['get estimated departure', 'get location work']
+------
+309
+if i leave now can i drive to novi and get back to south lyon in an hour
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated duration']
+------
+310
+how long will it take take flight 70 ##1 to reach washington dc
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+311
+tell me how to get to my sisters house using only paved roads
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+312
+what is the traffic where im at right now
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+313
+what is the traffic from shepherd university to charles town w ##v
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+314
+distance from yellowstone to yo ##se ##mite
+Predicted label: ['get distance']
+Real label: ['get location', 'get distance']
+------
+315
+is eagle rd in boise shut down right now and when will the accident be cleared up
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation', 'get location', 'get info traffic', 'combine']
+------
+316
+if i leave work now how long will it take me to get to the vet ##s office
+Predicted label: ['get estimated duration', 'get location work']
+Real label: ['get estimated duration', 'get location', 'get location work']
+------
+317
+should a wait a few minutes to pick up my husband
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+318
+driving speed in new york city
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+319
+i need to be at my nephew ##s game by 500 when should i leave
+Predicted label: ['get estimated departure', 'get event']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+320
+will the construction on the thru ##way affect traffic
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+321
+if i have add ##yse ##n up by 7 will i be able to have her ready and at school by 730
+Predicted label: ['get estimated arrival', 'get location school']
+Real label: ['unsupported navigation']
+------
+322
+show me the quick ##est way to get to my sisters house by h ##wy
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+323
+what is the peak traffic time today
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+324
+will my way to work be affected by the road block in the na
+Predicted label: ['get info traffic', 'get location work']
+Real label: ['unsupported navigation']
+------
+325
+any way around this traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+326
+what is the traffic on route 76 north bound
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+327
+can i make it to work in 20 minutes
+Predicted label: ['get estimated arrival', 'get location work']
+Real label: ['get estimated duration', 'get location work']
+------
+328
+should i take the 5 or 405 home
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+329
+any expected det ##ours if i take h ##1 during the great al ##oh ##a run
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+330
+how long until i arrive
+Predicted label: ['get estimated duration']
+Real label: ['get estimated arrival']
+------
+331
+what is the fastest way to get to roosevelt island
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+332
+what time do i need to leave to miss the construction det ##ours on i ##5
+Predicted label: ['get estimated departure']
+Real label: ['unsupported navigation']
+------
+333
+what trains are heading to rochester and are there any delays
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic', 'get directions', 'combine']
+------
+334
+what route is the marathon run in ellis ##ville tomorrow
+Predicted label: ['get directions', 'get event']
+Real label: ['unsupported navigation']
+------
+335
+is there any road construction between me and tu ##sca ##lo ##osa
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+336
+what parts of 75 are under construction
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+337
+what day is traffic usually heaviest
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+338
+if i plan on leaving my girlfriends house in op ##elo ##usa ##s at 10 ##am how long will my drive be back to my mom ##s house
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+339
+will my drive be quick today
+Predicted label: ['get info traffic']
+Real label: ['get estimated duration']
+------
+340
+tell me the shell stations along i ##59 between here and hat ##ties ##burg
+Predicted label: ['get info route']
+Real label: ['get location', 'get info route']
+------
+341
+will the baseball game tonight be delayed because of the rain
+Predicted label: ['get event']
+Real label: ['unsupported']
+------
+342
+are there any accidents around the area this morning
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get location', 'get location home', 'get info traffic']
+------
+343
+what time i 90 get snow fall
+Predicted label: []
+Real label: ['get info road condition']
+------
+344
+to me a short ##cut to get to the mechanic by 5 ##pm
+Predicted label: ['get location', 'update directions']
+Real label: ['get location', 'get directions']
+------
+345
+i need directions to sherwood island that misses all traffic
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+346
+what ##s traffic like outside of nashville right now
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+347
+how long does it take to drive across the country
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated duration', 'get location']
+------
+348
+any traffic from water ##town to niagara falls
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+349
+will mt hood have snow on it tonight
+Predicted label: ['get info road condition']
+Real label: ['unsupported']
+------
+350
+traffic route to virginia beach without taking i ##64
+Predicted label: ['get directions']
+Real label: ['get info traffic']
+------
+351
+i am en ##rou ##te update me about traffic
+Predicted label: ['update directions']
+Real label: ['get info traffic']
+------
+352
+quick ##est route to take going to virginia beach now
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+353
+please tell me if there are any downed power lines from the storm near my house
+Predicted label: ['get location', 'get location home', 'get info traffic']
+Real label: ['get location', 'get location home', 'get info road condition']
+------
+354
+are there any bus routes from banning to palm springs
+Predicted label: ['unsupported navigation']
+Real label: ['get directions']
+------
+355
+how long will it take to drive to 118 sunset avenue
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+356
+are they doing construction in downtown seattle between april 1st through may 1st
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+357
+what time will traffic die down
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+358
+if i the concert gets over at 11 pm what time will i get home in newport
+Predicted label: ['get estimated arrival', 'get location home', 'get event']
+Real label: ['get estimated arrival', 'get location', 'get location home', 'get event']
+------
+359
+drive me home on the route with the least cops on it
+Predicted label: ['get location home', 'get directions']
+Real label: ['unsupported navigation']
+------
+360
+what is traffic like to my parents
+Predicted label: ['get info traffic']
+Real label: ['get location home', 'get info traffic']
+------
+361
+avoid road construction please
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+362
+how long would it take to drive to cedar point
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+363
+what is the best way going to fremont experience
+Predicted label: ['get directions', 'get event']
+Real label: ['get location', 'get directions']
+------
+364
+how long before i get to the dentist if i avoid the construction area leaving from ha ##ous ##a qu ##ater ##s
+Predicted label: ['get location']
+Real label: ['get estimated duration', 'get location']
+------
+365
+is traffic worse in snow
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+366
+what ##s the slow ##down time on the 405 freeway home
+Predicted label: ['get location home']
+Real label: ['get estimated duration', 'get location home']
+------
+367
+avoid traffic please
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+368
+what is the best time to drive to al ##ys ##has to avoid the traffic
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated departure', 'get location home']
+------
+369
+should i change my normal route to work to avoid traffic
+Predicted label: []
+Real label: ['get directions', 'get location work']
+------
+370
+what does the congestion on i ##75 look like in route to summer ##fest in milwaukee after that 7 ##car ##coll ##ision that was reported 20 minutes ago are there any exits to additional routes that would get me there faster
+Predicted label: ['get event']
+Real label: ['get info traffic', 'get event', 'update directions', 'combine']
+------
+371
+are there toll roads going to kentucky from pennsylvania
+Predicted label: ['get directions', 'get info route']
+Real label: ['get location', 'get info route']
+------
+372
+what ##s the shortest distance to jessica ##s creek using i ##7 ##2 from forever 21
+Predicted label: ['get directions', 'get distance']
+Real label: ['get location', 'get directions']
+------
+373
+how many miles would i have to travel from one coast to the other in the us
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get distance']
+------
+374
+what time should i leave kathy ##s to get to school by 8 ##am
+Predicted label: ['get estimated departure', 'get location school']
+Real label: ['get estimated departure', 'get location home', 'get location school']
+------
+375
+how long will it take me to get to work if i stop for food for 20 minutes
+Predicted label: ['get estimated duration', 'get location work']
+Real label: ['unsupported navigation']
+------
+376
+how much longer will my com ##mute be if i take ni ##mit ##z highway to get to ala moan ##a center
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+377
+how long is the drive from florida to canada and what ##s the best route
+Predicted label: ['get directions', 'combine']
+Real label: ['get estimated duration', 'get directions', 'combine']
+------
+378
+can i get to renee ##s house from natalie ##s house in 25 minutes
+Predicted label: ['get estimated arrival', 'get location home']
+Real label: ['get estimated duration', 'get location home']
+------
+379
+can i make it to the movies at 630 by bike
+Predicted label: ['get estimated arrival', 'get event']
+Real label: ['get estimated arrival', 'get location']
+------
+380
+what is traffic like on the holland tunnel and the lincoln tunnel
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+381
+is long ##view rd still closed if so how long will it take me to get to wal ##mart using the det ##our
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['get estimated duration', 'get location', 'get info traffic', 'combine']
+------
+382
+can i get from novi to ann arbor in 30 minutes
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated duration']
+------
+383
+which route is fastest to i ##15
+Predicted label: ['get directions']
+Real label: ['unsupported navigation']
+------
+384
+is there any way that i can go faster
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+385
+what is the morning traffic rush time ##frame
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+386
+is it okay to drive on the freeway today in la
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+387
+is there any flooding on the freeway to home
+Predicted label: ['get location home', 'get info road condition']
+Real label: ['get location', 'get location home', 'get info road condition']
+------
+388
+only give me directions using the highway to school
+Predicted label: ['get directions', 'get location school']
+Real label: ['get location', 'get directions', 'get location school']
+------
+389
+is the accident on the 202 affecting bus schedules
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+390
+how far is northern ireland from stone ##hen ##ge
+Predicted label: ['get distance']
+Real label: ['get location', 'get distance']
+------
+391
+is the traffic light on de moi ##nse roads on thursday morning hours
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+392
+what is traffic looking like to go visit taylor tonight
+Predicted label: ['get info traffic']
+Real label: ['get location home', 'get info traffic']
+------
+393
+is it super cong ##ested by universal today
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+394
+how long will the drive take to get to jessie ##s house do ##ye ##ls ##town today
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+395
+what is the best road to access erin ##s park central from wills job place
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'get directions', 'get location work']
+------
+396
+how busy is traffic in the south of the us
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+397
+where is traffic less cong ##ested for getting to fremont
+Predicted label: ['get info traffic']
+Real label: ['get directions']
+------
+398
+when will there be the least traffic
+Predicted label: []
+Real label: ['get info traffic']
+------
+399
+how long will it take me to drive to from nick ##s house to the show at the roxy tonight
+Predicted label: ['get estimated duration', 'get location home', 'get event']
+Real label: ['get estimated duration', 'get location', 'get location home', 'get event']
+------
+400
+is there another way to get home faster
+Predicted label: ['update directions']
+Real label: ['get location home', 'update directions']
+------
+401
+when do i need to leave the house to reach band ##eli ##er monument by 9 ##am on saturday morning
+Predicted label: ['get estimated departure', 'get location home']
+Real label: ['get location', 'get estimated departure', 'get location home']
+------
+402
+i need direction to joshua tree festival in california
+Predicted label: ['get directions']
+Real label: ['get directions', 'get event']
+------
+403
+i need to leave home at 6 am what time will arrive in dayton ohio
+Predicted label: ['get estimated departure', 'get location home']
+Real label: ['get estimated arrival', 'get location home']
+------
+404
+is there less traffic at 10
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+405
+how is the tr ##af ##ffi ##c around the mercedes benz stadium in atlanta
+Predicted label: ['get location']
+Real label: ['get location', 'get info traffic']
+------
+406
+best route to get to good ##ings flea market after 4
+Predicted label: ['get directions', 'get event']
+Real label: ['get location', 'get directions']
+------
+407
+take me on the back roads from cincinnati to indianapolis
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+408
+is there congestion on 385 at 85
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+409
+how ##s traffic on the west side
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+410
+is the road to mt le ##mmon open
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+411
+is traffic always heavy at this stretch of highway
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+412
+can i get from disney springs to city walk in under half an hour for the minions show
+Predicted label: ['get location', 'get event']
+Real label: ['get estimated duration', 'get location']
+------
+413
+how ##s the traffic ahead
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+414
+will macy ##s still be open this evening if i leave my grandmother ##s house now
+Predicted label: ['unsupported']
+Real label: ['unsupported navigation']
+------
+415
+tell me if i can get to grandma ##s by 12 noon if i ride my bike or catch the train
+Predicted label: ['unsupported navigation', 'get estimated arrival']
+Real label: ['get estimated arrival', 'get location home']
+------
+416
+when is traffic the highest in my area
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+417
+when will construction start between main st and black st in memphis
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+418
+when is best time to leave for nearest starbucks if i drive highway
+Predicted label: ['get estimated departure']
+Real label: ['unsupported navigation']
+------
+419
+what is the quick ##est way to herman ##s vet
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+420
+does the rally downtown today have traffic delayed in downtown birmingham and if so can i make it to work by 8 am
+Predicted label: ['get event', 'get location work']
+Real label: ['get estimated arrival', 'get info traffic', 'get event', 'get location work', 'combine']
+------
+421
+when will this construction be over
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+422
+when should i leave home to get to j ##fk by noon
+Predicted label: ['get estimated departure', 'get location home']
+Real label: ['get location', 'get estimated departure', 'get location home']
+------
+423
+how far is it in miles from main and 1st to main and 31st
+Predicted label: ['get distance']
+Real label: ['get location', 'get distance']
+------
+424
+is roads still bad this morning from the snow storm
+Predicted label: ['get info traffic']
+Real label: ['get info road condition']
+------
+425
+how many streets under construction between office and jr ##s school
+Predicted label: ['unsupported navigation', 'get location work', 'get location school']
+Real label: ['get info traffic', 'get location work', 'get location school']
+------
+426
+if i leave the school at 83 ##0 what time will i get to my office
+Predicted label: ['get estimated arrival', 'get location work']
+Real label: ['get estimated arrival', 'get location work', 'get location school']
+------
+427
+are there any car accidents on 95 northbound now
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+428
+what is the distance between sandy and damascus in oregon
+Predicted label: ['get distance']
+Real label: ['get location', 'get distance']
+------
+429
+will traffic clear up in the next 30 minutes
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+430
+should i take the highway to get to work
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get directions', 'get location work']
+------
+431
+cr ##aw ##fish fest ##tiv ##al traffic
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+432
+set my work address to
+Predicted label: ['unsupported']
+Real label: ['unsupported navigation']
+------
+433
+how long is the drive between the smoky mountains and the po ##con ##os
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+434
+how long would it take a tow truck to reach me
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+435
+what train should i take from alexandria to as ##wan to be there at 9 ##am
+Predicted label: ['get directions']
+Real label: ['unsupported navigation']
+------
+436
+if i take the turn pike will i make the 8 ##pm concert in miami
+Predicted label: ['get estimated arrival', 'get event']
+Real label: ['get estimated arrival', 'get location', 'get event']
+------
+437
+can i make it to aunt mary ##s house in cape may if i leave work in the next 10 minutes so we can have dinner right at 5 pm
+Predicted label: ['get estimated arrival', 'get location home']
+Real label: ['get estimated arrival', 'get location', 'get location home', 'get location work']
+------
+438
+is wil ##shire b ##l ##vd closed for the parade
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+439
+traffic on i ##25 colorado springs
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+440
+how the traffic in downtown jacksonville on friday night
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+441
+what are the slow ##est routes near me today
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+442
+has main street been reopened yet
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+443
+should i be worried making it to the clinic because of the snow ##storm
+Predicted label: ['get info road condition']
+Real label: ['get location', 'get info road condition']
+------
+444
+if i avoid highways can i still make it to my 10 o ##cl ##ock meeting if i left now
+Predicted label: ['get estimated arrival', 'get event']
+Real label: ['get estimated arrival', 'get location', 'get event']
+------
+445
+get the time to cairo using free road
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+446
+how long will take me to get to class
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get event']
+------
+447
+i have tickets for tomorrow ##s seahawks game are there any det ##ours on my route
+Predicted label: ['unsupported event']
+Real label: ['get directions', 'get event']
+------
+448
+what time do i need to leave for graduation ceremonies at barton at 1 ##pm
+Predicted label: ['get estimated departure', 'get event']
+Real label: ['get location', 'get estimated departure', 'get event']
+------
+449
+i am leave the house at 2 pm to go to the or ##f what is my expected arrival time and is there traffic
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get estimated arrival', 'get location', 'get location home', 'get info traffic', 'combine']
+------
+450
+what is the com ##mute like to johns house
+Predicted label: ['get location home']
+Real label: ['get location home', 'get info traffic']
+------
+451
+how far is it to get to the marina where my boat is from my office
+Predicted label: ['get location work', 'get distance']
+Real label: ['get location', 'get location work', 'get distance']
+------
+452
+how much time does rush hour take from my com ##mute
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+453
+i am taking the toll to work how long can i expect my drive to be on monday if i leave at 8 am
+Predicted label: ['get estimated duration', 'get location work']
+Real label: ['get estimated duration', 'get location', 'get location work']
+------
+454
+when is the best time to leave the office
+Predicted label: ['get estimated departure']
+Real label: ['unsupported navigation']
+------
+455
+what time in the morning is traffic the heaviest
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+456
+what is the fastest route to elliot hospital by bus on thursday afternoon at 335 pm
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+457
+if everyone keeps moving why is there always traffic
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+458
+when does traffic slow down
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+459
+what exit can i take to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+460
+how many miles is it to mars
+Predicted label: ['get distance']
+Real label: ['unsupported navigation']
+------
+461
+what ##s the typical speed on i ##80 right now
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+462
+how can i report an accident
+Predicted label: []
+Real label: ['unsupported']
+------
+463
+how would i get to the fair by avoiding interstate 35 and if i want to arrive by noon
+Predicted label: ['get directions', 'get event']
+Real label: ['get location', 'get directions']
+------
+464
+what is the best time to travel from home to marshall ##town iowa
+Predicted label: ['get estimated departure', 'get location home']
+Real label: ['unsupported navigation']
+------
+465
+search the traffic in maps from my location to work
+Predicted label: ['get info traffic', 'get location work']
+Real label: ['get location', 'get info traffic', 'get location work']
+------
+466
+time for home
+Predicted label: ['get location home']
+Real label: ['get estimated duration', 'get location home']
+------
+467
+are there any lane closing ##s on interstate 77 south to marie ##tta
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+468
+how many miles ago did the traffic start
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+469
+my daughters concert starts at 7 pm at co ##bol hall what time should i leave to get there by 61 ##5
+Predicted label: ['get estimated departure', 'get event']
+Real label: ['get location', 'get estimated departure', 'get event', 'get contact']
+------
+470
+how can i avoid all the bridges to get to kevin ##s house
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+471
+how much time do i save if i go highway before midnight for wall street
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+472
+what is the shortest distance to work
+Predicted label: ['get directions', 'get location work']
+Real label: ['get location work', 'get distance']
+------
+473
+how long is the det ##our on 36 ##7
+Predicted label: []
+Real label: ['get info traffic']
+------
+474
+how do i pay to use the toll lane
+Predicted label: ['unsupported event']
+Real label: ['unsupported navigation']
+------
+475
+what route should i not take to get to the hilton by 3 ##pm
+Predicted label: ['get location', 'get directions']
+Real label: ['unsupported navigation']
+------
+476
+how long will i be sitting in this traffic
+Predicted label: ['get info traffic']
+Real label: ['get estimated duration']
+------
+477
+how ##s the roads condition on gr ##ub street tonight
+Predicted label: ['get info traffic']
+Real label: ['get info road condition']
+------
+478
+if i leave now when will i reach my university
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated arrival', 'get location school']
+------
+479
+near what exit does traffic end
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+480
+how long will this traffic congestion last
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+481
+how long will it rain this afternoon
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+482
+what time would it be if i leave work now to get to dad ##s
+Predicted label: ['get location home', 'get location work']
+Real label: ['get estimated arrival', 'get location home', 'get location work']
+------
+483
+where is fastest traffic
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+484
+what ##s the best way to go to get to the miami f1 finish line
+Predicted label: ['get directions', 'get event']
+Real label: ['get location', 'get directions']
+------
+485
+any road blocks in midtown
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+486
+traffic accidents in my county today
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+487
+i want to drive to my friends house but i would like to avoid all highways
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+488
+i will be in ann arbor at 10 am can i get to south ##gate within an hour and a half
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated duration']
+------
+489
+is there any construction going on in the al ##um rock area of san jose
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+490
+i need to get the directions to katie ##s house in roberts ##dale leaving at 100 pm
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+491
+how long will the drive from quick check take if i leave now
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+492
+will the streets in philadelphia still be closed at 8 ##pm due to the parade for the philadelphia eagles
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+493
+where is the nearest exit with light traffic
+Predicted label: []
+Real label: ['get location', 'get directions']
+------
+494
+will i get delay to home
+Predicted label: ['get location home']
+Real label: ['get location home', 'get info traffic']
+------
+495
+what is the shortest high way between liver ##more and san francisco
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+496
+how do i get from home to downtown la avoiding the freeway ##s
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+497
+how many starbucks will i pass on my way to my brothers house
+Predicted label: ['unsupported']
+Real label: ['unsupported navigation']
+------
+498
+which freeway should i avoid due to traffic
+Predicted label: ['get location', 'get info traffic', 'get directions']
+Real label: ['unsupported navigation']
+------
+499
+is my com ##mute faster or slower than normal today
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+500
+take the route with the least miles
+Predicted label: ['get directions']
+Real label: ['unsupported navigation']
+------
+501
+what time of day is the traffic the heaviest
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+502
+drive home today at 500 pm
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'get info traffic']
+------
+503
+which road will be quicker to get to wal ##mart
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get directions']
+------
+504
+is the traffic light on ste ##lton rd still broken
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+505
+if i take the i ##90 to hamburg from my home how much faster will it be
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated duration', 'get location home']
+------
+506
+when will traffic be the light ##est today
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+507
+how many construction zones are there from here to little rock
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+508
+where is my wife at today and give me directions to her
+Predicted label: ['get location home', 'get directions']
+Real label: ['unsupported']
+------
+509
+what is best time to leave work to avoid traffic
+Predicted label: ['get estimated departure']
+Real label: ['get estimated departure', 'get location work']
+------
+510
+im leaving my office at 5 ##pm what time should i arrive at my kids school
+Predicted label: ['get estimated arrival', 'get location work']
+Real label: ['get estimated arrival', 'get location work', 'get location school']
+------
+511
+is the bridge lifted
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+512
+are there any lane closure ##s on my route home today
+Predicted label: ['unsupported navigation', 'get info traffic']
+Real label: ['get location home', 'get info traffic']
+------
+513
+what is the traffic like from my house to he ##b
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get location', 'get location home', 'get info traffic']
+------
+514
+take my to anna place via my office and fred meyer as fast as you can
+Predicted label: ['get location', 'get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions', 'get location work']
+------
+515
+any det ##our option from 1st street and main street phil ##ly to the eagle parade without con ##sr ##ction
+Predicted label: ['get event']
+Real label: ['get location', 'get directions', 'get event']
+------
+516
+how far away is the moon
+Predicted label: ['unsupported']
+Real label: ['unsupported navigation']
+------
+517
+what is the toll today for i ##5
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+518
+is it illegal to pass here
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+519
+what roads have the most traffic right now
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+520
+what will the traffic be like around sand ##us ##ky in 2 hours
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+521
+where is the heaviest traffic in buffalo ny
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+522
+with construction how long will it take me to get to my mani ##cure at nails inc
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['get estimated duration', 'get location', 'get event']
+------
+523
+is main street in akron one way
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+524
+how far is it from her to edmonton
+Predicted label: ['get distance']
+Real label: ['get location', 'get distance']
+------
+525
+when is traffic worst
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+526
+how long will it take me to get from work to my sisters dance recital if i leave in 15 minutes
+Predicted label: ['get estimated duration', 'get event', 'get location work']
+Real label: ['get estimated duration', 'get event', 'get location work', 'get contact']
+------
+527
+how much time do construction work affect sal ##ah salem st
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+528
+how long will it take me to get to rob ##s house in rye brook if i leave at 8 ##am
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+529
+how far is it from sacramento to the black hills
+Predicted label: ['get distance']
+Real label: ['get location', 'get distance']
+------
+530
+show me det ##our
+Predicted label: ['update directions']
+Real label: ['get directions']
+------
+531
+how long will it take me to drive to von ##s
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location']
+------
+532
+del ##ete this route
+Predicted label: ['update directions']
+Real label: ['unsupported navigation']
+------
+533
+are there any road blocks in washington dc for the presidents inauguration
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+534
+can i get from here to miami in 3 hours
+Predicted label: ['get location']
+Real label: ['get estimated duration', 'get location']
+------
+535
+time it takes to drive from the east coast to the west coast
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+536
+set my route to remind me to leave a 9 ##am so i am there by 10 ##am
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+537
+what is the drive time from where i am now to home
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+538
+how long is my drive from karate to home
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+539
+is there a better road to take home to get around the traffic
+Predicted label: ['get location home', 'update directions']
+Real label: ['get location home', 'get directions']
+------
+540
+is there a scenic route
+Predicted label: ['get directions']
+Real label: ['unsupported navigation']
+------
+541
+average 9 am drive from lax to orange county
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+542
+give me an update of the traffic at the las vegas strip
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+543
+what time should i leave my house to get to my mom ##s house in grants pass by 7 ##pm tomorrow
+Predicted label: ['get estimated departure', 'get location home']
+Real label: ['get location', 'get estimated departure', 'get location home']
+------
+544
+should i avoid 360 due to traffic
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+545
+what time do i need to leave work to pick aiden up from taekwondo on time
+Predicted label: ['get estimated departure', 'get event', 'get location work']
+Real label: ['get location', 'get estimated departure', 'get location work']
+------
+546
+i need to get to the airport from here can i make it in anything less than an hour and a half
+Predicted label: ['get estimated arrival', 'get location']
+Real label: ['get estimated duration', 'get location']
+------
+547
+avoid heavy traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+548
+can i have a route with faster speeds
+Predicted label: ['update directions']
+Real label: ['unsupported navigation']
+------
+549
+which highway do i take to travel from atlanta to jacksonville florida
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+550
+where is the nearest on ramp
+Predicted label: ['unsupported navigation']
+Real label: ['get location']
+------
+551
+how are road conditions here
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get location', 'get info road condition']
+------
+552
+how long is the traffic delay on the 5 freeway if i am going home from work
+Predicted label: ['get estimated duration', 'get location home', 'get location work']
+Real label: ['get location home', 'get info traffic', 'get location work']
+------
+553
+how long will it take me to get to downtown milwaukee if i bypass the construction
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+554
+sunrise on east coast on next monday
+Predicted label: []
+Real label: ['unsupported']
+------
+555
+how long will it take me to get to tall ##aha ##ssee fl from home and how much in toll ##s will i have to pay to get there if i have the sun ##pass
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated duration', 'unsupported navigation', 'get location home', 'combine']
+------
+556
+how this the com ##mute looking today in atlanta ga downtown
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+557
+when will traffic ease up
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+558
+i need to know what the traffic if like now at grand avenue and green ##bay road
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+559
+tell me all the roads in egypt which do not have toll stations
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+560
+when will the traffic clear up this morning
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+561
+how long will it take to get through traffic
+Predicted label: ['get info traffic']
+Real label: ['get estimated duration']
+------
+562
+can i get to brook ##field in under 20 minutes if i leave now
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated duration']
+------
+563
+avoid highways please
+Predicted label: ['get directions']
+Real label: ['get location', 'update directions']
+------
+564
+tell me how long it ##ll take to get to johns from route 30
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location home']
+------
+565
+are buses delayed today due to det ##our on route 48
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+566
+how far do i have to go on 36 to get past this bumper to bumper traffic
+Predicted label: []
+Real label: ['get info traffic']
+------
+567
+when would be the best time to leave to get to work fastest
+Predicted label: ['get estimated departure', 'get location work']
+Real label: ['unsupported navigation']
+------
+568
+streets with the light ##est traffic
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+569
+is the ta ##con ##y bridge open in the mornings
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+570
+what is the distance between missouri western and northwest missouri state
+Predicted label: ['get distance']
+Real label: ['get location', 'get distance']
+------
+571
+what time should i leave if i want to be at al ##ys ##has by 6 pm
+Predicted label: ['get estimated departure']
+Real label: ['get estimated departure', 'get location home']
+------
+572
+can i get from here to gi ##za ##h tonight at 7
+Predicted label: ['get estimated arrival', 'get location']
+Real label: ['get location', 'get directions']
+------
+573
+what ##s the arrival time if i leave my house from syracuse to new york city
+Predicted label: ['get estimated arrival', 'get location home']
+Real label: ['get estimated arrival', 'get location', 'get location home']
+------
+574
+are cars moving at posted speeds
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+575
+is there any traffic on the freeway between work and school
+Predicted label: ['get info traffic', 'get location work', 'get location school']
+Real label: ['get location', 'get info traffic', 'get location work', 'get location school']
+------
+576
+how long will it take to visit all spots along the 101
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+577
+any downed power line between ex ##ton station and 30th street train station
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+578
+if we wanted to drive the entire pacific coast highway how long would that take and how many miles is it
+Predicted label: ['get estimated duration', 'unsupported navigation']
+Real label: ['get estimated duration', 'get distance', 'combine']
+------
+579
+what are the road conditions like
+Predicted label: ['get info road condition']
+Real label: ['get info traffic']
+------
+580
+its bumper to bumper on the f ##dr now
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+581
+how long will it take me to get to the farmers market from my house
+Predicted label: ['get estimated duration', 'get location home', 'get event']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+582
+tell me how many routes are available from farmers market in dallas to pet ##ti ##ts ##tone in farmers branch and include the drive times
+Predicted label: ['get estimated duration', 'get location', 'combine']
+Real label: ['unsupported navigation']
+------
+583
+is it closer from cleveland to new ##yo ##rk or cleveland to philadelphia
+Predicted label: ['unsupported navigation']
+Real label: ['get distance', 'combine']
+------
+584
+what back roads are there to avoid the spur 60 ##1 when heading to wal ##mart
+Predicted label: []
+Real label: ['get location', 'get directions']
+------
+585
+repeat traffic directions
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+586
+should i even bother trying to go to the park with the traffic
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+587
+when will the traffic get heavy after the game today
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic', 'get event']
+------
+588
+is the henry hudson running smoothly
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+589
+there ##s an accident on the 101 south at ca ##hue ##nga is there an alternate route
+Predicted label: ['update directions']
+Real label: ['get location', 'update directions']
+------
+590
+is the delay 6 miles long
+Predicted label: ['get info traffic']
+Real label: ['get distance']
+------
+591
+what time is the first flight out of dallas to san jose ca next month
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+592
+how many hours does it take to drive 700 miles
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+593
+will it add more time to my com ##mun ##te if i leave at 6 instead of 530
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+594
+are the city streets traffic moving as well as the highways
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+595
+how will it to arrive at home
+Predicted label: ['get location home', 'get directions']
+Real label: ['get estimated duration', 'get location home']
+------
+596
+what is the fastest route to new roc city by freeway
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+597
+which way is better to av ##io ##d traffic
+Predicted label: []
+Real label: ['get directions']
+------
+598
+i need to arrive by 54 ##5 pm at the ale ##rus when should i leave
+Predicted label: ['get estimated departure']
+Real label: ['get location', 'get estimated departure']
+------
+599
+will i still make it to the tree lighting ceremony on time if i leave the parade precisely when its over
+Predicted label: ['get estimated arrival', 'get event']
+Real label: ['unsupported navigation']
+------
+600
+what time should i leave the office to make it to the dr ##s office by 5 pm
+Predicted label: ['get estimated departure', 'get location work']
+Real label: ['get location', 'get estimated departure', 'get location work']
+------
+601
+what is the traffic in my city
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get info traffic', 'get location hometown']
+------
+602
+how long is the wait at the queens ##borough bridge
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['get location', 'get info traffic']
+------
+603
+is there more traffic on the highway or side streets
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+604
+my 5 o ##cl ##ock appointment in garden ##a has been pushed to 6 ##pm can you give me a new departure time
+Predicted label: ['get event']
+Real label: ['get estimated departure', 'get event']
+------
+605
+can we avoid beach traffic during the july weekends in new jersey
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+606
+how long are the delays to the maroon 5 concert
+Predicted label: ['get event']
+Real label: ['get info traffic', 'get event']
+------
+607
+if i leave fort frederick at 3 ##pm will i be home by 330
+Predicted label: ['get estimated arrival', 'get location home']
+Real label: ['get estimated arrival', 'get location', 'get location home']
+------
+608
+are there any lane closure ##s on i ##75 today
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+609
+is there flooding on road to rich ##as house right now
+Predicted label: ['get info road condition']
+Real label: ['get location home', 'get info road condition']
+------
+610
+from my parents house can i get to myrtle beach in 5 minutes by driving
+Predicted label: ['get estimated arrival', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+611
+is there a way around this traffic from where i am at now
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'update directions']
+------
+612
+how long is route 66
+Predicted label: ['get estimated duration']
+Real label: ['get distance']
+------
+613
+how long is the flight from lax to china
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+614
+should i leave early for work today
+Predicted label: ['get estimated departure', 'get location work']
+Real label: ['unsupported navigation']
+------
+615
+when is rush hour traffic in minneapolis
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+616
+local traffic news
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+617
+can you estimate how long until the traffic clears
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+618
+does michigan have any toll ##s
+Predicted label: ['get info route']
+Real label: ['unsupported navigation']
+------
+619
+please update my current route for traffic
+Predicted label: ['get info traffic']
+Real label: ['update directions']
+------
+620
+are the roads safe from home to va ##ca ##ville
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get location home', 'get info road condition']
+------
+621
+are there any reports of black ice this morning on the road to the campground
+Predicted label: ['get info road condition']
+Real label: ['get location', 'get info road condition']
+------
+622
+will there be any road blocks on my way to the women ##s rally
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic', 'get event']
+------
+623
+show me most time efficient route to bus station
+Predicted label: []
+Real label: ['get location', 'get directions']
+------
+624
+how cong ##ested is the traffic on the roads around voodoo fest
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get location', 'get info traffic', 'get event']
+------
+625
+is there a bus stop near my new office
+Predicted label: []
+Real label: ['get location', 'get location work']
+------
+626
+will i be delayed leaving at 8 am to get to ke ##arney by 11
+Predicted label: []
+Real label: ['get estimated arrival']
+------
+627
+how long will it take me to get across birmingham alabama using interstate 20
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+628
+are the local stations saying anything about traffic
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+629
+which alternate routes avoid traffic
+Predicted label: ['update directions']
+Real label: ['get directions']
+------
+630
+is there flooding on the det ##ours off the freeway
+Predicted label: ['get info road condition']
+Real label: ['get location', 'get info road condition']
+------
+631
+where is the worst part of the traffic on this expressway
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+632
+what ##s the traffic to go lake erie
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+633
+what are the traffic direction to go to the beach
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get location', 'get directions']
+------
+634
+what time will the traffic get better
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+635
+tune in to kc ##bs traffic radio station bay area
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+636
+what road should i take to reduce the traffic
+Predicted label: []
+Real label: ['get directions']
+------
+637
+are there any short cuts
+Predicted label: ['get info traffic']
+Real label: ['update directions']
+------
+638
+when should i leave to go to the movies
+Predicted label: ['get estimated departure', 'get event']
+Real label: ['get location', 'get estimated departure']
+------
+639
+if we are planning to start from here at 8 ##pm when well reach santa clara
+Predicted label: ['get location']
+Real label: ['get estimated arrival', 'get location']
+------
+640
+how do i drive from wichita kansas to chicago illinois using only toll free roads
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+641
+there is a medical complex located in park ridge how long does it take to get there in the morning and how long to get back home in the evening
+Predicted label: ['get estimated duration', 'get location', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home', 'combine']
+------
+642
+can i take the ta ##con ##ic to go to hunter mountain to ski tomorrow
+Predicted label: ['unsupported navigation', 'get directions']
+Real label: ['get location', 'get directions']
+------
+643
+do i need to leave for work early because of the traffic
+Predicted label: ['get estimated departure', 'get location work']
+Real label: ['unsupported navigation']
+------
+644
+what ##s the fastest route to ci ##r ##que du sole ##il from the hotel
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'get directions', 'get event']
+------
+645
+how can i save time on my com ##mute today
+Predicted label: []
+Real label: ['get directions']
+------
+646
+how far from phoenix to minneapolis
+Predicted label: ['get distance']
+Real label: ['get estimated duration']
+------
+647
+directions to the burn boot ##camp in new hudson from my work
+Predicted label: ['get directions', 'get event', 'get location work']
+Real label: ['get location', 'get directions', 'get location work']
+------
+648
+will this route take me by a gas station
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'get info route']
+------
+649
+when is jacksonville ##s rush hour
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+650
+are there any accidents 20 miles from my home
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get location', 'get location home', 'get info traffic']
+------
+651
+where are all the pot ##holes in min ##net ##on ##ka
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+652
+is there a low bridge on i 90 south bound
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+653
+if i leave the house at 900 pm will i have enough time to buy nora a present before i get to her house the next morning
+Predicted label: ['get estimated arrival', 'get location home']
+Real label: ['unsupported navigation']
+------
+654
+have they cleaned up that overturned semi from this afternoon
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+655
+how do toll booths enforce payment
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+656
+how much longer until we reach the hotel
+Predicted label: ['get location']
+Real label: ['get estimated duration', 'get location']
+------
+657
+will i make it to broadway to see hamilton by 6 ##pm if i take the freeway
+Predicted label: ['get estimated arrival', 'get location']
+Real label: ['get estimated arrival', 'get location', 'get event']
+------
+658
+how long is the traffic delay on i ##90
+Predicted label: []
+Real label: ['get info traffic']
+------
+659
+i want to take the freeway to the march what is the best way to get there and avoid traffic and construction on the 101 freeway
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'get directions', 'get event']
+------
+660
+is it possible to travel from disney world to atlanta in 12 hours or less
+Predicted label: []
+Real label: ['get estimated duration', 'get location']
+------
+661
+how long would a drive from long beach to downtown los angeles take and what would the arrival time be
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get estimated arrival', 'combine']
+------
+662
+is the rain causing delays on h ##wy 5
+Predicted label: ['get info traffic']
+Real label: ['get info road condition']
+------
+663
+how ##s the traffic after the football game sunday
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+664
+if i leave concert now what highway has the least traffic
+Predicted label: ['get location', 'get event']
+Real label: ['get directions', 'get event']
+------
+665
+are there any road det ##ours that i should be aware of before heading to the sun ##bow ##l
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+666
+are the roads safe
+Predicted label: ['get info traffic']
+Real label: ['get info road condition']
+------
+667
+will mary get caught in traffic if she heads here now
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get location', 'get location home', 'get info traffic']
+------
+668
+how long does it take to get from my sisters to great lakes crossing
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+669
+i need a route around the flooded areas in lake charles
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+670
+directions to the der ##mat ##ologist from aiden ##s school need to arrive at 4 ##pm
+Predicted label: ['get directions', 'get location school']
+Real label: ['get location', 'get directions', 'get location school']
+------
+671
+email traffic update to bob
+Predicted label: ['get info traffic']
+Real label: ['unsupported']
+------
+672
+are all lanes now open on pc ##h
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+673
+should i take 39 ##4 to go to downtown right now
+Predicted label: ['unsupported navigation']
+Real label: ['get directions']
+------
+674
+keep an eye out for upcoming traffic congestion on my route
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+675
+has the snow closed the roads for my morning drive
+Predicted label: ['get info traffic']
+Real label: ['get info road condition']
+------
+676
+is the new route to nike open
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+677
+if im traveling at 60 mph how many kilometers per hour is that
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+678
+what route has the least traffic going to la i ##10 or 405
+Predicted label: ['get directions']
+Real label: ['unsupported navigation']
+------
+679
+how long is the drive to san ##ibe ##l florida from me
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+680
+best travel method to go to city hall next monday in the morning
+Predicted label: ['get location', 'get directions']
+Real label: ['unsupported navigation']
+------
+681
+is 92 ##nd street opened today
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+682
+where ##s the traffic the worst today
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+683
+can i make it to penn state in less than 8 hours from ocean city nj if i leave by 8 ##am on saturday morning
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated duration', 'get location']
+------
+684
+what is the current traffic for my area
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get location home', 'get info traffic']
+------
+685
+is the express lane open on 121
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+686
+im attending the weed workshop tonight and need to know if the construction will be finished on main st by 5 pm
+Predicted label: ['get info traffic', 'get event']
+Real label: ['unsupported navigation']
+------
+687
+where is the lease amount of traffic in daytona
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+688
+if i leave my place of employment at 4 pm will i make it to ni ##osa by 530 pm
+Predicted label: ['get estimated arrival', 'get location work']
+Real label: ['get estimated arrival', 'get event', 'get location work']
+------
+689
+what is the traffic like on the secondary roads
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+690
+how long will this traffic jam be
+Predicted label: []
+Real label: ['get info traffic']
+------
+691
+will tonight ##s cubs game delay traffic in wr ##ig ##ley ##ville
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+692
+how long does it take to ride the bike path in e ##ffin ##gh ##am park if i don ##t stop
+Predicted label: ['get location']
+Real label: ['unsupported navigation']
+------
+693
+how do i get to 53 elm ##wood avenue
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+694
+is the accident cleared at 27th avenue and oak st
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+695
+are the roads icy on h ##wy 101 right now and is there a different route i should be taking
+Predicted label: ['update directions']
+Real label: ['get info road condition', 'update directions', 'combine']
+------
+696
+am i going to be able to make it back to clemson in time for the game if there are multiple roads closed
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated arrival', 'get event']
+------
+697
+is the free way clear
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+698
+is there any flooding on the freeway between my house and work
+Predicted label: ['get location home', 'get location work', 'get info road condition']
+Real label: ['get location', 'get location home', 'get location work', 'get info road condition']
+------
+699
+how long am i stuck in this jam
+Predicted label: []
+Real label: ['get info traffic']
+------
+700
+how many stops before home
+Predicted label: ['get location home']
+Real label: ['unsupported navigation']
+------
+701
+are the driving conditions good
+Predicted label: ['get info road condition']
+Real label: ['get info traffic']
+------
+702
+is the traffic light headed to gymnastics
+Predicted label: ['get info traffic']
+Real label: ['get info traffic', 'get event']
+------
+703
+is there a route to get around this bad traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+704
+can i get from kane ##oh ##e to north shore in 30 minutes
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated duration']
+------
+705
+are there any accidents on my way home work
+Predicted label: ['get info traffic', 'get location work']
+Real label: ['get location home', 'get info traffic', 'get location work']
+------
+706
+is there a lot of traffic between me and home
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get location', 'get location home', 'get info traffic']
+------
+707
+what is the best time to leave my house to avoid traffic on the freeway
+Predicted label: ['get location', 'get estimated departure', 'get location home']
+Real label: ['unsupported navigation']
+------
+708
+can you give me directions to my husbands work from my office downtown
+Predicted label: ['get directions', 'get location work']
+Real label: ['get location', 'get directions', 'get location work']
+------
+709
+find an atm along my route to stephanie ##s office
+Predicted label: ['get location', 'get location work']
+Real label: ['get location', 'get location work', 'get info route']
+------
+710
+points of interest on route most frequently travelled
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+711
+are any of the exits on highway 50 blocked right now because of construction
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+712
+what is the time estimate if i leave now to get home
+Predicted label: ['get location home']
+Real label: ['get estimated duration', 'get location home']
+------
+713
+how long will it take me to drive to boston if i drive 45 miles per hour
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+714
+what time does traffic usually end
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+715
+how do i get to delaware and what is the traffic like
+Predicted label: ['get info traffic', 'get directions']
+Real label: ['get info traffic', 'get directions', 'combine']
+------
+716
+how long is the drive in miles from o ##cala to gaines ##ville
+Predicted label: ['get estimated duration']
+Real label: ['get distance']
+------
+717
+how long will ill be in traffic
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated duration']
+------
+718
+what is the fastest route to co ##chel ##la from my house
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'get directions', 'get event']
+------
+719
+if i leave my job at ac ##it right now how long will it take me to get to ocean city
+Predicted label: ['get estimated duration', 'get location work']
+Real label: ['get estimated duration', 'get location', 'get location work']
+------
+720
+can you please let me know how many hours it would take me to get to st louis from columbus taking only highways
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+721
+is the i ##90 closed at the pass
+Predicted label: ['get location', 'get info traffic']
+Real label: ['unsupported navigation']
+------
+722
+how long would it take to get to work if i don ##t take highways
+Predicted label: ['get estimated duration', 'get location work']
+Real label: ['get estimated duration', 'get location', 'get location work']
+------
+723
+how many feet do you need to be parked away from a fire hydra ##nt in pa
+Predicted label: ['unsupported navigation']
+Real label: ['unsupported']
+------
+724
+do i have to avoid main street on my way to the dog show because of the flooding
+Predicted label: ['get directions', 'get event']
+Real label: ['get event', 'get info road condition']
+------
+725
+is snow slowing down traffic today on i ##75
+Predicted label: ['get info traffic']
+Real label: ['get info road condition']
+------
+726
+how ##s the traffic locally
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+727
+what is the ideal time to head home
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+728
+help me avoid the event traffic tonight
+Predicted label: ['get directions']
+Real label: ['get info traffic']
+------
+729
+how long will i have to wait at the mack ##ina ##c bridge
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['unsupported navigation']
+------
+730
+at what time is the heavy traffic in the afternoon
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+731
+what is the estimated travel time to get to ucla today
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+732
+include toll roads in my route options from my house to if ##ly mc ##kin ##ney
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get location home', 'get directions']
+------
+733
+will the construction on the lie cause a delay getting to the met by 9 ##pm
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+734
+average speed on the bypass this morning
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info traffic']
+------
+735
+how long does it take to drive to mb ##ta from our condo
+Predicted label: ['get estimated duration', 'get location']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+736
+when is the traffic worst on river ##dale road
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+737
+what is the peak of rush ##ho ##ur
+Predicted label: ['unsupported']
+Real label: ['unsupported navigation']
+------
+738
+how ##s the traffic from work to midway
+Predicted label: ['get info traffic', 'get location work']
+Real label: ['get location', 'get info traffic', 'get location work']
+------
+739
+how long will it take to hike 12 miles
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+740
+is there construction between me and work
+Predicted label: ['get info traffic', 'get location work']
+Real label: ['get location', 'get info traffic', 'get location work']
+------
+741
+is the route to mom ##s place delayed due to traffic
+Predicted label: ['get location home']
+Real label: ['get location home', 'get info traffic']
+------
+742
+which route had lighter traffic today
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+743
+get directions to allison ##s house in chicago from my new office in pleasant ##ville
+Predicted label: ['get location', 'get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions', 'get location work']
+------
+744
+how is the traffic in austin compared to atlanta
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+745
+is there a carp ##ool lane ahead
+Predicted label: ['unsupported navigation']
+Real label: ['get info route']
+------
+746
+are there any delays on the way to see the fireworks at times square
+Predicted label: ['get info traffic', 'get event']
+Real label: ['get location', 'get info traffic', 'get event']
+------
+747
+i have tickets for the oregon symphony ##s show tonight how much travel time should i allow if im leaving from work
+Predicted label: []
+Real label: ['get estimated duration', 'get event', 'get location work']
+------
+748
+can i leave by 4 pm to get to the baseball field on columbia road by 5 pm
+Predicted label: ['get estimated arrival', 'get location']
+Real label: ['get location', 'get estimated departure']
+------
+749
+how long will it take to washing dc
+Predicted label: []
+Real label: ['get estimated duration']
+------
+750
+what streets in washington county are closed to traffic because of ice and snow
+Predicted label: ['get info traffic']
+Real label: ['get info road condition']
+------
+751
+is there any traffic on my route home from lego ##land
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get location', 'get location home', 'get info traffic']
+------
+752
+i need to avoid traffic today so should i take route 4 instead
+Predicted label: ['get directions']
+Real label: ['unsupported navigation']
+------
+753
+how long is the traffic going to be heavy in dallas
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation']
+------
+754
+how can i avoid traffic on the 84
+Predicted label: ['get directions']
+Real label: ['get info traffic']
+------
+755
+im headed to the parker house what is the best way to get there
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get directions']
+------
+756
+what will be the best time to start the journey to avoid traffic to get to a coffee shop next to var ##un ##s house
+Predicted label: []
+Real label: ['unsupported navigation']
+------
+757
+if bun ##co is at karen harper ##s house at 6 pm what time do i need to leave to be there on time
+Predicted label: ['get estimated departure', 'get location home']
+Real label: ['get estimated departure', 'get location home', 'get event']
+------
+758
+how long is route 90
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+759
+is there construction ahead
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+760
+what time does the train from grand rapids to detroit leave
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated departure']
+------
+761
+eta to super market
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated arrival', 'get location']
+------
+762
+why are the traffic lights out
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+763
+how much to fly to honolulu from la
+Predicted label: ['get estimated duration']
+Real label: ['unsupported navigation']
+------
+764
+is there a baseball game going on tonight downtown
+Predicted label: ['get event']
+Real label: ['unsupported navigation']
+------
+765
+will all lanes be open tomorrow morning on i ##59 in meridian
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+766
+bill and marge are expecting me at 3 later today do you think leaving at 12 will get me there by that time
+Predicted label: ['get estimated arrival']
+Real label: ['get estimated arrival', 'get location home']
+------
+767
+if i take the 404 will i arrive sooner or later at mom ##s
+Predicted label: ['get estimated arrival', 'get location home']
+Real label: ['unsupported navigation']
+------
+768
+time and distance driving from atlanta to key west
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get distance', 'combine']
+------
+769
+what ##s the congestion around miami look like
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+770
+anywhere i need to avoid traffic
+Predicted label: ['get directions']
+Real label: ['get info traffic']
+------
+771
+how much extra time will it take me to get to nut ##ley if i avoid toll roads along the way
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+772
+when should i leave dad ##s house to get to the movies before 9 ##pm
+Predicted label: ['get estimated departure', 'get location home']
+Real label: ['get estimated departure', 'get location home', 'get event']
+------
+773
+is there any grocery store nearby me
+Predicted label: ['unsupported']
+Real label: ['get location']
+------
+774
+what time does traffic congestion begin on average
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+775
+tell me how to get to granny ##s house using back roads
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location', 'get location home', 'get directions']
+------
+776
+can you get me to new jersey avoiding toll roads please
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+777
+avoid bridges on my route
+Predicted label: ['get directions']
+Real label: ['get location', 'get directions']
+------
+778
+any short cuts home today
+Predicted label: ['get location home', 'get info traffic']
+Real label: ['get location home', 'get directions']
+------
+779
+where is the handicapped parking for the green day concert
+Predicted label: ['unsupported event']
+Real label: ['get location', 'get event']
+------
+780
+give me directions for the christmas festival at the boston trade center
+Predicted label: ['get location', 'get event']
+Real label: ['get location', 'get directions', 'get event']
+------
+781
+what time should i leave for downtown chicago to avoid rush hour
+Predicted label: ['unsupported navigation']
+Real label: ['get estimated departure']
+------
+782
+any accidents on the inner loop
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+783
+how long would it take to walk the coast of california
+Predicted label: ['get estimated duration']
+Real label: ['get estimated duration', 'get location']
+------
+784
+are they paving the highway today
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info traffic']
+------
+785
+is there a faster way to work from here
+Predicted label: ['get location work', 'update directions']
+Real label: ['get location', 'get location work', 'update directions']
+------
+786
+give me the amount of time i need to get from my house to my brothers house if i leave now using the back roads
+Predicted label: ['get estimated duration', 'get location home']
+Real label: ['get estimated duration', 'get location', 'get location home']
+------
+787
+if i leave at 1 will i make it to great clips before 2
+Predicted label: ['get estimated arrival', 'get event']
+Real label: ['get estimated arrival', 'get location']
+------
+788
+when is rush hour traffic
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic']
+------
+789
+is it easy for me to go to my work on za ##ki street this morning by a bi ##cy ##le
+Predicted label: ['unsupported navigation']
+Real label: ['get info traffic', 'get location work']
+------
+790
+will the freeway be the fastest way to get to the dance recital on thursday night
+Predicted label: ['get location', 'get directions', 'get event']
+Real label: ['unsupported navigation']
+------

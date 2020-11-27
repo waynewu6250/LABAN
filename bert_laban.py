@@ -1,4 +1,4 @@
-"""For model training and inference (zero-shot learning)
+"""For model training and inference (multi-intent detection)
 Data input should be a single sentence.
 """
 import random
@@ -341,15 +341,13 @@ def test(**kwargs):
 
     # dataset
     with open(opt.dic_path_with_tokens, 'rb') as f:
-        train_dic = pickle.load(f)
-    with open(opt.dic_path_with_tokens_test, 'rb') as f:
         dic = pickle.load(f)
-    print(train_dic)
     print(dic)
     reverse_dic = {v[0]: k for k,v in dic.items()}
+    with open(opt.train_path, 'rb') as f:
+        train_data = pickle.load(f)
     with open(opt.test_path, 'rb') as f:
         test_data = pickle.load(f)
-        test_data = test_data[100:]
 
     if opt.datatype == "atis":
         # ATIS Dataset
@@ -435,7 +433,7 @@ def test(**kwargs):
 
         torch.save(results, embedding_path)
     
-    # Run zero-shot validation
+    # Run multi-intent validation
     elif opt.test_mode == "validation":
 
         test_loader = get_dataloader(X_test, y_test, mask_test, len(dic), opt)
@@ -521,27 +519,34 @@ def test(**kwargs):
                         log = torch.sigmoid(logits)
                         correct = (labels[i][torch.where(log>0.5)[0]]).sum()
                         total = len(torch.where(labels[i]==1)[0])
-                        #if correct != total:
-                        wrong_caption = tokenizer.convert_ids_to_tokens(captions_t[i], skip_special_tokens=True)
-                        error_ids.append(wrong_caption)
-                        pred_ls = [reverse_dic[p] for p in torch.where(log>0.5)[0].detach().cpu().numpy()]
-                        real_ls = [reverse_dic[i] for i, r in enumerate(labels[i].detach().cpu().numpy()) if r == 1]
-                        pred_labels.append(pred_ls)
-                        real_labels.append(real_ls)
+                        if correct != total:
+                            wrong_caption = tokenizer.convert_ids_to_tokens(captions_t[i], skip_special_tokens=True)
+                            error_ids.append(wrong_caption)
+                            pred_ls = [p for p in torch.where(log>0.5)[0].detach().cpu().numpy()]
+                            real_ls = [i for i, r in enumerate(labels[i].detach().cpu().numpy()) if r == 1]
+                            pred_labels.append(pred_ls)
+                            real_labels.append(real_ls)
+            
 
-        with open('error_analysis/{}_{}_zsl.txt'.format(opt.datatype, opt.data_mode), 'w') as f:
+        with open('error_analysis/{}_{}.txt'.format(opt.datatype, opt.data_mode), 'w') as f:
             f.write('----------- Wrong Examples ------------\n')
             for i, (caption, pred, real) in enumerate(zip(error_ids, pred_labels, real_labels)):
                 f.write(str(i)+'\n')
                 f.write(' '.join(caption)+'\n')
-                f.write('Predicted label: {}\n'.format(pred))
-                f.write('Real label: {}\n'.format(real))
+                p_r = [reverse_dic[p] for p in pred]
+                r_r = [reverse_dic[r] for r in real]
+                f.write('Predicted label: {}\n'.format(p_r))
+                f.write('Real label: {}\n'.format(r_r))
                 f.write('------\n')
         recall = test_corrects.double() / totals
         precision = test_corrects.double() / preds
         f1 = 2 * (precision*recall) / (precision + recall)
         print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
         print('Accuracy: ', total_acc/test_loader.dataset.num_data)
+
+        results = {'pred': pred_labels, 'real': real_labels}
+        with open('error_analysis/predictions/{}_{}.pkl'.format(opt.datatype, opt.data_mode), 'wb') as f:
+            pickle.dump(results, f)
 
     
     # User defined
