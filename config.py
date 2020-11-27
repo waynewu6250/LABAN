@@ -4,16 +4,15 @@ class Config:
     # control
     datatype = "semantic"
     data_mode = "multi" #"multi"      # single or multi intent in data
-    sentence_mode = "embedding" #"two"      # one or two sentence in data
+    sentence_mode = "one" #"two"      # one or two sentence in data
     dialog_data_mode = False         # for dialogue-wise data (A+B)
     retrain = True                  # Reuse trained model weights
     is_zero_shot = False                # For zero-shot training/testing
     real_num = 3
     ratio = '0'
-    
+    test_mode = "validation" #"user", "data", "embedding", "validation"
 
-
-    test_mode = "data" #"user", "data", "embedding", "validation"
+    #################################
 
     if datatype == "atis":
         # atis dataset
@@ -104,6 +103,8 @@ class Config:
     else:
         model_path = None if not retrain else "checkpoints/best_{}_{}_{}.pth".format(datatype, data_mode, ratio)
 
+    # dic_path_with_tokens = "data/MixATIS_clean/intent2id_multi_ma_with_tokens.pkl" 
+    # model_path = "checkpoints/best_mixatis_multi.pth"
 
     maxlen = 50 #20
     batch_size = 128 #16

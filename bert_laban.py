@@ -407,11 +407,11 @@ def test(**kwargs):
     # Store embeddings
     if opt.test_mode == "embedding":
         
-        train_loader = get_dataloader(X_train, y_train, mask_train, opt)
+        test_loader = get_dataloader(X_test, y_test, mask_test, len(dic), opt)
 
         results = collections.defaultdict(list)
         model.eval()
-        for i, (captions_t, labels, masks) in enumerate(train_loader):
+        for i, (captions_t, labels, masks) in enumerate(test_loader):
             
             captions_t = captions_t.to(device)
             labels = labels.to(device)
