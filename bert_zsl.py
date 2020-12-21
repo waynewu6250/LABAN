@@ -100,18 +100,22 @@ def train(**kwargs):
     print('Sentence Mode: ', opt.sentence_mode)
 
     # dataset
-    # with open(opt.dic_path_with_tokens_test, 'rb') as f:
-    with open(opt.dic_path_with_tokens, 'rb') as f:
+    ## get dictionary
+    dic_path = opt.dic_path_with_tokens_test if opt.is_few_shot else opt.dic_path_with_tokens
+    with open(dic_path, 'rb') as f:
         dic = pickle.load(f)
     with open(opt.train_path, 'rb') as f:
         train_data = pickle.load(f)
     if opt.test_path:
         with open(opt.test_path, 'rb') as f:
             test_data = pickle.load(f)
-    # train_data = train_data+test_data[:int(len(test_data)*0.1)]
-    # print(int(len(test_data)*0.1))
     print('Number of labels: ', len(dic))
-
+    
+    if opt.is_few_shot:
+        train_data = train_data+test_data[:int(len(test_data)*opt.few_shot_ratio)]
+        print(int(len(test_data)*opt.few_shot_ratio))
+    
+    ## get data
     X_lengths_train = None
     X_lengths_test = None
     if opt.datatype == "semantic":
@@ -229,41 +233,16 @@ def train(**kwargs):
         total_acc = 0
         model.train()
         ccounter = 0
-        for (captions_t, labels, masks) in tqdm(train_loader): #X_lengths
+        for (captions_t, labels, masks) in tqdm(train_loader):
 
             captions_t = captions_t.to(device)
             labels = labels.to(device)
             masks = masks.to(device)
-            # X_lengths = X_lengths.to(device)
 
             optimizer.zero_grad()
-            #train_loss = model(captions_t, masks, labels)
 
-            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels) #X_lengths
-            # outputs = torch.sigmoid(outputs)
-            # print(outputs)
-            # print(labels)
+            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             train_loss = criterion(outputs, labels)
-            # print(train_loss)
-
-            # Handle padding issue
-            # index = []
-            # for i in range(len(captions_t)):
-            #     if not torch.all(torch.eq(captions_t[i][:4], torch.Tensor([101,0,0,102]).to(device))):
-            #         index.append(i)
-            # labels = labels[index]
-            
-            # idx = torch.arange(0, len(X_lengths), opt.max_dialog_size)
-            # X_lengths = X_lengths[idx]
-            # counter = 0
-            # index2 = [False]*max(X_lengths)*len(X_lengths)
-            # for length in X_lengths:
-            #     for _ in range(length):
-            #         index2[counter] = True
-            #         counter += 1
-            #     counter += (max(X_lengths)-length)
-            # outputs = outputs[index2]
-            # train_loss = criterion(outputs, labels)
 
             train_loss.backward()
             optimizer.step()
@@ -292,36 +271,15 @@ def train(**kwargs):
         total_acc = 0
         model.eval()
         ccounter = 0
-        for (captions_t, labels, masks) in val_loader: #X_lengths
+        for (captions_t, labels, masks) in val_loader:
 
             captions_t = captions_t.to(device)
             labels = labels.to(device)
             masks = masks.to(device)
-            # X_lengths = X_lengths.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels) #X_lengths
-            # outputs = torch.sigmoid(outputs)
+                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             val_loss = criterion(outputs, labels)
-            
-            # Handle padding issue
-            # index = []
-            # for i in range(len(captions_t)):
-            #     if not torch.all(torch.eq(captions_t[i][:4], torch.Tensor([101,0,0,102]).to(device))):
-            #         index.append(i)
-            # labels = labels[index]
-
-            # idx = torch.arange(0, len(X_lengths), opt.max_dialog_size)
-            # X_lengths = X_lengths[idx]
-            # counter = 0
-            # index2 = [False]*max(X_lengths)*len(X_lengths)
-            # for length in X_lengths:
-            #     for _ in range(length):
-            #         index2[counter] = True
-            #         counter += 1
-            #     counter += (max(X_lengths)-length)
-            # outputs = outputs[index2]
-            # val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss
             P, R, F1, acc = f1_score_intents(outputs, labels)
@@ -380,7 +338,8 @@ def test(**kwargs):
     reverse_dic = {v[0]: k for k,v in dic.items()}
     with open(opt.test_path, 'rb') as f:
         test_data = pickle.load(f)
-        #test_data = test_data[int(len(test_data)*0.1):]
+        if opt.is_few_shot:
+            test_data = test_data[int(len(test_data)*opt.few_shot_ratio):]
 
     if opt.datatype == "atis":
         # ATIS Dataset
@@ -425,11 +384,12 @@ def test(**kwargs):
     # model
     config = BertConfig(vocab_size_or_config_json_file=32000, hidden_size=768,
         num_hidden_layers=12, num_attention_heads=12, intermediate_size=3072)
-    
+
+    use_dic = dic if opt.is_few_shot else train_dic
     if not opt.dialog_data_mode:
-        model = BertZSL(config, len(train_dic))
+        model = BertZSL(config, len(use_dic))
     else:
-        model = BertDST(config, opt, len(train_dic))
+        model = BertDST(config, opt, len(use_dic))
 
     if opt.model_path:
         model.load_state_dict(torch.load(opt.model_path))
@@ -440,31 +400,31 @@ def test(**kwargs):
     # Store embeddings
     if opt.test_mode == "embedding":
         
-        train_loader = get_dataloader(X_train, y_train, mask_train, opt)
+        test_loader = get_dataloader(X_test, y_test, mask_test, len(dic), opt)
 
-        results = collections.defaultdict(list)
+        results = []
         model.eval()
-        for i, (captions_t, labels, masks) in enumerate(train_loader):
+        for i, (captions_t, labels, masks) in enumerate(test_loader):
             
             captions_t = captions_t.to(device)
             labels = labels.to(device)
             masks = masks.to(device)
             with torch.no_grad():
-                hidden_states, pooled_output, outputs = model(captions_t, masks)
+                hidden_states, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
                 print("Saving Data: %d" % i)
 
                 for ii in range(len(labels)):
-                    key = labels[ii].data.cpu().item()
                     
-                    embedding = pooled_output[ii].data.cpu().numpy().reshape(-1)
-                    word_embeddings = hidden_states[-1][ii].data.cpu().numpy()
+                    embedding = pooled_output[ii].data.cpu().numpy().reshape(-1) # (h,)
+                    word_embeddings = hidden_states[ii].data.cpu().numpy() # (t,h)
                     
                     tokens = tokenizer.convert_ids_to_tokens(captions_t[ii].data.cpu().numpy())
                     tokens = [token for token in tokens if token != "[CLS]" and token != "[SEP]" and token != "[PAD]"]
                     original_sentence = " ".join(tokens)
-                    results[key].append((original_sentence, embedding, word_embeddings))
 
-        torch.save(results, embedding_path)
+                    results.append((original_sentence, embedding, word_embeddings, labels[ii]))
+
+        torch.save(results, opt.embedding_path)
     
     # Run zero-shot validation
     elif opt.test_mode == "validation":

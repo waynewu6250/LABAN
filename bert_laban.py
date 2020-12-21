@@ -70,7 +70,6 @@ def train(**kwargs):
     print('Sentence Mode: ', opt.sentence_mode)
 
     # dataset
-    # with open(opt.dic_path_with_tokens_test, 'rb') as f:
     with open(opt.dic_path_with_tokens, 'rb') as f:
         dic = pickle.load(f)
     with open(opt.train_path, 'rb') as f:
@@ -78,7 +77,6 @@ def train(**kwargs):
     if opt.test_path:
         with open(opt.test_path, 'rb') as f:
             test_data = pickle.load(f)
-    # train_data = train_data+test_data[:100]
 
     X_lengths_train = None
     X_lengths_test = None
@@ -196,41 +194,16 @@ def train(**kwargs):
         preds = 0
         total_acc = 0
         model.train()
-        for (captions_t, labels, masks) in tqdm(train_loader): #X_lengths
+        for (captions_t, labels, masks) in tqdm(train_loader):
 
             captions_t = captions_t.to(device)
             labels = labels.to(device)
             masks = masks.to(device)
-            # X_lengths = X_lengths.to(device)
 
             optimizer.zero_grad()
-            #train_loss = model(captions_t, masks, labels)
 
-            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels) #X_lengths
-            # outputs = torch.sigmoid(outputs)
-            # print(outputs)
-            # print(labels)
+            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             train_loss = criterion(outputs, labels)
-            # print(train_loss)
-
-            # Handle padding issue
-            # index = []
-            # for i in range(len(captions_t)):
-            #     if not torch.all(torch.eq(captions_t[i][:4], torch.Tensor([101,0,0,102]).to(device))):
-            #         index.append(i)
-            # labels = labels[index]
-            
-            # idx = torch.arange(0, len(X_lengths), opt.max_dialog_size)
-            # X_lengths = X_lengths[idx]
-            # counter = 0
-            # index2 = [False]*max(X_lengths)*len(X_lengths)
-            # for length in X_lengths:
-            #     for _ in range(length):
-            #         index2[counter] = True
-            #         counter += 1
-            #     counter += (max(X_lengths)-length)
-            # outputs = outputs[index2]
-            # train_loss = criterion(outputs, labels)
 
             train_loss.backward()
             optimizer.step()
@@ -261,36 +234,15 @@ def train(**kwargs):
         preds = 0
         total_acc = 0
         model.eval()
-        for (captions_t, labels, masks) in val_loader: #X_lengths
+        for (captions_t, labels, masks) in val_loader:
 
             captions_t = captions_t.to(device)
             labels = labels.to(device)
             masks = masks.to(device)
-            # X_lengths = X_lengths.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels) #X_lengths
-            # outputs = torch.sigmoid(outputs)
+                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             val_loss = criterion(outputs, labels)
-            
-            # Handle padding issue
-            # index = []
-            # for i in range(len(captions_t)):
-            #     if not torch.all(torch.eq(captions_t[i][:4], torch.Tensor([101,0,0,102]).to(device))):
-            #         index.append(i)
-            # labels = labels[index]
-
-            # idx = torch.arange(0, len(X_lengths), opt.max_dialog_size)
-            # X_lengths = X_lengths[idx]
-            # counter = 0
-            # index2 = [False]*max(X_lengths)*len(X_lengths)
-            # for length in X_lengths:
-            #     for _ in range(length):
-            #         index2[counter] = True
-            #         counter += 1
-            #     counter += (max(X_lengths)-length)
-            # outputs = outputs[index2]
-            # val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss
             co, to, pr, acc = calc_score(outputs, labels)
@@ -394,6 +346,8 @@ def test(**kwargs):
         num_hidden_layers=12, num_attention_heads=12, intermediate_size=3072)
     
     if not opt.dialog_data_mode:
+        # with open('data/MixATIS_clean/intent2id_multi_ma_with_tokens.pkl', 'rb') as f:
+        #     dicc = pickle.load(f)
         model = BertZSL(config, len(dic))
     else:
         model = BertDST(config, opt, len(dic))
@@ -409,7 +363,7 @@ def test(**kwargs):
         
         test_loader = get_dataloader(X_test, y_test, mask_test, len(dic), opt)
 
-        results = collections.defaultdict(list)
+        results = []
         model.eval()
         for i, (captions_t, labels, masks) in enumerate(test_loader):
             
@@ -417,21 +371,21 @@ def test(**kwargs):
             labels = labels.to(device)
             masks = masks.to(device)
             with torch.no_grad():
-                hidden_states, pooled_output, outputs = model(captions_t, masks)
+                hidden_states, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
                 print("Saving Data: %d" % i)
 
                 for ii in range(len(labels)):
-                    key = labels[ii].data.cpu().item()
                     
-                    embedding = pooled_output[ii].data.cpu().numpy().reshape(-1)
-                    word_embeddings = hidden_states[-1][ii].data.cpu().numpy()
+                    embedding = pooled_output[ii].data.cpu().numpy().reshape(-1) # (h,)
+                    word_embeddings = hidden_states[ii].data.cpu().numpy() # (t,h)
                     
                     tokens = tokenizer.convert_ids_to_tokens(captions_t[ii].data.cpu().numpy())
                     tokens = [token for token in tokens if token != "[CLS]" and token != "[SEP]" and token != "[PAD]"]
                     original_sentence = " ".join(tokens)
-                    results[key].append((original_sentence, embedding, word_embeddings))
 
-        torch.save(results, embedding_path)
+                    results.append((original_sentence, embedding, word_embeddings, labels[ii]))
+
+        torch.save(results, opt.embedding_path)
     
     # Run multi-intent validation
     elif opt.test_mode == "validation":

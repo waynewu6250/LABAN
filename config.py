@@ -3,15 +3,17 @@ class Config:
     #################### For BERT fine-tuning ####################
     # control
     datatype = "semantic"
-    data_mode = "multi" #"multi"      # single or multi intent in data
-    sentence_mode = "one" #"two"      # one or two sentence in data
-    dialog_data_mode = False         # for dialogue-wise data (A+B)
-    retrain = True                  # Reuse trained model weights
-    is_zero_shot = False                # For zero-shot training/testing
-    real_num = 3
-    ratio = '0'
-    test_mode = "validation" #"user", "data", "embedding", "validation"
+    is_zero_shot = True                # For zero-shot training/testing
+    real_num = 14
+    ratio = '5'
+    is_few_shot = False                # For few-shot training/testing
+    few_shot_ratio = 0.1               
+    retrain = True                     # Reuse trained model weights
+    test_mode = "data" #"user", "data", "embedding", "validation"
 
+    data_mode = "multi" #"single"      # single or multi intent in data
+    sentence_mode = "one" #"two"       # one or two sentence in data
+    dialog_data_mode = False           # for dialogue-wise data (A+B)
     #################################
 
     if datatype == "atis":
@@ -44,32 +46,6 @@ class Config:
             dic_path_with_tokens = "data/semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(ratio)
             dic_path_with_tokens_test = "data/semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(ratio)
     
-    elif datatype == "e2e":
-        # Microsoft e2e dialogue dataset
-        train_path = "data/e2e_dialogue/dialogue_data.pkl" if data_mode == "single" else "data/e2e_dialogue/dialogue_data_multi.pkl"
-        test_path = "data/e2e_dialogue/dialogue_data_multi.pkl"
-        dic_path = "data/e2e_dialogue/intent2id.pkl" if data_mode == "single" else "data/e2e_dialogue/intent2id_multi.pkl"
-        dic_path_with_tokens = "data/e2e_dialogue/intent2id_multi_with_tokens.pkl"
-        embedding_path = "embeddings/e2e_embeddings_with_hidden.pth"
-        pretrain_path = "data/e2e_dialogue/dialogue_data_pretrain.pkl"
-    
-    elif datatype == "sgd":
-        # dstc8-sgd dialogue dataset
-        train_path = "data/sgd_dialogue/dialogue_data.pkl" if data_mode == "single" else "data/sgd_dialogue/dialogue_data_multi.pkl"
-        test_path = "data/sgd_dialogue/dialogue_data_multi.pkl"
-        dic_path = "data/sgd_dialogue/intent2id.pkl" if data_mode == "single" else "data/sgd_dialogue/intent2id_multi.pkl"
-        dic_path_with_tokens = "data/sgd_dialogue/intent2id_multi_with_tokens.pkl"
-        embedding_path = "embeddings/sgd_embeddings_with_hidden.pth"
-        pretrain_path = "data/sgd_dialogue/dialogue_data_pretrain.pkl"
-
-    elif datatype == "woz":
-        # multiWOZ dataset
-        train_path = "data/MULTIWOZ2.1/dialogue_data.pkl"
-        test_path = None
-        dic_path = "data/MULTIWOZ2.1/intent2id.pkl"
-        dialogue_id_path = "data/MULTIWOZ2.1/dialogue_id.pkl"
-        embedding_path ="finetune_results/woz_embeddings_sub.pth"
-    
     elif datatype == "mixatis":
         # mix atis dataset
         if not is_zero_shot:
@@ -98,12 +74,37 @@ class Config:
             dic_path_with_tokens_test = "data/MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_test{}.pkl".format(ratio)
         embedding_path = "embeddings/mixsnips_embeddings_with_hidden.pth"
     
+    elif datatype == "e2e":
+        # Microsoft e2e dialogue dataset
+        train_path = "data/e2e_dialogue/dialogue_data.pkl" if data_mode == "single" else "data/e2e_dialogue/dialogue_data_multi.pkl"
+        test_path = "data/e2e_dialogue/dialogue_data_multi.pkl"
+        dic_path = "data/e2e_dialogue/intent2id.pkl" if data_mode == "single" else "data/e2e_dialogue/intent2id_multi.pkl"
+        dic_path_with_tokens = "data/e2e_dialogue/intent2id_multi_with_tokens.pkl"
+        embedding_path = "embeddings/e2e_embeddings_with_hidden.pth"
+        pretrain_path = "data/e2e_dialogue/dialogue_data_pretrain.pkl"
+    
+    elif datatype == "sgd":
+        # dstc8-sgd dialogue dataset
+        train_path = "data/sgd_dialogue/dialogue_data.pkl" if data_mode == "single" else "data/sgd_dialogue/dialogue_data_multi.pkl"
+        test_path = "data/sgd_dialogue/dialogue_data_multi.pkl"
+        dic_path = "data/sgd_dialogue/intent2id.pkl" if data_mode == "single" else "data/sgd_dialogue/intent2id_multi.pkl"
+        dic_path_with_tokens = "data/sgd_dialogue/intent2id_multi_with_tokens.pkl"
+        embedding_path = "embeddings/sgd_embeddings_with_hidden.pth"
+        pretrain_path = "data/sgd_dialogue/dialogue_data_pretrain.pkl"
+    
+    elif datatype == "woz":
+        # multiWOZ dataset
+        train_path = "data/MULTIWOZ2.1/dialogue_data.pkl"
+        test_path = None
+        dic_path = "data/MULTIWOZ2.1/intent2id.pkl"
+        dialogue_id_path = "data/MULTIWOZ2.1/dialogue_id.pkl"
+        embedding_path ="finetune_results/woz_embeddings_sub.pth"
+    
     if not is_zero_shot:
         model_path = None if not retrain else "checkpoints/best_{}_{}.pth".format(datatype, data_mode)
     else:
         model_path = None if not retrain else "checkpoints/best_{}_{}_{}.pth".format(datatype, data_mode, ratio)
 
-    # dic_path_with_tokens = "data/MixATIS_clean/intent2id_multi_ma_with_tokens.pkl" 
     # model_path = "checkpoints/best_mixatis_multi.pth"
 
     maxlen = 50 #20
