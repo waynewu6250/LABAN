@@ -100,7 +100,7 @@ class BertZSL(nn.Module):
             b, _, _ = last_hidden_states.shape
             vectors = self.context_vector.unsqueeze(0).repeat(b, 1, 1)
 
-            h = self.tanh(self.linear1(last_hidden_states)) # (b, t, h)
+            h = self.linear1(last_hidden_states) # (b, t, h)
             scores = torch.bmm(h, vectors) # (b, t, 4)
             scores = nn.Softmax(dim=1)(scores) # (b, t, 4)
             outputs = torch.bmm(scores.permute(0, 2, 1), h).view(b, -1) # (b, 4h)
