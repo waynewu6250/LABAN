@@ -8,7 +8,7 @@ class Config:
     ratio = '4'
     is_few_shot = False                # For few-shot training/testing
     few_shot_ratio = 0.1               
-    retrain = False                     # Reuse trained model weights
+    retrain = True                     # Reuse trained model weights
     test_mode = "validation" #"user", "data", "embedding", "validation"
 
     data_mode = "multi" #"single"      # single or multi intent in data
@@ -108,8 +108,8 @@ class Config:
     # model_path = "checkpoints/best_mixatis_multi.pth"
 
     maxlen = 50 #20
-    batch_size = 128 #16
-    epochs = 30 #30, 5
+    batch_size = 8 #128 e2e 16/8 sgd4
+    epochs = 20 #30, 5
     learning_rate_bert = 2e-5 #1e-3
     learning_rate_classifier = 1e-3
     max_dialog_size = 25 if datatype == "e2e" else 50
