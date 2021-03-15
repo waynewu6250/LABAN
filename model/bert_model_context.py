@@ -25,7 +25,7 @@ class BertContextNLU(nn.Module):
 
         self.clusters = nn.Parameter(torch.randn(num_labels, config.hidden_size).float(), requires_grad=True)
         self.mapping = nn.Linear(config.hidden_size, num_labels)
-        # self.transformer_model = TransformerModel(ninp=self.hidden_size, nhead=2, nhid=200, nlayers=2, dropout=0.5)
+        self.transformer_model = TransformerModel(ninp=self.hidden_size, nhead=2, nhid=200, nlayers=2, dropout=0.1)
 
         """
         mode: 
@@ -95,24 +95,26 @@ class BertContextNLU(nn.Module):
         last_hidden_states, pooled_output, hidden_states, attentions = self.bert(result_ids, attention_mask=result_token_masks)
         pooled_output = pooled_output.view(b,d,self.hidden_size)
 
+        ######################### Sentence-level: self-attentive network #########################
+        # input should be (b,d,h)
+        vectors = self.context_vector.unsqueeze(0).repeat(b*d, 1, 1)
+
+        h = self.linear1(last_hidden_states) # (b*d, t, h)
+        scores = torch.bmm(h, vectors) # (b*d, t, 4)
+        scores = nn.Softmax(dim=1)(scores) # (b*d, t, 4)
+        outputs = torch.bmm(scores.permute(0, 2, 1), h).view(b*d, -1) # (b*d, 4h)
+        pooled_output = self.linear2(outputs) # (b*d, h)
+
+        pooled_output = pooled_output.view(b,d,self.hidden_size)
+        
+        ########################## Turn-level: self-attentive network #########################
+        # # input should be (d,b,h)
         # pooled_output = pooled_output.view(d,b,self.hidden_size)
-
-        # Sentence-level: self-attentive network
-        # vectors = self.context_vector.unsqueeze(0).repeat(b*d, 1, 1)
-
-        # h = self.linear1(last_hidden_states) # (b*d, t, h)
-        # scores = torch.bmm(h, vectors) # (b*d, t, 4)
-        # scores = nn.Softmax(dim=1)(scores) # (b*d, t, 4)
-        # outputs = torch.bmm(scores.permute(0, 2, 1), h).view(b*d, -1) # (b*d, 4h)
-        # pooled_output = self.linear2(outputs) # (b*d, h)
-
-        # pooled_output = pooled_output.view(d,b,self.hidden_size)
-
-        # Turn-level: self-attentive network
         # src_mask = self.transformer_model.generate_square_subsequent_mask(d).to(self.device)
         # pooled_output = self.transformer_model(pooled_output, src_mask=None)
         # pooled_output = pooled_output.view(b,d,self.hidden_size)
 
+        ######################### RNN #########################
         rnn_out, _ = self.rnn(pooled_output)
         rnn_out = self.dropout(rnn_out)
         logits = self.classifier(rnn_out) # (b,d,l)
