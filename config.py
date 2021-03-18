@@ -115,45 +115,50 @@ class Config:
     max_dialog_size = 25 if datatype == "e2e" else 50
     dialog_batch_size = 100
 
-    #################### For Clustering & DCEC ####################
+    rnn_hidden = 256
+
     
-    dic_path_for_cluster = "./data/semantic/intent2id_se.pkl"
-    embedding_path_for_cluster = "./finetune_results/se_embeddings_raw_with_hidden.pth"
-    woz_dic_path_for_cluster = "./data/MULTIWOZ2.1/intent2id.pkl"
-    woz_embedding_path_for_cluster = "./finetune_results/woz_embeddings_sub.pth"
     
-    # Model
-    input_shape = (20, 768)
-    filters = [16, 8, 1]
-    kernel_size = 3
-    alpha = 1
+    
+    # #################### For Clustering & DCEC ####################
+    
+    # dic_path_for_cluster = "./data/semantic/intent2id_se.pkl"
+    # embedding_path_for_cluster = "./finetune_results/se_embeddings_raw_with_hidden.pth"
+    # woz_dic_path_for_cluster = "./data/MULTIWOZ2.1/intent2id.pkl"
+    # woz_embedding_path_for_cluster = "./finetune_results/woz_embeddings_sub.pth"
+    
+    # # Model
+    # input_shape = (20, 768)
+    # filters = [16, 8, 1]
+    # kernel_size = 3
+    # alpha = 1
 
-    # Training
-    b_size = 1024
-    n_clusters = 8 #180
-    max_iter = 100
-    update_interval = 10
-    save_interval = 10
-    tol = 1e-3
+    # # Training
+    # b_size = 1024
+    # n_clusters = 8 #180
+    # max_iter = 100
+    # update_interval = 10
+    # save_interval = 10
+    # tol = 1e-3
 
-    weights = None #'checkpoints-dcec/dcec_model_att_99.h5'
+    # weights = None #'checkpoints-dcec/dcec_model_att_99.h5'
 
-    # clustering
-    cluster_data_path = "clustering_results/data_att_woz_pair.pkl"
-    cluster_label_path =  "clustering_results/labels_att_woz_pair.pkl"
-    cluster_weight_path =  "clustering_results/weight_att_woz_pair.pkl"
-    cluster_id = 0
+    # # clustering
+    # cluster_data_path = "clustering_results/data_att_woz_pair.pkl"
+    # cluster_label_path =  "clustering_results/labels_att_woz_pair.pkl"
+    # cluster_weight_path =  "clustering_results/weight_att_woz_pair.pkl"
+    # cluster_id = 0
 
-    #################### For scBERT ####################
+    # #################### For scBERT ####################
 
-    se_path_for_sc = "data/semantic/raw_data_se_not_tokenize.pkl"
-    se_dic_path_for_sc = "data/semantic/intent2id_se_not_tokenize.pkl"
+    # se_path_for_sc = "data/semantic/raw_data_se_not_tokenize.pkl"
+    # se_dic_path_for_sc = "data/semantic/intent2id_se_not_tokenize.pkl"
 
-    atis_path_for_sc = "data/atis/raw_data_not_tokenize.pkl"
-    atis_dic_path_for_sc = "data/atis/intent2id_not_tokenize.pkl"
+    # atis_path_for_sc = "data/atis/raw_data_not_tokenize.pkl"
+    # atis_dic_path_for_sc = "data/atis/intent2id_not_tokenize.pkl"
 
-    neg_size = 100
-    hidden_dim = 768
+    # neg_size = 100
+    # hidden_dim = 768
 
 
 

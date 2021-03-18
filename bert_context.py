@@ -97,8 +97,8 @@ def train(**kwargs):
     elif opt.datatype == "e2e" or opt.datatype == "sgd":
         # Microsoft Dialogue Dataset / SGD Dataset
         indices = np.random.permutation(len(train_data))
-        train = np.array(train_data)[indices[:int(len(train_data)*0.7)]]
-        test = np.array(train_data)[indices[int(len(train_data)*0.7):]]
+        train = np.array(train_data)[indices[:int(len(train_data)*0.7)]][:1000]
+        test = np.array(train_data)[indices[int(len(train_data)*0.7):]][:100]
     elif 'mix' in opt.datatype:
         # Mix dataset
         X_train, y_train, _ = zip(*train_data)
@@ -123,7 +123,7 @@ def train(**kwargs):
     config = BertConfig(vocab_size_or_config_json_file=32000, hidden_size=768,
         num_hidden_layers=12, num_attention_heads=12, intermediate_size=3072)
     
-    model = BertContextNLU(config, len(dic))
+    model = BertContextNLU(config, opt, len(dic))
     
     if opt.model_path:
         model.load_state_dict(torch.load(opt.model_path))
@@ -160,7 +160,7 @@ def train(**kwargs):
 
             optimizer.zero_grad()
 
-            outputs, labels = model(result_ids, result_token_masks, result_masks, lengths, result_labels)
+            outputs, labels = model(result_ids, result_token_masks, result_masks, lengths, result_labels, intent_tokens, mask_tokens)
             train_loss = criterion(outputs, labels)
             
             train_loss.backward()
@@ -199,7 +199,7 @@ def train(**kwargs):
             result_labels = result_labels.to(device)
             
             with torch.no_grad():
-                outputs, labels = model(result_ids, result_token_masks, result_masks, lengths, result_labels)
+                outputs, labels = model(result_ids, result_token_masks, result_masks, lengths, result_labels, intent_tokens, mask_tokens)
             val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss

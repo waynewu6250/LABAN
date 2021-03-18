@@ -5,28 +5,54 @@ import torch.nn.functional as F
 import numpy as np
 from transformers import BertTokenizer, BertModel
 from model.transformer import TransformerModel
+from model.transformer_new import Transformer
+from model.CHAN import ContextAttention
 
 class BertContextNLU(nn.Module):
     
-    def __init__(self, config, num_labels=2):
+    def __init__(self, config, opt, num_labels=2):
         super(BertContextNLU, self).__init__()
         self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         self.num_labels = num_labels
         self.bert = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
         self.dropout = nn.Dropout(0.1)
         self.hidden_size = config.hidden_size
+        self.rnn_hidden = opt.rnn_hidden
 
+        #########################################
+
+        # transformer
+        self.transformer_model = TransformerModel(ninp=self.hidden_size, nhead=4, nhid=64, nlayers=2, dropout=0.1)
+        self.transformer_encoder = Transformer(hidden_dim=self.hidden_size, 
+                                               model_dim=256,
+                                               num_heads=2, 
+                                               dropout=0.1)
+        
+        # DiSAN
+        self.conv1 = nn.Conv1d(self.hidden_size, self.hidden_size, 3, padding=1)
+        self.conv2 = nn.Conv1d(self.hidden_size, self.hidden_size, 3, padding=1)
+        self.fc1 = nn.Linear(2*self.hidden_size, self.rnn_hidden)
+
+        # CHAN
+        self.context_encoder = ContextAttention(self.device)
+
+        # rnn
         self.rnn = nn.LSTM(input_size=self.hidden_size, 
-                           hidden_size=256,
+                           hidden_size=self.rnn_hidden,
                            batch_first=True,
                            num_layers=1)
-        self.classifier = nn.Linear(256, num_labels)
-        nn.init.xavier_normal_(self.classifier.weight)
+        
+        # classifier
+        self.classifier_rnn = nn.Linear(self.rnn_hidden, num_labels)
+        nn.init.xavier_normal_(self.classifier_rnn.weight)
+        self.classifier_bert = nn.Linear(self.hidden_size, num_labels)
+        nn.init.xavier_normal_(self.classifier_bert.weight)
 
+        # label embedding
         self.clusters = nn.Parameter(torch.randn(num_labels, config.hidden_size).float(), requires_grad=True)
-        self.mapping = nn.Linear(config.hidden_size, num_labels)
-        self.transformer_model = TransformerModel(ninp=self.hidden_size, nhead=2, nhid=200, nlayers=2, dropout=0.1)
+        self.mapping = nn.Linear(config.hidden_size, self.rnn_hidden)
 
+        
         """
         mode: 
         'max-pooling'
@@ -42,7 +68,6 @@ class BertContextNLU(nn.Module):
         'dnn'
         'student'
         'normal'
-
         """
         self.mode = 'self-attentive'
         self.mode2 = 'gram'
@@ -71,8 +96,52 @@ class BertContextNLU(nn.Module):
             pre_model_dict = {k:v for k, v in pre_model_dict.items() if k in model_dict and v.size() == model_dict[k].size}
             model_dict.update(pre_model_dict)
             self.bert.load_state_dict(model_dict)
+    
+    def self_attentive(self, last_hidden_states, d, b):
+        # input should be (b,d,h)
+        vectors = self.context_vector.unsqueeze(0).repeat(b*d, 1, 1)
 
-    def forward(self, result_ids, result_token_masks, result_masks, lengths, labels):
+        h = self.linear1(last_hidden_states) # (b*d, t, h)
+        scores = torch.bmm(h, vectors) # (b*d, t, 4)
+        scores = nn.Softmax(dim=1)(scores) # (b*d, t, 4)
+        outputs = torch.bmm(scores.permute(0, 2, 1), h).view(b*d, -1) # (b*d, 4h)
+        pooled_output = self.linear2(outputs) # (b*d, h)
+
+        pooled_output = pooled_output.view(b,d,self.hidden_size) # (b,d,h)
+        return pooled_output
+    
+    def mha(self, pooled_output, d, b):
+        # input should be (d,b,h)
+        pooled_output = pooled_output.view(d,b,self.hidden_size)
+        # src_mask = self.transformer_model.generate_square_subsequent_mask(d).to(self.device)
+        pooled_output = self.transformer_model(pooled_output, src_mask=None)
+        pooled_output = pooled_output.view(b,d,self.hidden_size)
+        return pooled_output
+    
+    def label_embed(self, y_caps, y_masks, rnn_out, d, b):
+        last_hidden, clusters, hidden, att = self.bert(y_caps, attention_mask=y_masks)
+        clusters = self.mapping(clusters) # (n, 256)
+
+        gram = torch.mm(clusters, clusters.permute(1,0)) # (n, n)
+        rnn_out = rnn_out.reshape(b*d, 256) # (b*d, 256)
+        weights = torch.mm(rnn_out, clusters.permute(1,0)) # (b*d, n)
+        logits = torch.mm(weights, torch.inverse(gram))
+        logits = logits.view(b,d,self.num_labels)
+
+        return logits
+    
+    def DiSAN(self, pooled_output, d, b):
+        # input should be (b,h,d)
+        pooled_score = pooled_output.view(b,self.hidden_size,d)
+        pooled_score = torch.sigmoid(self.conv1(pooled_score))
+        pooled_score = self.conv2(pooled_score)
+        pooled_score = F.softmax(pooled_score, dim=-1)
+        pooled_score = pooled_score.view(b,d,self.hidden_size)
+        pooled_output = pooled_score * pooled_output
+        return pooled_output
+
+
+    def forward(self, result_ids, result_token_masks, result_masks, lengths, labels, y_caps, y_masks):
         """
         Inputs:
         result_ids:         (b, d, t)
@@ -95,29 +164,34 @@ class BertContextNLU(nn.Module):
         last_hidden_states, pooled_output, hidden_states, attentions = self.bert(result_ids, attention_mask=result_token_masks)
         pooled_output = pooled_output.view(b,d,self.hidden_size)
 
-        ######################### Sentence-level: self-attentive network #########################
-        # input should be (b,d,h)
-        vectors = self.context_vector.unsqueeze(0).repeat(b*d, 1, 1)
-
-        h = self.linear1(last_hidden_states) # (b*d, t, h)
-        scores = torch.bmm(h, vectors) # (b*d, t, 4)
-        scores = nn.Softmax(dim=1)(scores) # (b*d, t, 4)
-        outputs = torch.bmm(scores.permute(0, 2, 1), h).view(b*d, -1) # (b*d, 4h)
-        pooled_output = self.linear2(outputs) # (b*d, h)
-
-        pooled_output = pooled_output.view(b,d,self.hidden_size)
+        ## Token: Self-attentive
+        pooled_output = self.self_attentive(last_hidden_states, d, b) # (b,d,l)
         
-        ########################## Turn-level: self-attentive network #########################
-        # # input should be (d,b,h)
-        # pooled_output = pooled_output.view(d,b,self.hidden_size)
-        # src_mask = self.transformer_model.generate_square_subsequent_mask(d).to(self.device)
-        # pooled_output = self.transformer_model(pooled_output, src_mask=None)
-        # pooled_output = pooled_output.view(b,d,self.hidden_size)
+        ## Turn: MHA
+        # pooled_output = self.mha(pooled_output, d, b) # (b,d,l)
 
-        ######################### RNN #########################
+        ## Turn: DiSAN
+        # context_vector = self.DiSAN(pooled_output, d, b)
+        # final_hidden = torch.cat([pooled_output, context_vector], dim=-1)
+        # final_hidden = self.fc1(final_hidden)
+        # logits = self.classifier_rnn(final_hidden)
+
+        ## Turn: CHAN
+        # pooled_output = self.context_encoder(pooled_output, result_masks)
+        # logits = self.classifier_bert(pooled_output) # (b,d,l)
+
+        ## Turn: transformer
+        # transformer_out, attention = self.transformer_encoder(pooled_output, pooled_output, pooled_output, result_masks)
+        # transformer_out = self.dropout(transformer_out)
+        # logits = self.classifier_bert(transformer_out) # (b,d,l)
+
+        ## Prediction: RNN
         rnn_out, _ = self.rnn(pooled_output)
         rnn_out = self.dropout(rnn_out)
-        logits = self.classifier(rnn_out) # (b,d,l)
+        logits = self.classifier_rnn(rnn_out) # (b,d,l)
+
+        ## Prediction: Label Embedding
+        # logits = self.label_embed(y_caps, y_masks, rnn_out, d, b)
 
         # Remove padding
         logits_no_pad = []
@@ -132,6 +206,28 @@ class BertContextNLU(nn.Module):
         # logits = self.multi_learn(pooled_output)
 
         return logits, labels
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     
