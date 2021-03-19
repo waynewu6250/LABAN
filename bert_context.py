@@ -97,8 +97,8 @@ def train(**kwargs):
     elif opt.datatype == "e2e" or opt.datatype == "sgd":
         # Microsoft Dialogue Dataset / SGD Dataset
         indices = np.random.permutation(len(train_data))
-        train = np.array(train_data)[indices[:int(len(train_data)*0.7)]][:1000]
-        test = np.array(train_data)[indices[int(len(train_data)*0.7):]][:100]
+        train = np.array(train_data)[indices[:int(len(train_data)*0.7)]]#[:1000]
+        test = np.array(train_data)[indices[int(len(train_data)*0.7):]]#[:100]
     elif 'mix' in opt.datatype:
         # Mix dataset
         X_train, y_train, _ = zip(*train_data)
@@ -137,6 +137,7 @@ def train(**kwargs):
 
     best_loss = 100
     best_accuracy = 0
+    best_f1 = 0
 
     #################################### Start training ####################################
     for epoch in range(opt.epochs):
@@ -219,17 +220,19 @@ def train(**kwargs):
         print('Accuracy: ', total_acc/val_loader.dataset.num_data)
         val_acc = total_acc/val_loader.dataset.num_data
         
-        if val_acc > best_accuracy:
+        if f1 > best_f1:
             print('saving with loss of {}'.format(total_val_loss),
                   'improved over previous {}'.format(best_loss))
             best_loss = total_val_loss
             best_accuracy = val_acc
+            best_f1 = f1
 
             torch.save(model.state_dict(), 'checkpoints/best_{}_{}.pth'.format(opt.datatype, opt.data_mode))
         
         print()
     print('Best total val loss: {:.4f}'.format(total_val_loss))
     print('Best Test Accuracy: {:.4f}'.format(best_accuracy))
+    print('Best F1 Score: {:.4f}'.format(best_f1))
 
 
 #####################################################################

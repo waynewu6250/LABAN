@@ -156,25 +156,6 @@ class ContextAttention(nn.Module):
         self.attn_head = 4
         self.device = device
 
-        ### Utterance Encoder
-        # self.utterance_encoder = BertForUtteranceEncoding.from_pretrained(
-        #     os.path.join(args.bert_dir, 'bert-base-uncased.model')
-        # )
-        # self.bert_output_dim = self.utterance_encoder.config.hidden_size
-        # self.hidden_dropout_prob = self.utterance_encoder.config.hidden_dropout_prob
-        # if args.fix_utterance_encoder:
-        #     for p in self.utterance_encoder.bert.pooler.parameters():
-        #         p.requires_grad = False
-
-        ### slot, slot-value Encoder (not trainable)
-        # self.sv_encoder = BertForUtteranceEncoding.from_pretrained(
-        #         os.path.join(args.bert_dir, 'bert-base-uncased.model'))
-        # for p in self.sv_encoder.bert.parameters():
-        #     p.requires_grad = False
-
-        # self.slot_lookup = nn.Embedding(self.num_slots, self.bert_output_dim)
-        # self.value_lookup = nn.ModuleList([nn.Embedding(num_label, self.bert_output_dim) for num_label in num_labels])
-
         ### Attention layer
         self.attn = MultiHeadAttention(self.attn_head, 768, dropout=0.)
         self.attn2 = MultiHeadAttention(self.attn_head, 768, dropout=0.)
@@ -212,8 +193,6 @@ class ContextAttention(nn.Module):
         for d in range(ds):
             padding_utter = (result_masks[d,:].sum(-1) != 0)
             turn_mask[d] = padding_utter.unsqueeze(0).repeat(ts,1) & subsequent_mask(ts).to(self.device)
-        print(turn_mask[1])
-        dafe
 
         hidden = self.nbt(hidden, turn_mask)
         return hidden

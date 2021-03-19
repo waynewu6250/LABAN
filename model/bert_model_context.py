@@ -47,6 +47,8 @@ class BertContextNLU(nn.Module):
         nn.init.xavier_normal_(self.classifier_rnn.weight)
         self.classifier_bert = nn.Linear(self.hidden_size, num_labels)
         nn.init.xavier_normal_(self.classifier_bert.weight)
+        self.classifier_transformer = nn.Linear(self.rnn_hidden*4, num_labels)
+        nn.init.xavier_normal_(self.classifier_transformer.weight)
 
         # label embedding
         self.clusters = nn.Parameter(torch.randn(num_labels, config.hidden_size).float(), requires_grad=True)
@@ -177,18 +179,18 @@ class BertContextNLU(nn.Module):
         # logits = self.classifier_rnn(final_hidden)
 
         ## Turn: CHAN
-        # pooled_output = self.context_encoder(pooled_output, result_masks)
-        # logits = self.classifier_bert(pooled_output) # (b,d,l)
+        pooled_output = self.context_encoder(pooled_output, result_masks)
+        logits = self.classifier_bert(pooled_output) # (b,d,l)
 
         ## Turn: transformer
         # transformer_out, attention = self.transformer_encoder(pooled_output, pooled_output, pooled_output, result_masks)
         # transformer_out = self.dropout(transformer_out)
-        # logits = self.classifier_bert(transformer_out) # (b,d,l)
+        # logits = self.classifier_transformer(transformer_out) # (b,d,l)
 
         ## Prediction: RNN
-        rnn_out, _ = self.rnn(pooled_output)
-        rnn_out = self.dropout(rnn_out)
-        logits = self.classifier_rnn(rnn_out) # (b,d,l)
+        # rnn_out, _ = self.rnn(pooled_output)
+        # rnn_out = self.dropout(rnn_out)
+        # logits = self.classifier_rnn(rnn_out) # (b,d,l)
 
         ## Prediction: Label Embedding
         # logits = self.label_embed(y_caps, y_masks, rnn_out, d, b)
