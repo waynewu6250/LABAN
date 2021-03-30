@@ -204,77 +204,6 @@ class SemanticData(Data):
             pickle.dump(intent2id, f)
         ######################### normal setting #########################
 
-        ######################### zero-shot setting #########################
-        # intent_set = {}
-        # for i, (text, intents) in enumerate(zip(data["question"].values, data["intent"].values)):
-        #     # single intent:
-        #     # if intent not in intent2id:
-        #     #     intent2id[intent] = counter
-        #     #     counter += 1
-        #     # raw_data.append((self.text_prepare(text, "Bert"), intent2id[intent]))
-
-        #     # multi intents
-        #     intents = [intent.lower().replace('_', ' ') for intent in intents.split('@')]
-        #     for intent in intents:
-        #         if intent not in intent_set:
-        #             intent_set[intent] = 0
-        #     raw_data.append((self.text_prepare(text, "Bert"), intents))
-            
-        #     print("Finish: ", i)
-        
-        # # split data into seen and unseen labels
-        # counter1 = 0
-        # counter2 = 0
-        # train_intent2id = {}
-        # test_intent2id = {}
-        # # intent_set = sorted(list(intent_set))
-        # train_set = []
-        # test_set = []
-
-        # for i, intent in enumerate(intent_set):
-        #     if i < 18:
-        #         train_set.append(intent)
-        #     elif i > 18 and i % 2 == 0:
-        #         train_set.append(intent)
-        #     else:
-        #         test_set.append(intent)
-        # test_set = train_set + test_set
-
-        # for intent in train_set:
-        #     train_intent2id[intent] = (counter1, self.text_prepare(intent, "Bert"))
-        #     counter1 += 1
-        # for intent in test_set:
-        #     test_intent2id[intent] = (counter2, self.text_prepare(intent, "Bert"))
-        #     counter2 += 1
-
-        # train_data = []
-        # test_data = []
-        # for text, intents in raw_data:
-        #     key = True
-        #     for intent in intents:
-        #         if intent not in train_intent2id:
-        #             key = False
-        #     if key:
-        #         train_data.append((text, [train_intent2id[intent][0] for intent in intents]))
-        #     else:
-        #         test_data.append((text, [test_intent2id[intent][0] for intent in intents]))
-        # new_train_data = train_data#[:int(0.7*len(train_data))]
-        # new_test_data = test_data# train_data[int(0.7*len(train_data)):] + test_data
-        # print(len(new_train_data))
-        # print(len(new_test_data))
-        # print(train_intent2id)
-        # print(test_intent2id)
-        
-        # with open(self.rawdata_path, "wb") as f:
-        #     pickle.dump(new_train_data, f)
-        # with open(self.intent2id_path, "wb") as f:
-        #     pickle.dump(train_intent2id, f)
-
-        # with open(self.rawdata_path2, "wb") as f:
-        #     pickle.dump(new_test_data, f)
-        # with open(self.intent2id_path2, "wb") as f:
-        #     pickle.dump(test_intent2id, f)
-        ######################### zero-shot setting #########################
         
         print("Process time: ", time.time()-ptime)
         
@@ -377,44 +306,44 @@ class MIXData(Data):
 
 
 if __name__ == "__main__":
-    # ATIS
-    # data_path = "../raw_datasets/ATIS/train.json"
-    # rawdata_path = "atis/raw_data.pkl"
-    # intent2id_path = "atis/intent2id.pkl"
-    # data = ATISData(data_path, rawdata_path, intent2id_path, "Bert", done=False)
-    
-    # semantic
-    data_path = "../raw_datasets/top-dataset-semantic-parsing/train.tsv"
-    rawdata_path = "semantic/raw_data_multi_se.pkl"
-    intent2id_path = "semantic/intent2id_multi_se_with_tokens.pkl"
-    data = SemanticData(data_path, rawdata_path, intent2id_path, done=False)
+    import argparse
 
-    # semantic zero-shot
-    # ratio = '18'
-    # data_path = "../raw_datasets/top-dataset-semantic-parsing/train.tsv"
-    # rawdata_path = "semantic/zeroshot/raw_data_multi_se_zst_train{}.pkl".format(ratio)
-    # rawdata_path2 = "semantic/zeroshot/raw_data_multi_se_zst_test{}.pkl".format(ratio)
-    # intent2id_path = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(ratio)
-    # intent2id_path2 = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(ratio)
-    # data = SemanticData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, done=False)
+    parser = argparse.ArgumentParser(description='Put arguments for train, predict')
 
-    # mixatis
-    # data_path = "../raw_datasets/MixATIS_clean/train.txt"
-    # rawdata_path = "MixATIS_clean/raw_data_multi_ma_train.pkl"
-    # intent2id_path = "MixATIS_clean/intent2id_multi_ma_with_tokens.pkl"
-    # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
+    # For data/mode
+    parser.add_argument('-d', '--data', default='atis', dest='mode')
+    args = parser.parse_args()
 
-    # mixsnips
-    # data_path = "../raw_datasets/MixSNIPS_clean/test.txt"
-    # rawdata_path = "MixSNIPS_clean/raw_data_multi_sn_test.pkl"
-    # intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
-    # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
-    
-    # snips
-    # data_path = "../raw_datasets/SNIPS/train.txt"
-    # rawdata_path = "snips/raw_data_train.pkl"
-    # intent2id_path = "snips/intent2id.pkl"
-    # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
+    if args.mode == 'atis':
+        # ATIS
+        data_path = "../raw_datasets/ATIS/train.json"
+        rawdata_path = "atis/raw_data.pkl"
+        intent2id_path = "atis/intent2id.pkl"
+        data = ATISData(data_path, rawdata_path, intent2id_path, "Bert", done=False)
+    elif args.mode == 'semantic':
+        # semantic
+        data_path = "../raw_datasets/top-dataset-semantic-parsing/train.tsv"
+        rawdata_path = "semantic/raw_data_multi_se.pkl"
+        intent2id_path = "semantic/intent2id_multi_se_with_tokens.pkl"
+        data = SemanticData(data_path, rawdata_path, intent2id_path, done=False)
+    elif args.mode == 'mixatis':
+        # mixatis
+        data_path = "../raw_datasets/MixATIS_clean/train.txt"
+        rawdata_path = "MixATIS_clean/raw_data_multi_ma_train.pkl"
+        intent2id_path = "MixATIS_clean/intent2id_multi_ma_with_tokens.pkl"
+        data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
+    elif args.mode == 'mixsnips':
+        # mixsnips
+        data_path = "../raw_datasets/MixSNIPS_clean/test.txt"
+        rawdata_path = "MixSNIPS_clean/raw_data_multi_sn_test.pkl"
+        intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
+        data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
+    elif args.mode == 'snips':
+        # snips
+        data_path = "../raw_datasets/SNIPS/train.txt"
+        rawdata_path = "snips/raw_data_train.pkl"
+        intent2id_path = "snips/intent2id.pkl"
+        data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
 
     print(data.raw_data[10])
     print(data.intent2id)

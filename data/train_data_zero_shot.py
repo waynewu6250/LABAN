@@ -424,39 +424,51 @@ class MIXData(Data):
 
 if __name__ == "__main__":
 
-    # semantic zero-shot
-    # ratio = '18'
-    # data_path = "../raw_datasets/top-dataset-semantic-parsing/train.tsv"
-    # rawdata_path = "semantic/zeroshot/raw_data_multi_se_zst_train{}.pkl".format(ratio)
-    # rawdata_path2 = "semantic/zeroshot/raw_data_multi_se_zst_test{}.pkl".format(ratio)
-    # intent2id_path = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(ratio)
-    # intent2id_path2 = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(ratio)
-    # data = SemanticData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, done=False)
+    import argparse
 
-    # mixatis
-    # ratio = '8'
-    # data_path = "../raw_datasets/MixATIS_clean/train.txt"
-    # rawdata_path = "MixATIS_clean/zeroshot/raw_data_multi_ma_train{}.pkl".format(ratio)
-    # rawdata_path2 = "MixATIS_clean/zeroshot/raw_data_multi_ma_test{}.pkl".format(ratio)
-    # intent2id_path = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_train{}.pkl".format(ratio)
-    # intent2id_path2 = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_test{}.pkl".format(ratio)
-    # data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, ratio, done=False)
+    parser = argparse.ArgumentParser(description='Put arguments for train, predict')
 
-    # mixsnips
-    # data_path = "../raw_datasets/MixSNIPS_clean/test.txt"a
-    # rawdata_path = "MixSNIPS_clean/raw_data_multi_sn_test.pkl"
-    # intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
-    # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
-    ratio = '0'
-    data_path = "../raw_datasets/MixSNIPS_clean/train.txt"
-    rawdata_path = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_train{}.pkl".format(ratio)
-    rawdata_path2 = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_test{}.pkl".format(ratio)
-    intent2id_path = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_train{}.pkl".format(ratio)
-    intent2id_path2 = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_test{}.pkl".format(ratio)
-    data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, ratio, done=False)
+    # For data/mode
+    parser.add_argument('-d', '--data', default='atis', dest='mode')
+    parser.add_argument('-r', '--ratio', default='18', dest='ratio')
+    args = parser.parse_args()
+
+    if args.mode == 'semantic':
+
+        # semantic zero-shot
+        data_path = "../raw_datasets/top-dataset-semantic-parsing/train.tsv"
+        rawdata_path = "semantic/zeroshot/raw_data_multi_se_zst_train{}.pkl".format(args.ratio)
+        rawdata_path2 = "semantic/zeroshot/raw_data_multi_se_zst_test{}.pkl".format(args.ratio)
+        intent2id_path = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(args.ratio)
+        intent2id_path2 = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(args.ratio)
+        data = SemanticData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, done=False)
     
-    # print(data.raw_data[10])
-    # print(data.intent2id)
+    elif args.mode == 'mixatis':
+
+        # mixatis
+        data_path = "../raw_datasets/MixATIS_clean/train.txt"
+        rawdata_path = "MixATIS_clean/zeroshot/raw_data_multi_ma_train{}.pkl".format(args.ratio)
+        rawdata_path2 = "MixATIS_clean/zeroshot/raw_data_multi_ma_test{}.pkl".format(args.ratio)
+        intent2id_path = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_train{}.pkl".format(args.ratio)
+        intent2id_path2 = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_test{}.pkl".format(args.ratio)
+        data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, args.ratio, done=False)
+    
+    elif args.mode == 'mixsnips':
+
+        # mixsnips
+        # data_path = "../raw_datasets/MixSNIPS_clean/test.txt"
+        # rawdata_path = "MixSNIPS_clean/raw_data_multi_sn_test.pkl"
+        # intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
+        # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
+        data_path = "../raw_datasets/MixSNIPS_clean/train.txt"
+        rawdata_path = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_train{}.pkl".format(args.ratio)
+        rawdata_path2 = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_test{}.pkl".format(args.ratio)
+        intent2id_path = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_train{}.pkl".format(args.ratio)
+        intent2id_path2 = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_test{}.pkl".format(args.ratio)
+        data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, args.ratio, done=False)
+    
+    print(data.raw_data[10])
+    print(data.intent2id)
 
 
 

@@ -4,7 +4,6 @@ import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
 from transformers import BertTokenizer, BertModel
-from pytorch_pretrained_bert import BertForNextSentencePrediction
 
 class BertLayerNorm(nn.Module):
     def __init__(self, hidden_size, eps=1e-12):
@@ -25,7 +24,6 @@ class BertEmbedding(nn.Module):
     
     def __init__(self, config, num_labels=2):
         super(BertEmbedding, self).__init__()
-        # self.bert = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels)
         self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         self.num_labels = num_labels
         self.bert = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
@@ -206,33 +204,6 @@ class BertEmbedding(nn.Module):
         logits = self.classifier(pooled_output_d)
 
         return logits
-
-
-class BertForNextSentence(nn.Module):
-    
-    def __init__(self, config, num_labels=2):
-        super(BertForNextSentence, self).__init__()
-        self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-        self.num_labels = num_labels
-        self.bert = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
-        self.dropout = nn.Dropout(0.1)
-        self.classifier = nn.Linear(config.hidden_size, num_labels)
-        nn.init.xavier_normal_(self.classifier.weight)
-
-    def forward(self, input_ids, mask, seg_tensors=None):
-        """
-        BERT outputs:
-        last_hidden_states: (b, t, h)
-        pooled_output: (b, h), from output of a linear classifier + tanh
-        hidden_states: 13 x (b, t, h), embed to last layer embedding
-        attentions: 12 x (b, num_heads, t, t)
-        """
-        last_hidden_states, pooled_output, hidden_states, attentions = self.bert(input_ids, token_type_ids=seg_tensors, attention_mask=mask)
-
-        pooled_output_d = self.dropout(pooled_output)
-        logits = self.classifier(pooled_output_d)
-
-        return last_hidden_states, pooled_output, logits
 
 
 if __name__ == "__main__":

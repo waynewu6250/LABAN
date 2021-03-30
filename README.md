@@ -19,8 +19,17 @@ First specify the mode in `config.py`:
         embedding:  produces sentence embeddings
         user:       predict tag given a sentence
 
+### 1. Parse data
 
-### 1. Multi-intent detection
+1. mixatis/mixsnips/semantic:
+    >
+        (normal):    python train_data.py -d [data_type]
+        (zero-shot): python train_data_zero_shot.py -d [data_type] -r [ratio]
+2. e2e/sgd:
+    >
+        python dialogue_data.py
+
+### 2. Multi-intent detection
 
 To train:
 >
@@ -31,7 +40,7 @@ To test:
 >
     python bert_laban.py test
 
-### 2. Zero-shot detection
+### 3. Zero-shot detection
 
 Set `is_zero_shot`: True.
 Specify `real_num` and `ratio`.
@@ -44,7 +53,7 @@ To test:
 >
     python bert_zsl.py test
 
-### 3. Few-shot detection
+### 4. Few-shot detection
 
 Set `is_zero_shot`: True.
 Set `is_few_shot`: True.

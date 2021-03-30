@@ -263,10 +263,10 @@ class SGDData(Data):
     
 if __name__ == "__main__":
     # e2e dataset
-    # data_path = "../raw_datasets/e2e_dialogue/"
-    # rawdata_path = "e2e_dialogue/dialogue_data_multi.pkl"
-    # intent2id_path = "e2e_dialogue/intent2id_multi_with_tokens.pkl"
-    # data = E2EData(data_path, rawdata_path, intent2id_path, done=False)
+    data_path = "../raw_datasets/e2e_dialogue/"
+    rawdata_path = "e2e_dialogue/dialogue_data_multi.pkl"
+    intent2id_path = "e2e_dialogue/intent2id_multi_with_tokens.pkl"
+    data = E2EData(data_path, rawdata_path, intent2id_path, done=False)
 
     # sgd dataset
     data_path = "../raw_datasets/dstc8-schema-guided-dialogue/test"
@@ -275,5 +275,6 @@ if __name__ == "__main__":
     turn_path = "sgd_dialogue/turns.pkl"
     data = SGDData(data_path, rawdata_path, intent2id_path, turn_path, done=False)
     print(data.turn_data_all['turns'][0])
-    # print(data.train_data[100])
-    # print(data.intent2id)
+    
+    print(data.train_data[100])
+    print(data.intent2id)
