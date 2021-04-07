@@ -202,7 +202,7 @@ def train(**kwargs):
 
             optimizer.zero_grad()
 
-            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+            _, _, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             train_loss = criterion(outputs, labels)
 
             train_loss.backward()
@@ -241,7 +241,7 @@ def train(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss
@@ -397,6 +397,9 @@ def test(**kwargs):
         preds = 0
         total_acc = 0
         model.eval()
+
+        f_output = []
+        all_labels = []
         for i, (captions_t, labels, masks) in enumerate(test_loader):
             print('Run prediction: ', i)
 
@@ -405,7 +408,7 @@ def test(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs, clusters = model(captions_t, masks, intent_tokens, mask_tokens, labels)
 
             co, to, pr, acc = calc_score(outputs, labels)
             val_corrects += co
@@ -413,11 +416,20 @@ def test(**kwargs):
             preds += pr
             total_acc += acc
 
+            f_output.append(outputs)
+            all_labels.append(labels)
+
+        f_output = torch.cat(f_output,dim=0)
+        all_labels = torch.cat(all_labels,dim=0)
+        dic = {'outputs': f_output, 'clusters': clusters, 'labels': all_labels}
+
         recall = val_corrects.double() / totals
         precision = val_corrects.double() / preds
         f1 = 2 * (precision*recall) / (precision + recall)
         print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
         print('Accuracy: ', total_acc/test_loader.dataset.num_data)
+
+        torch.save(dic, 'result_snips.pth')
     
     # Run test classification
     elif opt.test_mode == "data":

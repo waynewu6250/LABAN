@@ -85,7 +85,7 @@ class BertZSL(nn.Module):
         pooled_output = self.transform(last_hidden_states, pooled_output, hidden_states, attentions, x_masks) # (b, h)
         logits = self.multi_learn(pooled_output, clusters, labels)
 
-        return last_hidden_states, pooled_output, logits
+        return last_hidden_states, pooled_output, logits, clusters
         # loss = self.bert(input_ids, attention_mask=mask, labels=labels)
         # return loss
     
