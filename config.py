@@ -3,12 +3,12 @@ class Config:
     #################### For BERT fine-tuning ####################
     # control
     datatype = "semantic"
-    is_zero_shot = True                # For zero-shot training/testing
+    is_zero_shot = False                # For zero-shot training/testing
     real_num = 17
     ratio = '13'
-    is_few_shot = True                # For few-shot training/testing
+    is_few_shot = False                # For few-shot training/testing
     few_shot_ratio = 0.1               
-    retrain = True                     # Reuse trained model weights
+    retrain = False                     # Reuse trained model weights
     test_mode = "validation" #"user", "data", "embedding", "validation"
 
     data_mode = "multi" #"single"      # single or multi intent in data

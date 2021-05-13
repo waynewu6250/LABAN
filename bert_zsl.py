@@ -243,7 +243,7 @@ def train(**kwargs):
 
             optimizer.zero_grad()
 
-            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+            _, _, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             train_loss = criterion(outputs, labels)
 
             train_loss.backward()
@@ -280,7 +280,7 @@ def train(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss
@@ -414,7 +414,7 @@ def test(**kwargs):
             labels = labels.to(device)
             masks = masks.to(device)
             with torch.no_grad():
-                hidden_states, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                hidden_states, pooled_output, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
                 print("Saving Data: %d" % i)
 
                 for ii in range(len(labels)):
@@ -449,7 +449,7 @@ def test(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
 
             # total
             P, R, F1, acc = f1_score_intents(outputs, labels)
@@ -526,7 +526,7 @@ def test(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
 
                 # total
                 P, R, F1, acc = f1_score_intents(outputs, labels)
@@ -618,7 +618,7 @@ def test(**kwargs):
             captions_t = torch.LongTensor(input_ids).unsqueeze(0).to(device)
             mask = torch.LongTensor(attention_masks).unsqueeze(0).to(device)
             with torch.no_grad():
-                pooled_output, outputs = model(captions_t, mask)
+                _, pooled_output, outputs, _ = model(captions_t, mask)
             print("Predicted label: ", reverse_dic[torch.max(outputs, 1)[1].item()])
             print("=================================")    
     
