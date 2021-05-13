@@ -397,6 +397,9 @@ def test(**kwargs):
         preds = 0
         total_acc = 0
         model.eval()
+        
+        final_logits = []
+
         for i, (captions_t, labels, masks) in enumerate(test_loader):
             print('Run prediction: ', i)
 
@@ -406,6 +409,8 @@ def test(**kwargs):
             
             with torch.no_grad():
                 _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+            # print(outputs.shspe)
+            final_logits.append(outputs)
 
             co, to, pr, acc = calc_score(outputs, labels)
             val_corrects += co
@@ -418,6 +423,10 @@ def test(**kwargs):
         f1 = 2 * (precision*recall) / (precision + recall)
         print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
         print('Accuracy: ', total_acc/test_loader.dataset.num_data)
+        
+        final_logits = torch.stack(final_logits, dim=0)
+        dic = {'logits': final_logits}#, 'clusters': clusters}
+        torch.save(dic, 'results.pth')
     
     # Run test classification
     elif opt.test_mode == "data":

@@ -130,3 +130,5 @@ dmypy.json
 
 *.pth
 *.pkl
+vectors.kv
+vectors.kv.vectors.npy

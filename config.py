@@ -2,11 +2,11 @@ class Config:
 
     #################### For BERT fine-tuning ####################
     # control
-    datatype = "mixatis"
+    datatype = "semantic"
     is_zero_shot = True                # For zero-shot training/testing
-    real_num = 14
-    ratio = '12'
-    is_few_shot = False                # For few-shot training/testing
+    real_num = 17
+    ratio = '13'
+    is_few_shot = True                # For few-shot training/testing
     few_shot_ratio = 0.1               
     retrain = False                     # Reuse trained model weights
     test_mode = "validation" #"user", "data", "embedding", "validation"
@@ -108,9 +108,9 @@ class Config:
     # model_path = "checkpoints/best_mixatis_multi.pth"
 
     maxlen = 50 #20
-    batch_size = 8 #128 e2e 16/8 sgd4
-    epochs = 20 #30, 5
-    learning_rate_bert = 2e-5 #1e-3
+    batch_size = 128 #128 e2e 16/8 sgd4 32 baseline
+    epochs = 50 #30, 5
+    learning_rate_bert = 2e-5 # for bert: 2e-5, for baseline: 1e-3
     learning_rate_classifier = 1e-3
     max_dialog_size = 25 if datatype == "e2e" else 50
     dialog_batch_size = 100

@@ -308,7 +308,7 @@ class MIXData(Data):
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description='Put arguments for train, predict')
+    parser = argparse.ArgumentParser(description='Put arguments to parase data')
 
     # For data/mode
     parser.add_argument('-d', '--data', default='atis', dest='mode')

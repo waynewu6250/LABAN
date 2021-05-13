@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
-from transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, BertModel, AutoModel, AlbertModel
 
 class BertZSL(nn.Module):
     
@@ -11,11 +11,18 @@ class BertZSL(nn.Module):
         super(BertZSL, self).__init__()
         self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         self.num_labels = num_labels
-        self.bertlabelencoder = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
         # for param in self.bertlabelencoder.parameters():
         #     param.requires_grad = False
 
-        self.bert = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
+        # self.bert = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
+        # self.bertlabelencoder = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
+        
+        self.tod_bert = AutoModel.from_pretrained("TODBERT/TOD-BERT-JNT-V1", output_hidden_states=True, output_attentions=True)
+        self.tod_bert_label = AutoModel.from_pretrained("TODBERT/TOD-BERT-JNT-V1", output_hidden_states=True, output_attentions=True)
+
+        # self.albert = AlbertModel.from_pretrained('albert-base-v2', output_hidden_states=True, output_attentions=True)
+        # self.albert_label = AlbertModel.from_pretrained('albert-base-v2', output_hidden_states=True, output_attentions=True)
+
         self.dropout = nn.Dropout(0.1)
         self.classifier = nn.Linear(config.hidden_size, num_labels)
         nn.init.xavier_normal_(self.classifier.weight)
@@ -79,13 +86,13 @@ class BertZSL(nn.Module):
         attentions: 12 x (b, num_heads, t, t)
         """
         # label encoder:
-        last_hidden, clusters, hidden, att = self.bertlabelencoder(y_caps, attention_mask=y_masks)
-        last_hidden_states, pooled_output, hidden_states, attentions = self.bert(x_caps, attention_mask=x_masks)
+        last_hidden, clusters, hidden, att = self.tod_bert_label(y_caps, attention_mask=y_masks)
+        last_hidden_states, pooled_output, hidden_states, attentions = self.tod_bert(x_caps, attention_mask=x_masks)
 
         pooled_output = self.transform(last_hidden_states, pooled_output, hidden_states, attentions, x_masks) # (b, h)
         logits = self.multi_learn(pooled_output, clusters, labels)
 
-        return last_hidden_states, pooled_output, logits
+        return last_hidden_states, pooled_output, logits#, clusters
         # loss = self.bert(input_ids, attention_mask=mask, labels=labels)
         # return loss
     

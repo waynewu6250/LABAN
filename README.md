@@ -3,6 +3,14 @@ A Label-Aware BERT Attention Network for Zero-Shot Multi-Intent Detection in Spo
 
 ## To Use
 There are three experiments and use cases for LABAN.
+
+### 1. Dependency
+Install dependency via command:
+>
+    pip install -r requirements.txt
+
+### 2. Configurations
+
 First specify the mode in `config.py`:
 
 1. `datatype`: data to use (semantic, mixatis, mixsnips, e2e, sgd) <br>
@@ -19,44 +27,46 @@ First specify the mode in `config.py`:
         embedding:  produces sentence embeddings
         user:       predict tag given a sentence
 
-### 1. Parse data
-
+### 3. Parse data
+Locate in data/
 1. mixatis/mixsnips/semantic:
     >
         (normal):    python train_data.py -d [data_type]
         (zero-shot): python train_data_zero_shot.py -d [data_type] -r [ratio]
-2. e2e/sgd:
+2. e2e/sgd: (We do not provide sgd in data.zip since it exceeds upload limit)
     >
         python dialogue_data.py
 
 ### 2. Multi-intent detection
+
+Set `is_zero_shot`: False.
 
 To train:
 >
     python bert_laban.py train
 
 To test:
-(`retrain`: True)
+(Set `retrain`: True)
 >
     python bert_laban.py test
 
 ### 3. Zero-shot detection
 
-Set `is_zero_shot`: True.
+Set `is_zero_shot`: True. <br>
 Specify `real_num` and `ratio`.
 
 To train:
 >
     python bert_zsl.py train
 To test:
-(`retrain`: True)
+(Set `retrain`: True)
 >
     python bert_zsl.py test
 
 ### 4. Few-shot detection
 
-Set `is_zero_shot`: True.
-Set `is_few_shot`: True.
+Set `is_zero_shot`: True. <br>
+Set `is_few_shot`: True. <br>
 Specify `few_shot_ratio`.
 
 To train:

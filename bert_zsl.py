@@ -16,7 +16,7 @@ import numpy as np
 import collections
 from tqdm import tqdm
 
-from model import BertZSL
+from model import BertZSL, ZSLSTM, CDSSM
 from all_data import get_dataloader
 from config import opt
 
@@ -191,6 +191,8 @@ def train(**kwargs):
     
     if not opt.dialog_data_mode:
         model = BertZSL(config, len(dic))
+        # model = ZSLSTM(opt, len(dic))
+        # model = CDSSM(opt, device)
     else:
         model = BertDST(config, opt, len(dic))
     
@@ -388,6 +390,8 @@ def test(**kwargs):
     use_dic = dic if opt.is_few_shot else train_dic
     if not opt.dialog_data_mode:
         model = BertZSL(config, len(use_dic))
+        # model = ZSLSTM(opt, len(dic))
+        # model = CDSSM(opt, device)
     else:
         model = BertDST(config, opt, len(use_dic))
 
