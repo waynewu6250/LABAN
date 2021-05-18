@@ -326,17 +326,26 @@ if __name__ == "__main__":
         rawdata_path = "semantic/raw_data_multi_se.pkl"
         intent2id_path = "semantic/intent2id_multi_se_with_tokens.pkl"
         data = SemanticData(data_path, rawdata_path, intent2id_path, done=False)
+        data_path = "../raw_datasets/top-dataset-semantic-parsing/test.tsv"
+        rawdata_path = "semantic/raw_data_multi_se_test.pkl"
+        data = SemanticData(data_path, rawdata_path, intent2id_path, done=False)
     elif args.mode == 'mixatis':
         # mixatis
         data_path = "../raw_datasets/MixATIS_clean/train.txt"
         rawdata_path = "MixATIS_clean/raw_data_multi_ma_train.pkl"
         intent2id_path = "MixATIS_clean/intent2id_multi_ma_with_tokens.pkl"
         data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
+        data_path = "../raw_datasets/MixATIS_clean/test.txt"
+        rawdata_path = "MixATIS_clean/raw_data_multi_ma_test.pkl"
+        data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
     elif args.mode == 'mixsnips':
         # mixsnips
+        data_path = "../raw_datasets/MixSNIPS_clean/train.txt"
+        rawdata_path = "MixSNIPS_clean/raw_data_multi_sn_train.pkl"
+        intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
+        data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
         data_path = "../raw_datasets/MixSNIPS_clean/test.txt"
         rawdata_path = "MixSNIPS_clean/raw_data_multi_sn_test.pkl"
-        intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
         data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
     elif args.mode == 'snips':
         # snips
