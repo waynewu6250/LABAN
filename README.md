@@ -1,5 +1,7 @@
-# LABAN
+# LABAN (EMNLP 2021)
 A Label-Aware BERT Attention Network for Zero-Shot Multi-Intent Detection in Spoken Language Understanding
+
+This repository contains the code and resources for the following paper.
 
 ## To Use
 There are three experiments and use cases for LABAN.
@@ -76,3 +78,10 @@ To test:
 (`retrain`: True)
 >
     python bert_zsl.py test
+
+
+# Citation
+
+Please cite if you use the above resources for your research
+
+
