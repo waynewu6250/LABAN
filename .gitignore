@@ -129,6 +129,5 @@ dmypy.json
 .pyre/
 
 *.pth
-*.pkl
 vectors.kv
 vectors.kv.vectors.npy

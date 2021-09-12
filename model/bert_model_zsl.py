@@ -7,19 +7,19 @@ from transformers import BertTokenizer, BertModel, AutoModel, AlbertModel
 
 class BertZSL(nn.Module):
     
-    def __init__(self, config, num_labels=2):
+    def __init__(self, config, opt, num_labels=2):
         super(BertZSL, self).__init__()
         self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
         self.num_labels = num_labels
-        # for param in self.bertlabelencoder.parameters():
-        #     param.requires_grad = False
 
         self.bert = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
         self.bertlabelencoder = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
         
+        # Uncomment the following line to use TOD-BERT as bert encoder
         # self.tod_bert = AutoModel.from_pretrained("TODBERT/TOD-BERT-JNT-V1", output_hidden_states=True, output_attentions=True)
         # self.tod_bert_label = AutoModel.from_pretrained("TODBERT/TOD-BERT-JNT-V1", output_hidden_states=True, output_attentions=True)
 
+        # Uncomment the following line to use AL-BERT as bert encoder
         # self.albert = AlbertModel.from_pretrained('albert-base-v2', output_hidden_states=True, output_attentions=True)
         # self.albert_label = AlbertModel.from_pretrained('albert-base-v2', output_hidden_states=True, output_attentions=True)
 
@@ -47,9 +47,8 @@ class BertZSL(nn.Module):
         'student'
         'zero-shot'
         'normal'
-
         """
-        self.mode = 'normal'
+        self.mode = 'self-attentive'
         self.mode2 = 'zero-shot'
         self.pre = False
 
@@ -76,6 +75,23 @@ class BertZSL(nn.Module):
             pre_model_dict = {k:v for k, v in pre_model_dict.items() if k in model_dict and v.size() == model_dict[k].size}
             model_dict.update(pre_model_dict)
             self.bert.load_state_dict(model_dict)
+        
+        # Only for running CDSSM and zero-shot BERT baselines
+        if opt.run_baseline:
+            self.emb_len = 768
+            self.st_len = opt.maxlen
+            self.K = 1000 # dimension of Convolutional Layer: lc
+            self.L = 768 # dimension of semantic layer: y 
+            self.batch_size = opt.batch_size
+            self.kernal = 3
+            self.conv = nn.Conv1d(self.emb_len, self.K, self.kernal)
+            self.linear = nn.Linear(self.K, self.L, bias = False) 
+            self.max = nn.MaxPool1d(opt.maxlen-2)
+            self.in_conv = nn.Conv1d(self.emb_len, self.K, self.kernal)
+            self.in_max = nn.MaxPool1d(8)
+            self.in_linear = nn.Linear(self.K, self.L,bias = False)
+        
+        self.run_baseline = opt.run_baseline
 
     def forward(self, x_caps, x_masks, y_caps, y_masks, labels):
         """
@@ -91,10 +107,34 @@ class BertZSL(nn.Module):
 
         pooled_output = self.transform(last_hidden_states, pooled_output, hidden_states, attentions, x_masks) # (b, h)
         logits = self.multi_learn(pooled_output, clusters, labels)
+        
+        if self.run_baseline:
+            # baseline1: dot product
+            logits = torch.mm(pooled_output, clusters.transpose(1,0))
+
+            # baseline2: cdssm
+            utter = last_hidden_states
+            intents = last_hidden
+            intents = intents.repeat(x_caps.shape[0],1,1,1) # (b,n,ti,h)
+
+            utter = utter.transpose(1,2) # (b,h,t)
+            utter_conv = torch.tanh(self.conv(utter))  # (b, nh, t-)
+            utter_conv_max = self.max(utter_conv) # (b, nh, 1)
+            utter_conv_max_linear = torch.tanh(self.linear(utter_conv_max.permute(0,2,1))) # (b, 1, h)
+            utter_conv_max_linear = utter_conv_max_linear.transpose(1,2) # (b, h, 1)
+
+            intents = intents.permute(0,3,2,1) # (b,h,ti,n)
+            class_num = list(intents.shape)
+            
+            int_convs = [torch.tanh(self.in_conv(intents[:,:,:,i])) for i in range(class_num[3])]  # for every intent (b,nh,ti-)
+            int_convs = [self.in_max(int_convs[i]) for i in range(class_num[3])]  # for every intent (b,nh,1)
+            int_conv_linear = [torch.tanh(self.in_linear(int_conv.permute(0,2,1))) for int_conv in int_convs] # for every intent (b,1,h)
+        
+            sim = [torch.bmm(yi, utter_conv_max_linear) for yi in int_conv_linear]
+            sim = torch.stack(sim) # (n,b)
+            logits = sim.transpose(0,1).squeeze(2).squeeze(2) # (b,n)
 
         return last_hidden_states, pooled_output, logits, clusters
-        # loss = self.bert(input_ids, attention_mask=mask, labels=labels)
-        # return loss
     
     def transform(self, last_hidden_states, pooled_output, hidden_states, attentions, mask):
         
@@ -145,7 +185,6 @@ class BertZSL(nn.Module):
                 h_states[:, :, :, i] = hidden_states[i]
 
             final_vectors = torch.zeros(b, t, h).to(self.device)
-            # x = (1-torch.eye(N)).unsqueeze(0).repeat(b, 1, 1).to(self.device)
 
             for i in range(t):
                 word_vector = h_states[:, i, :, :] # (b, h, N)
@@ -154,15 +193,6 @@ class BertZSL(nn.Module):
                 scores = torch.bmm(vector, word_vector) # (b, 1, N)
                 scores = nn.Softmax(dim=2)(scores) # (b, 1, N)
                 final_vectors[:, i, :] = torch.bmm(word_vector, scores.permute(0, 2, 1)).squeeze(2) # (b, h)
-
-                # word_vector = word_vector / torch.norm(word_vector, dim=1).unsqueeze(1) # normalize each vector
-                # scores = torch.bmm(word_vector.permute(0,2,1), word_vector) # (b, N, N)
-                # scores = scores * x # set self attention to be 0s
-                # scores = 1 / scores.sum(dim=2)
-                # scores = scores / scores.sum(dim=1).unsqueeze(1) # (b, N)
-                # scores = scores.unsqueeze(2) # (b, N, 1)
-                # final_vectors[:, i, :] = torch.bmm(word_vector, scores).squeeze(2) # (b, h)
-                # final_vectors[:, i, :] = hidden_states[-1][:, i, :]
             
             pooled_output, indexes = torch.max(final_vectors * mask[:,:,None], dim=1)
         
@@ -202,16 +232,6 @@ class BertZSL(nn.Module):
             weights = torch.mm(pooled_output, clusters.permute(1,0))
             weights = torch.mm(weights, torch.inverse(gram)) * np.sqrt(768)
             return weights
-
-            b, h = pooled_output.shape
-            query = pooled_output.unsqueeze(1).repeat(1, self.num_labels, 1) # b, n, h
-            support = clusters.unsqueeze(0).repeat(b, 1, 1) # b, n, h
-
-            logits = torch.cat([query, support], dim=2)
-            logits = nn.ReLU()(self.relations1(logits))
-            logits = self.relations2(logits)
-            logits = logits.squeeze(2)
-            return logits
 
         else:
             pooled_output = pooled_output

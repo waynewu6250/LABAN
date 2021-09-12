@@ -14,6 +14,8 @@ class Config:
     data_mode = "multi" #"single"      # single or multi intent in data
     sentence_mode = "one" #"two"       # one or two sentence in data
     dialog_data_mode = False           # for dialogue-wise data (A+B)
+
+    run_baseline = False
     #################################
 
     if datatype == "atis":
@@ -108,7 +110,7 @@ class Config:
     # model_path = "checkpoints/best_mixatis_multi.pth"
 
     maxlen = 50 #20
-    batch_size = 128 #128 e2e 16/8 sgd4
+    batch_size = 32 #128 e2e 16/8 sgd4
     epochs = 20 #30, 5
     learning_rate_bert = 2e-5 #1e-3
     learning_rate_classifier = 1e-3

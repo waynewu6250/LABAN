@@ -1,19 +1,34 @@
 # LABAN (EMNLP 2021)
-A Label-Aware BERT Attention Network for Zero-Shot Multi-Intent Detection in Spoken Language Understanding
 
-This repository contains the code and resources for the following paper.
+This repository contains the code and resources for the following paper, published in [EMNLP 2021](https://2021.emnlp.org/).
+
+```
+Ting-Wei Wu, Ruolin Su and Biing-Hwang Juang, "A Label-Aware BERT Attention Network for Zero-Shot Multi-Intent Detection in Spoken Language Understanding". In EMNLP 2021 (Main Conference)
+```
 
 ## To Use
-There are three experiments and use cases for LABAN.
+There are three experiments and use cases for LABAN:
+
+1. Normal multi-intent detection
+2. Generalized zero-shot multi-intent detection
+3. Few-shot multi-intent detection
 
 ### 1. Dependency
-Install dependency via command:
->
-    pip install -r requirements.txt
+* Python 3.6
+* Pytorch 1.4.0
+* CUDA 10.0 supported GPU
+
+    First create a conda environment with python 3.6 and run the following command to install pytorch:
+    >
+        conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
+    
+    Install dependency via command:
+    >
+        pip install -r requirements.txt
 
 ### 2. Configurations
 
-First specify the mode in `config.py`:
+Specify the mode in `config.py`:
 
 1. `datatype`: data to use (semantic, mixatis, mixsnips, e2e, sgd) <br>
 2. `is_zero_shot`: whether to use zero-shot (True/False) <br>
@@ -32,14 +47,22 @@ First specify the mode in `config.py`:
 ### 3. Parse data
 Locate in data/
 1. mixatis/mixsnips/semantic:
-    >
-        (normal):    python train_data.py -d [data_type]
-        (zero-shot): python train_data_zero_shot.py -d [data_type] -r [ratio]
-2. e2e/sgd: (We do not provide sgd in data.zip since it exceeds upload limit)
+    
+    1. normal
+        >
+            python train_data.py -d [data_type]
+    2. zero-shot (Creat directory data/<dataset_name>/zeroshot/ first)
+        >  
+            python train_data_zero_shot.py -d [data_type] -r [ratio]
+        
+2. e2e/sgd:
+
+    (We do not provide sgd in data.zip since it exceeds upload limit, please
+    download sgd dataset [here](https://github.com/google-research-datasets/dstc8-schema-guided-dialogue).)
     >
         python dialogue_data.py
 
-### 2. Multi-intent detection
+### 4. Multi-intent detection
 
 Set `is_zero_shot`: False.
 
@@ -52,7 +75,7 @@ To test:
 >
     python bert_laban.py test
 
-### 3. Zero-shot detection
+### 5. Zero-shot detection
 
 Set `is_zero_shot`: True. <br>
 Specify `real_num` and `ratio`.
@@ -65,7 +88,7 @@ To test:
 >
     python bert_zsl.py test
 
-### 4. Few-shot detection
+### 6. Few-shot detection
 
 Set `is_zero_shot`: True. <br>
 Set `is_few_shot`: True. <br>
@@ -78,6 +101,11 @@ To test:
 (`retrain`: True)
 >
     python bert_zsl.py test
+
+
+### 7. Run baselines
+
+
 
 
 # Citation

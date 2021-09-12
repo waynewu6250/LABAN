@@ -190,7 +190,7 @@ def train(**kwargs):
         num_hidden_layers=12, num_attention_heads=12, intermediate_size=3072)
     
     if not opt.dialog_data_mode:
-        model = BertZSL(config, len(dic))
+        model = BertZSL(config, opt, len(dic))
         # model = ZSLSTM(opt, len(dic))
         # model = CDSSM(opt, device)
     else:
@@ -204,16 +204,6 @@ def train(**kwargs):
     model = model.to(device)
 
     # optimizer, criterion
-    # param_optimizer = list(model.named_parameters())
-    # no_decay = ['bias', 'gamma', 'beta']
-    # optimizer_grouped_parameters = [
-    #     {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)],
-    #     'weight_decay_rate': 0.01},
-    #     {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)],
-    #     'weight_decay_rate': 0.0}
-    # ]
-    # optimizer = BertAdam(optimizer_grouped_parameters,lr=opt.learning_rate_bert, warmup=.1)
-
     optimizer = AdamW(model.parameters(), weight_decay=0.01, lr=opt.learning_rate_bert)
     if opt.data_mode == 'single':
         criterion = nn.CrossEntropyLoss().to(device)
@@ -389,7 +379,7 @@ def test(**kwargs):
 
     use_dic = dic if opt.is_few_shot else train_dic
     if not opt.dialog_data_mode:
-        model = BertZSL(config, len(use_dic))
+        model = BertZSL(config, opt, len(use_dic))
         # model = ZSLSTM(opt, len(dic))
         # model = CDSSM(opt, device)
     else:
