@@ -3,7 +3,7 @@ class Config:
     #################### For BERT fine-tuning ####################
     # control
     datatype = "semantic"
-    is_zero_shot = False                # For zero-shot training/testing
+    is_zero_shot = True                # For zero-shot training/testing
     real_num = 17
     ratio = '13'
     is_few_shot = False                # For few-shot training/testing
@@ -15,7 +15,7 @@ class Config:
     sentence_mode = "one" #"two"       # one or two sentence in data
     dialog_data_mode = False           # for dialogue-wise data (A+B)
 
-    run_baseline = False
+    run_baseline = None # 4 options for baselines: 'zslstm', 'zsbert', 'cdssm', 'cdssmbert', None
     #################################
 
     if datatype == "atis":

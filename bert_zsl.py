@@ -190,9 +190,12 @@ def train(**kwargs):
         num_hidden_layers=12, num_attention_heads=12, intermediate_size=3072)
     
     if not opt.dialog_data_mode:
-        model = BertZSL(config, opt, len(dic))
-        # model = ZSLSTM(opt, len(dic))
-        # model = CDSSM(opt, device)
+        if opt.run_baseline == 'zslstm':
+            model = ZSLSTM(opt, len(dic))
+        elif opt.run_baseline == 'cdssm':
+            model = CDSSM(opt, device)
+        else:
+            model = BertZSL(config, opt, len(dic))
     else:
         model = BertDST(config, opt, len(dic))
     

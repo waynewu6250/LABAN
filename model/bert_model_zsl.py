@@ -76,8 +76,8 @@ class BertZSL(nn.Module):
             model_dict.update(pre_model_dict)
             self.bert.load_state_dict(model_dict)
         
-        # Only for running CDSSM and zero-shot BERT baselines
-        if opt.run_baseline:
+        # Only for running CDSSM-BERT baseline
+        if opt.run_baseline == 'cdssmbert':
             self.emb_len = 768
             self.st_len = opt.maxlen
             self.K = 1000 # dimension of Convolutional Layer: lc
@@ -106,12 +106,12 @@ class BertZSL(nn.Module):
         last_hidden_states, pooled_output, hidden_states, attentions = self.bert(x_caps, attention_mask=x_masks)
 
         pooled_output = self.transform(last_hidden_states, pooled_output, hidden_states, attentions, x_masks) # (b, h)
-        logits = self.multi_learn(pooled_output, clusters, labels)
         
-        if self.run_baseline:
+        if self.run_baseline == 'zsbert':
             # baseline1: dot product
             logits = torch.mm(pooled_output, clusters.transpose(1,0))
-
+        
+        elif self.run_baseline == 'cdssmbert':
             # baseline2: cdssm
             utter = last_hidden_states
             intents = last_hidden
@@ -133,6 +133,10 @@ class BertZSL(nn.Module):
             sim = [torch.bmm(yi, utter_conv_max_linear) for yi in int_conv_linear]
             sim = torch.stack(sim) # (n,b)
             logits = sim.transpose(0,1).squeeze(2).squeeze(2) # (b,n)
+        
+        else:
+            logits = self.multi_learn(pooled_output, clusters, labels)
+
 
         return last_hidden_states, pooled_output, logits, clusters
     

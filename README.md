@@ -105,8 +105,17 @@ To test:
 
 ### 7. Run baselines
 
+There are four zero-shot baselines that are available to test (see more details in the paper):
 
+Set `run_baseline` to the following:
+1. zero-shot lstm: zslstm
+2. CDSSM: cdssm
+3. zero-shot bert: zsbert
+4. CDSSM bert: cdssmbert
 
+* For CDSSM, one will need to first download [fasttext pretrained vector](https://fasttext.cc/docs/en/pretrained-vectors.html) and save `vectors.kv` in local.
+
+Then run `python bert_laban.py train`.
 
 # Citation
 

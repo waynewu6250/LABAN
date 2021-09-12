@@ -43,5 +43,5 @@ class ZSLSTM(nn.Module):
 
         logits = torch.mm(rnn_out_x, rnn_out_y.transpose(1,0))
 
-        return rnn_out_x, rnn_out_y, logits
+        return rnn_out_x, rnn_out_y, logits, None
      
