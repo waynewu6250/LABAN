@@ -12,6 +12,8 @@ It is published in [EMNLP 2021](https://2021.emnlp.org/).
 ## 1. Intro
 
 
+
+
 ## 2. Folder Structure
 
 ```
@@ -47,9 +49,14 @@ LABAN/
 
 ## Dataset
 
-This repository contains five public available datasets in `raw_datasets`.
-Please also download the sgd dataset throught the repo [here](https://github.com/google-research-datasets/dstc8-schema-guided-dialogue).
+This repository contains five public available datasets in `raw_datasets`:
+1. MixATIS (single)
+2. MixSNIPS (single) 
+3. FSPS (single)
+4. E2E (multi-turn)
+5. SGD (multi-turn)
 
+   Please also download the sgd dataset throught the repo [here](https://github.com/google-research-datasets/dstc8-schema-guided-dialogue).
 
 
 ## 3. To Use
@@ -60,8 +67,7 @@ There are three use cases for experiments for LABAN:
 3. Few-shot multi-intent detection
 
 ### A. Dependency
-* Python 3.6
-* Pytorch 1.4.0
+* Python 3.6, Pytorch 1.4.0
 * If GPU available: CUDA 10.0 supported (Please check [here](https://varhowto.com/category/python/pytorch/) for other CUDA version)
 
     First create a conda environment with python 3.6 and run the following command to install pytorch:
@@ -72,12 +78,9 @@ There are three use cases for experiments for LABAN:
     >
         pip install -r requirements.txt
 
-### B. Availabe scripts
 
 
-
-
-### C. Configurations
+### B. Configurations
 
 Specify the mode in `config.py`:
 
