@@ -1,32 +1,83 @@
 # LABAN (EMNLP 2021)
 
-This repository contains the code and resources for the following paper, published in [EMNLP 2021](https://2021.emnlp.org/).
+This repository contains the code and resources for the following paper: <br>
+https://aclanthology.org/2021.emnlp-main.399/
 
 ```
 Ting-Wei Wu, Ruolin Su and Biing-Hwang Juang, "A Label-Aware BERT Attention Network for Zero-Shot Multi-Intent Detection in Spoken Language Understanding". In EMNLP 2021 (Main Conference)
 ```
 
-## To Use
-There are three experiments and use cases for LABAN:
+It is published in [EMNLP 2021](https://2021.emnlp.org/).
+
+## 1. Intro
+
+
+## 2. Folder Structure
+
+```
+LABAN/
+    └── raw_datasets/
+       └── dstc8-schema-guided-dialogue/
+       └── e2e_dialogue/
+       └── MixATIS_clean/
+       └── MixSNIPS_clean/
+       └── SNIPS
+       └── top-dataset-semantic-parsing
+    └── data/
+       ├── train_data.py ()
+       ├── train_data_zero_shot.py ()
+       ├── train_data_baseline.py ()
+       ├── dialogue_data.py ()
+    └── model/
+       ├── baseline_cdssm.py
+       ├── baseline_multi.py
+       ├── baseline_zs_lstm.py
+       ├── bert_model.py
+       ├── bert_model_zsl.py
+    └── visualization/
+       ├── visualize.ipynb 
+    all_data.py
+    baseline_midsf.py
+    bert_laban.py
+    bert_zsl.py
+    config.py
+    README.md
+    requirements.txt
+```
+
+## Dataset
+
+This repository contains five public available datasets in `raw_datasets`.
+Please also download the sgd dataset throught the repo [here](https://github.com/google-research-datasets/dstc8-schema-guided-dialogue).
+
+
+
+## 3. To Use
+There are three use cases for experiments for LABAN:
 
 1. Normal multi-intent detection
 2. Generalized zero-shot multi-intent detection
 3. Few-shot multi-intent detection
 
-### 1. Dependency
+### A. Dependency
 * Python 3.6
 * Pytorch 1.4.0
-* CUDA 10.0 supported GPU
+* If GPU available: CUDA 10.0 supported (Please check [here](https://varhowto.com/category/python/pytorch/) for other CUDA version)
 
     First create a conda environment with python 3.6 and run the following command to install pytorch:
     >
         conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
-    
+
     Install dependency via command:
     >
         pip install -r requirements.txt
 
-### 2. Configurations
+### B. Availabe scripts
+
+
+
+
+### C. Configurations
 
 Specify the mode in `config.py`:
 
@@ -44,7 +95,7 @@ Specify the mode in `config.py`:
         embedding:  produces sentence embeddings
         user:       predict tag given a sentence
 
-### 3. Parse data
+### C. Parse data
 Locate in data/
 1. mixatis/mixsnips/semantic:
     
@@ -62,7 +113,7 @@ Locate in data/
     >
         python dialogue_data.py
 
-### 4. Multi-intent detection
+### D. Multi-intent detection
 
 Set `is_zero_shot`: False.
 
@@ -75,7 +126,7 @@ To test:
 >
     python bert_laban.py test
 
-### 5. Zero-shot detection
+### E. Zero-shot detection
 
 Set `is_zero_shot`: True. <br>
 Specify `real_num` and `ratio`.
@@ -88,7 +139,7 @@ To test:
 >
     python bert_zsl.py test
 
-### 6. Few-shot detection
+### F. Few-shot detection
 
 Set `is_zero_shot`: True. <br>
 Set `is_few_shot`: True. <br>
@@ -103,7 +154,7 @@ To test:
     python bert_zsl.py test
 
 
-### 7. Run baselines
+### G. Run baselines
 
 There are four zero-shot baselines that are available to test (see more details in the paper):
 
@@ -117,8 +168,26 @@ Set `run_baseline` to the following:
 
 Then run `python bert_laban.py train`.
 
+
+
 # Citation
 
-Please cite if you use the above resources for your research
+Please cite if you use the above resources for your research:
+
+```
+@inproceedings{wu-etal-2021-label,
+    title = "A Label-Aware {BERT} Attention Network for Zero-Shot Multi-Intent Detection in Spoken Language Understanding",
+    author = "Wu, Ting-Wei  and
+      Su, Ruolin  and
+      Juang, Biing",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.emnlp-main.399",
+    pages = "4884--4896"
+}
+```
 
 
