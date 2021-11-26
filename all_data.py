@@ -15,7 +15,6 @@ class CoreDataset(Dataset):
         self.maxlen = opt.maxlen
         self.num_labels = num_labels
         self.mode = opt.data_mode
-        self.sentence_mode = opt.sentence_mode
         self.segs = segs
         self.X_lengths = X_lengths
         self.opt = opt
@@ -37,16 +36,7 @@ class CoreDataset(Dataset):
         # masks
         masks = t.tensor(self.masks[index])
 
-        if self.opt.dialog_data_mode:
-            X_lengths = t.tensor(self.X_lengths[index])
-            return caps, labels, masks, X_lengths
-
-        if self.sentence_mode == 'one':
-            return caps, labels, masks
-        else:
-            # segments
-            segs = t.tensor(self.segs[index]) 
-            return caps, labels, masks, segs
+        return caps, labels, masks
         
 
     def __len__(self):
@@ -54,7 +44,7 @@ class CoreDataset(Dataset):
 
 def get_dataloader(data, labels, masks, num_labels, opt, segs=None, X_lengths=None):
     dataset = CoreDataset(data, labels, masks, num_labels, opt, segs, X_lengths)
-    batch_size = opt.dialog_batch_size if opt.dialog_data_mode else opt.batch_size
+    batch_size = opt.batch_size
     return DataLoader(dataset, 
                       batch_size=batch_size, 
                       shuffle=False)

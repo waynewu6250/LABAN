@@ -1,0 +1,2651 @@
+----------- Wrong Examples ------------
+0
+is there a det ##our to get out of this traffic
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['update directions']
+------
+1
+show me a faster route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+2
+need directions from my house to the cleveland clinic for my daughters appointment at 8 this morning
+Predicted label: ['get location', 'get location home', 'get directions', 'get event', 'get contact', 'get info route']
+Real label: ['get location', 'get location home', 'get directions', 'get event', 'get contact']
+------
+3
+directions to school
+Predicted label: ['get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+4
+on what street is my old high school on and how long should it take to get there
+Predicted label: ['get estimated duration', 'get location', 'get contact', 'get location school']
+Real label: ['get estimated duration', 'get location', 'combine', 'get location school']
+------
+5
+is there another route that i can go to avoid the traffic accident
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+6
+how does my ride to school look
+Predicted label: ['get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+7
+how can i avoid construction traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+8
+are there any toll ##s between santos and so paulo
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get location', 'get info route']
+------
+9
+is there a different route past the traffic backed up
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+10
+what events are happening near school tomorrow
+Predicted label: ['get location', 'get event', 'get location school']
+Real label: ['get location', 'get event', 'get location school']
+------
+11
+is there a faster way
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+12
+find fast route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+13
+is there a longer route
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+14
+are there any short ##cut ##s around this traffic that would get me home quicker
+Predicted label: ['get location home', 'get directions', 'get event attendee', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+15
+is there an alternate route i can take with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+16
+any det ##our i can take from i ##20 ##2 to eagles parade
+Predicted label: ['get info traffic', 'get directions', 'get event']
+Real label: ['get event', 'update directions']
+------
+17
+suggestions to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+18
+find the quick ##est way to get to music festival near alex st from aa ##sh ##nas school
+Predicted label: ['get location', 'get directions', 'get event', 'get info route']
+Real label: ['get location', 'get directions', 'get event', 'get location school']
+------
+19
+are there any faster routes home
+Predicted label: ['get location home', 'get directions', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+20
+how long will it take me to get to the wal ##mart on san jose from the school
+Predicted label: ['get estimated duration', 'get location', 'get contact', 'get location school', 'get event attendee amount']
+Real label: ['get estimated duration', 'get location', 'get location school']
+------
+21
+alternate routes
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+22
+how long will it take me to get to school from here if i leave at 225 pm
+Predicted label: ['get estimated duration', 'get location', 'get contact', 'get location school']
+Real label: ['get estimated duration', 'get location', 'get location school']
+------
+23
+please calculate an alternative route to queens
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+24
+is there a faster way to get there
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+25
+skip traffic
+Predicted label: ['get info traffic', 'get directions']
+Real label: ['update directions']
+------
+26
+does my son austin have a wrestling match this week
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+27
+are there any det ##ours to scotch plains
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get info route']
+------
+28
+is there an alternate route to avoid so much traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+29
+any re ##rou ##te suggestions
+Predicted label: ['get info traffic']
+Real label: ['update directions']
+------
+30
+what can i do with my husband in la jo ##lla on sunday
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+31
+give me other route options to work
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+32
+give me a less traffic alternative than keystone ave
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+33
+will i cross any railroad tracks on the way to bi ##lo ##xi using highway 49 south
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get location', 'get info route']
+------
+34
+what time will i make it to work after dropping jace off at school
+Predicted label: ['get estimated arrival', 'get location work', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location work', 'get location school']
+------
+35
+suggest a different street
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+36
+is there a better route to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+37
+is there a different route
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+38
+take a det ##our please
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+39
+will i caught up in flooded road on my way to campus
+Predicted label: ['get location', 'get info traffic', 'get event attendee']
+Real label: ['get info road condition', 'get location school']
+------
+40
+can i make my daughters soccer game at 5 ##pm if i leave right now
+Predicted label: ['get estimated arrival', 'get event', 'update directions']
+Real label: ['get estimated arrival', 'get event', 'get contact']
+------
+41
+im late find me the fastest route to get to school if i leave right now
+Predicted label: ['get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+42
+which is the fastest way to school avoid accident block ##age
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+43
+find alternative route home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+44
+how long will my drive to school be
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+45
+is there any gas station on road 50 to is ##ma ##elia
+Predicted label: ['get location']
+Real label: ['get info route']
+------
+46
+how long does it take to drive from house to school
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location home', 'get location school']
+------
+47
+is there another way go to my house
+Predicted label: ['get location home', 'get directions', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+48
+please tell me how long it will take to get to crystals school if i leave now
+Predicted label: ['get estimated duration', 'get location', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+49
+are there any delays on my way to school this morning
+Predicted label: ['get info traffic', 'get location work', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+50
+update my route as traffic increases
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+51
+is there a bike lane on elsa ##da ##t street
+Predicted label: ['unsupported navigation']
+Real label: ['get info route']
+------
+52
+find a faster route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+53
+what ##s the drive time to school today
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+54
+tell me how to get to the movie theater from school
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact']
+Real label: ['get location', 'get directions', 'get location school']
+------
+55
+how long will it take me to drive to my family thanksgiving lunch
+Predicted label: ['get estimated duration', 'get event', 'get location school', 'get event attendee amount']
+Real label: ['get estimated duration', 'get event', 'get contact']
+------
+56
+give me alternate routes to work to avoid heavy traffic
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+57
+when will i arrive at school if i leave home at 2
+Predicted label: ['get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get location school']
+------
+58
+what other route can i take to avoid the traffic delay
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+59
+steer me around any det ##ours
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+60
+take me a different route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+61
+tourist attractions on i ##9 ##5 from wilson to orlando
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'get info route']
+------
+62
+is there a way around this traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+63
+is there a lot of traffic on my com ##mute to my son school this morning then to my eldest daughter school
+Predicted label: ['get location', 'get location home', 'get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+64
+no traffic
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['update directions']
+------
+65
+is it possible to get from my sister in laws school to the gym by 10 ##pm
+Predicted label: ['get location', 'get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get location', 'get estimated arrival', 'get location school']
+------
+66
+is there traffic going to school today
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+67
+give me directions from my mom ##s house to school
+Predicted label: ['get location home', 'get directions', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get location home', 'get directions', 'get location school']
+------
+68
+find a route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+69
+tell me the time i need to start travelling to attend my friends wedding in vegas
+Predicted label: ['get info route', 'get event attendee amount']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+70
+is there another route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+71
+is there any traffic on the way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+72
+directions to the or ##th ##odon ##tist from aiden ##s school need to arrive at 330
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact', 'get info route']
+Real label: ['get location', 'get directions', 'get location school']
+------
+73
+is there an alternate route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+74
+how much time will it take for me to get to school if i leave now
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+75
+what time do i need to leave my children ##s school to be at the oyster ba ##ke by 330 pm
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event attendee', 'get info route']
+Real label: ['get estimated departure', 'get event', 'get location school']
+------
+76
+are there any traffic accidents on the way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+77
+avoid toll roads
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+78
+what is the traffic like on my route to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+79
+is there a gas station on my route home
+Predicted label: ['get location', 'get location home', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get location', 'get location home', 'get info route']
+------
+80
+any traffic going to pick up maya from school
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+81
+give me directions to the store on allen street from school
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact']
+Real label: ['get location', 'get directions', 'get location school']
+------
+82
+shortest way from my house to school
+Predicted label: ['get location home', 'get directions', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get location home', 'get directions', 'get location school']
+------
+83
+how long will it take me to drive to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+84
+can you re ##rou ##te me for a faster arrival time
+Predicted label: ['update directions', 'get contact']
+Real label: ['update directions']
+------
+85
+are there any other routes available right now
+Predicted label: ['get contact']
+Real label: ['update directions']
+------
+86
+what time should i leave to get to school by 8 ##am
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get info route']
+Real label: ['get estimated departure', 'get location school']
+------
+87
+new route to avoid that accident
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+88
+is there a route available with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+89
+how do i get to ga ##tor land from winter garden and are there any toll roads
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'get directions', 'combine', 'get info route']
+------
+90
+is there an alternate route so i can get out of this traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+91
+bypass this traffic through a different navigation ##al route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+92
+on friday morning how long is the com ##mute to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+93
+show me alternative routes for wal ##mart
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+94
+give me an alternate route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+95
+is there a route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+96
+how do i get around the accident
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+97
+any traffic to get to school today
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+98
+is there a lot of snow still on the roads going to school
+Predicted label: ['get info road condition']
+Real label: ['get info road condition', 'get location school']
+------
+99
+how long will my drive back from school take
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+100
+find route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+101
+how long will it take to get to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+102
+things to do in las vegas besides gambling
+Predicted label: ['get event']
+Real label: ['get event', 'negation']
+------
+103
+can i make it to school on time with the traffic
+Predicted label: ['get estimated arrival', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+104
+what ##s the shortest route to school
+Predicted label: ['get location', 'get directions']
+Real label: ['get directions', 'get location school']
+------
+105
+any heavy traffic on school route
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+106
+faster route to colorado now
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+107
+alternate route to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+108
+are there any accidents on my school com ##mute
+Predicted label: ['get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+109
+is there a faster way to get to old town
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+110
+quicker route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+111
+how long will it take me to drive to the 104 ##5 am br ##un ##ch with my parents
+Predicted label: ['get estimated duration', 'get event', 'get location school', 'get event attendee amount']
+Real label: ['get estimated duration', 'get event', 'get contact']
+------
+112
+what is a good alternative route for my trip home today
+Predicted label: ['get location home', 'get directions', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+113
+re ##rou ##te me away from the traffic jam
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+114
+what is the distance from my house to school
+Predicted label: ['get location home', 'get directions', 'get distance', 'get contact', 'get location school']
+Real label: ['get location home', 'get distance', 'get location school']
+------
+115
+my sister is leaving school in 15 min ##s what time will she arrive to my house
+Predicted label: ['get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get location school']
+------
+116
+give me an alternate route from home to the key arena
+Predicted label: ['get location', 'get location home', 'get directions', 'get contact']
+Real label: ['get location', 'get location home', 'update directions']
+------
+117
+are there toll ##s on this route
+Predicted label: ['get location', 'get info traffic']
+Real label: ['get location', 'get info route']
+------
+118
+how many bus station would i pass from ma ##adi to gi ##za
+Predicted label: ['unsupported navigation', 'get location school']
+Real label: ['get location', 'get info route']
+------
+119
+is there a gas station on my route
+Predicted label: ['get location']
+Real label: ['get location', 'get info route']
+------
+120
+is there an alternate route to avoid construction on i ##19
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+121
+can i get from here to school before 7 ##am
+Predicted label: ['get location', 'get estimated arrival', 'update directions', 'get contact', 'get location school']
+Real label: ['get location', 'get estimated arrival', 'get location school']
+------
+122
+help me find an alternate route to san mateo
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+123
+if i leave now what time will it take for me to get home from school
+Predicted label: ['get estimated duration', 'get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get location school']
+------
+124
+i need to be at school by 6 ##pm what time do i need to leave work
+Predicted label: ['get estimated departure', 'get location work', 'get event attendee', 'get location school', 'get info route']
+Real label: ['get estimated departure', 'get location work', 'get location school']
+------
+125
+find me a new route to san marcus that gets there by 10
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+126
+avoid country roads
+Predicted label: ['get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+127
+heading to school what is traffic situation
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+128
+travel time to da ##vian ##s school
+Predicted label: ['get estimated duration', 'get location', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+129
+can you find an alternate route to x around heavy traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+130
+alternative route to home
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'update directions']
+------
+131
+what is the best way to go to the company ##s party tonight
+Predicted label: ['get directions', 'get event', 'get info route']
+Real label: ['get directions', 'get event', 'get contact']
+------
+132
+can you re ##rou ##te me around this traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+133
+i need to arrive to my sons school play this afternoon and what is the best time to leave to arrive before noon today
+Predicted label: ['get location', 'get estimated departure', 'get event', 'get info route']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+134
+how long will it take me to drive from here to my children ##s school
+Predicted label: ['get estimated duration', 'get location', 'get contact', 'get location school', 'get event attendee amount']
+Real label: ['get estimated duration', 'get location', 'get location school']
+------
+135
+are any of my friends hosting parties in wilmington this weekend
+Predicted label: ['unsupported', 'get contact']
+Real label: ['get event organizer', 'get contact']
+------
+136
+is there a faster way that avoids traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+137
+how many people have purchased tickets for the r ##hian ##non concert in atlanta this saturday night
+Predicted label: ['unsupported event', 'get event attendee amount']
+Real label: ['get event attendee amount']
+------
+138
+is there an alternative route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+139
+find me another way to get to the bank
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+140
+what will be the quick ##est route to my daughters soccer game with current traffic conditions
+Predicted label: ['get directions', 'get event']
+Real label: ['get directions', 'get event', 'get contact']
+------
+141
+freeway with less traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+142
+are there any toll ##s on my route
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get location', 'get info route']
+------
+143
+are there any delays on the way to the school
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+144
+if i leave my school at 3 o ##cl ##ock what time will i arrive to johns birthday party
+Predicted label: ['get estimated arrival', 'get event', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get event', 'get location school']
+------
+145
+how heavy is traffic on the way home from school
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get location home', 'get info traffic', 'get location school']
+------
+146
+alternative route that bypass traffic jam
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+147
+is there any toll ##s in the way
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info route']
+------
+148
+can i make an alternative route
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+149
+is there a better way to get to work today
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+150
+if there is an accident what is an alternative route
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+151
+are there det ##ours around this traffic
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['update directions']
+------
+152
+take me where there is less traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+153
+check school route for heavy traffic
+Predicted label: ['get info traffic', 'get directions', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+154
+is there a way around this traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+155
+can we go around the heavy traffic areas
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+156
+alternate routes
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+157
+will i be able make it to school on time in this traffic
+Predicted label: ['get estimated arrival', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+158
+can i continue on my route another way using only state roads and county roads
+Predicted label: ['unsupported navigation', 'get info route']
+Real label: ['get location', 'update directions']
+------
+159
+how long should it take to get to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+160
+what time should i leave to arrive to my sisters wedding at 3 pm
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event', 'get event attendee amount']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+161
+please direct give me an alternative route to get home
+Predicted label: ['get location home', 'get directions', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+162
+how many people will be attending the event
+Predicted label: ['get event', 'get event attendee amount']
+Real label: ['get event attendee amount']
+------
+163
+is there a shorter route
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+164
+traffic going to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+165
+is there a different exit i can take to avoid traffic
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+166
+is there another route to get to my doctors ap ##oint ##ment other than the i ##4
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get event', 'update directions']
+------
+167
+traffic near school
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get location', 'get info traffic', 'get location school']
+------
+168
+is there a faster time travel route to the casino
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+169
+are there any dirt roads on the route from my house to def ##uni ##ak springs fl
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get location', 'get location home', 'get info route']
+------
+170
+find an alternate route to the ##ra ##ped ##ia that avoids h ##wy 37 ##7 shortest distance
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+171
+what events can i take my parents to
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+172
+please tell me if the roads are clear for my route to gi ##ova ##nna ##s school
+Predicted label: ['get location', 'get location home', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+173
+what is the fastest route from my home to hara ##m area to attend my niece birthday party at 7 pm
+Predicted label: ['get location', 'get location home', 'get directions', 'get event attendee', 'get info route']
+Real label: ['get location home', 'get directions', 'get event', 'get contact']
+------
+174
+how long will it take me to drive the kids to school
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+175
+what is a better way to get to tampa
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+176
+how can i get out of this traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+177
+does this route include toll roads
+Predicted label: []
+Real label: ['get info route']
+------
+178
+what time should i leave to get to my sons baseball game by 1 ##pm
+Predicted label: ['get location', 'get estimated departure', 'get event']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+179
+is there an alternate route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+180
+if i leave at 114 ##5 ##am will i make it to my nephew ##s party in the afternoon
+Predicted label: ['get estimated arrival', 'get event', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get event', 'get contact']
+------
+181
+how many people expected to show up on first star wars showing
+Predicted label: ['get event', 'get event attendee amount']
+Real label: ['get event attendee amount']
+------
+182
+any toll ##s in this route
+Predicted label: ['get info traffic']
+Real label: ['get location', 'get info route']
+------
+183
+how long will it take for me to get to my sons school from work leaving now
+Predicted label: ['get estimated duration', 'get location home', 'get location work', 'get location school']
+Real label: ['get estimated duration', 'get location work', 'get location school']
+------
+184
+any alternate route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+185
+how much traffic is there on my route to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+186
+find best alternate route to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+187
+are there any traffic delays i should expect on the way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+188
+is there a faster route i can take home
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'update directions']
+------
+189
+directions to kate ##s school from the grocery store
+Predicted label: ['get location', 'get location home', 'get directions', 'get contact']
+Real label: ['get location', 'get directions', 'get location school']
+------
+190
+if i leave now what time will it take me to get to school
+Predicted label: ['get estimated duration', 'get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+191
+how is the traffic by the school
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get location', 'get info traffic', 'get location school']
+------
+192
+fastest route to college avoid traffic
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+193
+do you have any short ##cut ##s
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+194
+how do i get home faster
+Predicted label: ['get location home', 'get directions', 'update directions']
+Real label: ['get location home', 'update directions']
+------
+195
+is there any traffic on my way home from school
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get location home', 'get info traffic', 'get location school']
+------
+196
+show me alternate ways to the garden state plaza from my location
+Predicted label: ['get location', 'get directions', 'get contact', 'get info route']
+Real label: ['get location', 'update directions']
+------
+197
+is there a rest stop on my current route
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+198
+if i left now will i get to my sons school by 5 ##pm
+Predicted label: ['get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+199
+how long will it take to get to class
+Predicted label: ['get estimated duration', 'get location school', 'get event attendee amount']
+Real label: ['get estimated duration', 'get location school']
+------
+200
+change my route
+Predicted label: []
+Real label: ['update directions']
+------
+201
+alternate route to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+202
+are there any toll ##s between home and norfolk
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get location', 'get location home', 'get info route']
+------
+203
+how long will the det ##our add to my trip to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+204
+how long will it take to get to school by bicycle
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+205
+i am starting at 5 pm from school avoiding construction traffic when will i reach home
+Predicted label: ['get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get location school']
+------
+206
+are there any attractions on my route
+Predicted label: ['get event']
+Real label: ['get location', 'get info route']
+------
+207
+when do i need to leave to be to school by 102 ##0 am
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get info route']
+Real label: ['get estimated departure', 'get location school']
+------
+208
+what are the details about the path to school
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+209
+can you re ##rou ##te me to dia
+Predicted label: ['get directions', 'update directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+210
+how many alternate routes to my destination
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+211
+is there a quicker way other than taking toll ##s to the airport
+Predicted label: ['get location', 'get directions', 'get info route']
+Real label: ['get location', 'update directions']
+------
+212
+will the traffic on my way to school today be bad
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+213
+alternate route to work
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+214
+avoid all toll ##s on route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+215
+what ##s the travel time between home and school if i leave at 2
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location home', 'get location school']
+------
+216
+is there another route home
+Predicted label: ['get location home', 'get directions', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+217
+if i leave now what time will i arrive at school
+Predicted label: ['get estimated arrival', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+218
+will there be any food courts along the way
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+219
+is there a walking path on highway 78
+Predicted label: ['unsupported navigation']
+Real label: ['get info route']
+------
+220
+will i be able to get to school by 700 am if i leave now by bike
+Predicted label: ['get estimated arrival', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+221
+i want routes with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+222
+is there another route around traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+223
+i need a route without construction from the zoo to the school
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'get directions', 'get location school']
+------
+224
+give me route traffic condition at 10 pm tonight to men ##a house hotel wedding of my nephew
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get info route']
+Real label: ['get location', 'get info traffic', 'get event', 'get contact']
+------
+225
+if i leave work 15 min early will i make it to my daughters play
+Predicted label: ['get estimated arrival', 'get location work', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get event', 'get location work', 'get contact']
+------
+226
+if l leave my home right will i make it sons soccer game by 3 ##pm
+Predicted label: ['get estimated arrival', 'get location home', 'get event', 'update directions']
+Real label: ['get estimated arrival', 'get location home', 'get event', 'get contact']
+------
+227
+how much will my way to school be delayed by traffic
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+228
+what time will i get to everett ##s preschool if i leave right now
+Predicted label: ['get location', 'get estimated arrival', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+229
+how long will it take me to get to school if i leave from here in 20 minutes
+Predicted label: ['get estimated duration', 'get location', 'get contact', 'get location school']
+Real label: ['get estimated duration', 'get location', 'get location school']
+------
+230
+avoid dirt roads along my route
+Predicted label: ['get directions']
+Real label: ['get location', 'update directions']
+------
+231
+what is the fastest alternate route home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+232
+any events this weekend where my kids can learn something new
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+233
+will i make it to my sons rec ##idal at 6 ##pm if i leave now
+Predicted label: ['get estimated arrival', 'get location home', 'get event', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get event', 'get contact']
+------
+234
+is there an alternate route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+235
+how many cliffs are on the way to ta ##hoe
+Predicted label: []
+Real label: ['get info route']
+------
+236
+how long is the drive to my daughters school
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+237
+avoid freeway ##s on the way to school
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+238
+is there a short ##cut around the construction zone
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+239
+can i get from school to b ##ly ##the by 9
+Predicted label: ['get estimated arrival', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+240
+are there any alternate routes to work that are faster
+Predicted label: ['get directions', 'get location work', 'get info route']
+Real label: ['get location work', 'update directions']
+------
+241
+when can i leave to catch my sons birthday at 9 pm
+Predicted label: ['get location', 'get estimated departure']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+242
+alternate routes to san jose
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+243
+what time should i leave the house to get to school by 8 ##am
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event attendee', 'update directions', 'get info route']
+Real label: ['get location home', 'get estimated departure', 'get location school']
+------
+244
+is there a better route that i can take with no traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+245
+what route should i take to get to school today
+Predicted label: ['get directions']
+Real label: ['get directions', 'get location school']
+------
+246
+can i add a stop at a gas station along the road trip route
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'update directions']
+------
+247
+which is the quick ##est roads to travel to arrive at my sons school at dismissal at 145 ##pm this afternoon
+Predicted label: ['get location', 'get location home', 'get directions', 'get event attendee', 'get contact', 'get info route']
+Real label: ['get directions', 'get location school']
+------
+248
+what time should i leave ai ##sas apartment to get to my daughters 6 ##pm class
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event attendee', 'update directions', 'get info route']
+Real label: ['get location home', 'get estimated departure', 'get event', 'get contact']
+------
+249
+are there any det ##ours to avoid the west side highway
+Predicted label: ['get location', 'get info traffic', 'get contact']
+Real label: ['update directions']
+------
+250
+is there a different route to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+251
+how is my ride to school today
+Predicted label: ['get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+252
+is there an alternative route other and i ##6 ##9 ##4 to jill and bruce ##s
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+253
+is there a convenience store on ro ##ut 51 going to mom ##s house
+Predicted label: ['get directions']
+Real label: ['get location', 'get location home', 'get info route']
+------
+254
+can i avoid traffic by taking a different bridge
+Predicted label: ['get directions']
+Real label: ['get location', 'update directions']
+------
+255
+any way to avoid this traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+256
+are there alternative routes to bypass heavy traffic areas
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+257
+what time do i need to leave work to make it my sons baseball game on ##time
+Predicted label: ['get estimated departure', 'get event', 'get location work']
+Real label: ['get estimated departure', 'get event', 'get location work', 'get contact']
+------
+258
+is there any alternate com ##mute to avoid traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+259
+advise new routes to work
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school', 'get info route']
+Real label: ['get location work', 'update directions']
+------
+260
+what is the best alternate route to get to work
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+261
+get best alternate route from here to home
+Predicted label: ['get location', 'get location home', 'get directions', 'get contact']
+Real label: ['get location', 'get location home', 'update directions']
+------
+262
+can i avoid highways to get there
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact']
+Real label: ['get location', 'update directions']
+------
+263
+how ##s traffic to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+264
+how long will it take to get to the university by bike this morning
+Predicted label: ['get estimated duration', 'get location', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+265
+alternative routes
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+266
+show me alternative routes
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+267
+will i be late to my friends wedding if i leave in an hour and not take the freeway
+Predicted label: ['get location', 'get estimated arrival', 'get event', 'update directions', 'get contact', 'get location school']
+Real label: ['get location', 'get estimated arrival', 'get event', 'get contact']
+------
+268
+alternate routes to get home
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'update directions']
+------
+269
+are there any delays on my way to pick up l ##j from school
+Predicted label: ['get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+270
+avoid toll ##boot ##hs
+Predicted label: ['get directions']
+Real label: ['get location', 'update directions']
+------
+271
+how long will it take me to get from the house to school if i leave at 6 pm
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location home', 'get location school']
+------
+272
+offer me another route
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+273
+what time do i have to leave to make it to school at 6 ##pm for class
+Predicted label: ['get location', 'get estimated departure', 'get location school', 'get info route']
+Real label: ['get estimated departure', 'get location school']
+------
+274
+when should i start from home to reach my uncles birthday party in berkeley
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event', 'get info route']
+Real label: ['get location home', 'get estimated departure', 'get event', 'get contact']
+------
+275
+can i get around the heavy traffic
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+276
+is there traffic congestion between my sons school and his fathers home
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get location home', 'get info traffic', 'get location school']
+------
+277
+is there a sides ##tree ##t alternative to get to my destination
+Predicted label: ['get directions']
+Real label: ['get location', 'update directions']
+------
+278
+when should i move if i wanted to catch my fathers birthday today at 9 ##pm
+Predicted label: ['get location', 'get estimated departure', 'negation']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+279
+alternate route home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+280
+what are the traffic delays like for portland and are there alternate or faster routes that i can take
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get info traffic', 'combine', 'update directions']
+------
+281
+will i arrive in time for mom ##s birthday party if i left now
+Predicted label: ['get estimated arrival', 'get event', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get event', 'get contact']
+------
+282
+how long is my drive home from school today
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location home', 'get location school']
+------
+283
+is there a quicker way home
+Predicted label: ['get location home', 'get directions', 'update directions']
+Real label: ['get location home', 'update directions']
+------
+284
+can you provide an alternate route
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+285
+take me to school using the freeway its okay to go through the construction zones
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact', 'get info route']
+Real label: ['get directions', 'get location school']
+------
+286
+can i take another route to the beach
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+287
+alternative routes home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+288
+is there an alternative route to avoid traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+289
+is there a faster route than the one im on
+Predicted label: ['unsupported navigation', 'get directions']
+Real label: ['update directions']
+------
+290
+how much time is there from my house to school
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location home', 'get location school']
+------
+291
+how long is my drive to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+292
+can i take another route to get out of this traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+293
+please show me alternative routes to northeast pediatric ##s associates without freeway
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+294
+alternate route around traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+295
+is there a wa ##wa on my route
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+296
+where can i stop for fuel along the evening route
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+297
+i need a good event to take my kids to this weekend in beaver ##ton
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+298
+are there any toll roads on my way to the atlanta braves game from work
+Predicted label: ['get info traffic', 'get location work', 'get event attendee', 'get contact', 'get info route']
+Real label: ['get event', 'get location work', 'get info route']
+------
+299
+should i take a different route home
+Predicted label: ['unsupported navigation', 'get location home', 'get event attendee']
+Real label: ['get location home', 'update directions']
+------
+300
+what is the expected arrival time for me if started from home at 2 ##pm for my daughters 3 ##pm lesson
+Predicted label: ['get estimated arrival', 'get location home', 'get event', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get event', 'get contact']
+------
+301
+how long til we get to the school
+Predicted label: ['get estimated duration', 'get location', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+302
+re ##rou ##te to work
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+303
+what ##s traffic like by my daughters elementary school
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get location', 'get info traffic', 'get location school']
+------
+304
+give me an alternate to my current route
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+305
+show available gas stations on routes
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+306
+how long will it take me to get to maria ##s music concert from school if i leave at 6 pm
+Predicted label: ['get estimated duration', 'get event', 'get location school', 'get info route']
+Real label: ['get estimated duration', 'get event', 'get location school']
+------
+307
+how many miles of construction on the blue route between valley forge and the start of the northeast extension can you find me a better route
+Predicted label: ['get info traffic']
+Real label: ['unsupported navigation', 'combine', 'update directions']
+------
+308
+re ##rou ##te please
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+309
+avoid freeway and go by street
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+310
+any shorter routes
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+311
+is there a different route to get passed traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+312
+how many people expected at the amp ##hit ##hea ##tre
+Predicted label: ['get location', 'get event', 'get event attendee amount']
+Real label: ['get location', 'get event attendee amount']
+------
+313
+find alternate route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+314
+find det ##our
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['update directions']
+------
+315
+will i run into construction on my way to pick da ##vian up from school
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'update directions', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+316
+are there any delays on my bus route to school
+Predicted label: ['get location', 'get info traffic', 'get event attendee']
+Real label: ['get info traffic', 'get location school']
+------
+317
+directions to school
+Predicted label: ['get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+318
+i want to know how long it will take me to drive to my daughters soccer game if i leave my job at 4 pm
+Predicted label: ['get estimated duration', 'get event', 'get location work', 'get location school']
+Real label: ['get estimated duration', 'get event', 'get location work', 'get contact']
+------
+319
+what time should i leave to make it to the uncle rays dinner by 7 ##pm
+Predicted label: ['get location', 'get estimated departure', 'get event', 'get event attendee amount']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+320
+what time should i leave to make it to my children ##s school at 11 ##am
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event attendee', 'get info route']
+Real label: ['get estimated departure', 'get location school']
+------
+321
+if i start at 9 am from my house when would do i reach school
+Predicted label: ['get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get location school']
+------
+322
+alternate route to bypass traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+323
+alternate routes to work
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+324
+how long is my ride to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+325
+is there a faster way to get to cu ##yah ##oga valley national park today
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+326
+how long is my drive to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+327
+friends who have responded to my event on sunday
+Predicted label: ['unsupported', 'get contact', 'get event attendee amount']
+Real label: ['get event attendee', 'get contact']
+------
+328
+i want to find a children ##s event to take my children to in birmingham this week
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+329
+i need an alternate route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+330
+show my the way back to school
+Predicted label: ['get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+331
+are there toll roads between los angeles and san diego
+Predicted label: ['get directions']
+Real label: ['get info route']
+------
+332
+re ##rou ##te me around this traffic jam please
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+333
+search for alternate route to my sisters house in new jersey
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location', 'get location home', 'update directions']
+------
+334
+how long is my com ##mute to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+335
+is there toll lanes between here and the port of the americas
+Predicted label: ['unsupported navigation', 'get location']
+Real label: ['get location', 'get info route']
+------
+336
+how long will it take me to reach school if i leave from here right now
+Predicted label: ['get estimated duration', 'get location', 'get location school']
+Real label: ['get estimated duration', 'get location', 'get location school']
+------
+337
+what time should i leave to get to my daughters 3 ##pm meeting
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event', 'get event attendee amount']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+338
+avoid expressway ##s
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+339
+are there toll roads driving to dallas tx
+Predicted label: ['get directions', 'get contact']
+Real label: ['get location', 'get info route']
+------
+340
+any tree decor ##ating events at school
+Predicted label: ['get event', 'get location school']
+Real label: ['get event', 'get location school']
+------
+341
+what is the route like to chicago right now
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get info route']
+------
+342
+please re ##rou ##te using the fastest route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+343
+if i walk to school what time will i need to leave to get there at 9
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get location school', 'get info route']
+Real label: ['get estimated departure', 'get location school']
+------
+344
+can you navigate around the traffic
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+345
+closest place i can take my son to see santa
+Predicted label: []
+Real label: ['get location', 'get event', 'get contact']
+------
+346
+how long will it take to get to the middle school
+Predicted label: ['get estimated duration', 'get location', 'get contact', 'get location school', 'get event attendee amount']
+Real label: ['get estimated duration', 'get location school']
+------
+347
+are there any large pot ##holes on my usual route to my daughters school
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+348
+how long will it take me to get to ally ##s school using the det ##our that is posted
+Predicted label: ['get estimated duration', 'get location', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+349
+please show me another way to get home
+Predicted label: ['get location home', 'get directions', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+350
+traffic on the way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+351
+is there currently school traffic
+Predicted label: ['get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+352
+is there any other way to get to school without toll ##s
+Predicted label: ['get location', 'get directions', 'get event attendee', 'get contact']
+Real label: ['update directions', 'get location school']
+------
+353
+are there any gas stations on my current route
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info route']
+------
+354
+how long will it take me to get to my nephew ##s birthday tomorrow morning
+Predicted label: ['get estimated duration', 'get location school', 'get event attendee amount']
+Real label: ['get estimated duration', 'get event', 'get contact']
+------
+355
+are there any state parks along my route
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+356
+leaving at 3 pm from work what is the quick ##est route avoiding construction to my daughters school
+Predicted label: ['get location home', 'get directions', 'get location work', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get directions', 'get location work', 'get location school']
+------
+357
+im leaving my house at 8 am what time will i get to school
+Predicted label: ['get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get location school']
+------
+358
+is there a way to go to my daughters concert without passing any construction
+Predicted label: ['get directions', 'get event']
+Real label: ['get directions', 'get event', 'get contact']
+------
+359
+need det ##our to grape ##vine
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+360
+is there a welcome center or rest stop on my way to little rock
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+361
+avoid toll roads
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+362
+alternate route with no traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+363
+are there alternative routes that are faster to seattle from marie ##s house
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'update directions']
+------
+364
+traffic from work to school
+Predicted label: ['get info traffic', 'get location work', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location work', 'get location school']
+------
+365
+show me alternative ways to go to work
+Predicted label: ['get directions', 'get location work', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+366
+alternative route to durham from i ##40
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+367
+are there any det ##ours going to tea ##gan ##s school
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+368
+is there a better way home
+Predicted label: ['get location home', 'get directions', 'update directions']
+Real label: ['get location home', 'update directions']
+------
+369
+find alternate route if there is traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+370
+can i take a different route to avoid this traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+371
+take a shorter route to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+372
+is traffic to school heavy
+Predicted label: ['get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+373
+what are the alternative routes i can take to get to the mall
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+374
+find shorter route
+Predicted label: ['unsupported navigation', 'get directions']
+Real label: ['update directions']
+------
+375
+can you give me an alternate route
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+376
+are any of my friends hosting secret santa parties next week
+Predicted label: ['unsupported', 'get event attendee amount']
+Real label: ['get event organizer', 'get contact']
+------
+377
+is it possible to go from my brothers college to the party before 10 ##am
+Predicted label: ['get location', 'get estimated arrival', 'get location home', 'get event', 'update directions', 'get location school', 'get info route']
+Real label: ['get estimated arrival', 'get event', 'get location school']
+------
+378
+what other routes can i take to get home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+379
+alternate route please
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+380
+do my friends have any events this weekend
+Predicted label: []
+Real label: ['get event', 'get contact']
+------
+381
+will there be any road work between university and pine island on 59 ##5
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+382
+am i going to get to school on time
+Predicted label: ['get estimated arrival', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+383
+please get me a new route
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+384
+when should i leave for school
+Predicted label: ['get location', 'get estimated departure', 'get info route']
+Real label: ['get estimated departure', 'get location school']
+------
+385
+is there a toll road option
+Predicted label: ['unsupported navigation', 'get directions']
+Real label: ['get location', 'update directions']
+------
+386
+are there any det ##ours on i ##18 between flags ##taff and phoenix
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get info route']
+------
+387
+is there another road i can take right now with no traffic congestion
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+388
+is there a different route to the coliseum
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+389
+are there toll ##s on my trip to new york
+Predicted label: ['get info traffic', 'update directions', 'get contact']
+Real label: ['get info route']
+------
+390
+add stop at mr bs to route
+Predicted label: []
+Real label: ['get location home', 'update directions']
+------
+391
+re ##rou ##te to h ##wy 50
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+392
+can you show me a route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+393
+can we use an alternate route to phoenix
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+394
+what can i do with my parents in philadelphia next week
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+395
+will i pass any gas stations on the way home
+Predicted label: ['get location', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get location', 'get location home', 'get info route']
+------
+396
+choose a shorter route
+Predicted label: ['unsupported navigation', 'get directions']
+Real label: ['update directions']
+------
+397
+is there a faster route to downtown portland
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+398
+is there an alternate route to get to south lake ta ##hoe from kings beach
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+399
+what is the quick ##est way to get from loop 1604 and band ##era road to the high school battle of the band competition
+Predicted label: ['get location', 'get directions', 'get event', 'get info route']
+Real label: ['get location', 'get directions', 'get event', 'get location school']
+------
+400
+is the traffic heavy on my way back from school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+401
+what are the traffic conditions on the way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+402
+how long will it take me to get to class
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+403
+is there an alternate route to the bank
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+404
+can you tell me other way to avoid the traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+405
+what time do i need to pickup emmy from school to make it to her dentist app ##t by 430
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event', 'get info route']
+Real label: ['get estimated departure', 'get event', 'get location school']
+------
+406
+what ##s the best way to get to school at rush hour
+Predicted label: ['get location', 'get directions']
+Real label: ['get directions', 'get location school']
+------
+407
+can you route me around any highways
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+408
+is there an alternative traffic route with less traffic that i can take
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+409
+re ##rou ##te past accident on 77 to work
+Predicted label: ['get directions', 'get location work', 'get contact']
+Real label: ['get location work', 'update directions']
+------
+410
+show me traffic for my route to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+411
+is there a faster route i can take
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+412
+i need to get to my sons graduation ##s party in bis ##bee before 4 ##pm
+Predicted label: ['get location home', 'get directions', 'get event']
+Real label: ['get directions', 'get event', 'get contact']
+------
+413
+are any of my friends going to the concert
+Predicted label: ['unsupported', 'get contact', 'get location school', 'get event attendee amount']
+Real label: ['get event attendee', 'get contact']
+------
+414
+is there any way to get home faster
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'update directions']
+------
+415
+shortest route to reach sandy ##ss college if i k ##lea ##ve at noon and avoid main traffic prone zones
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+416
+are there any faster routes to my destination
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+417
+what events are my facebook friends up to this weekend
+Predicted label: ['unsupported', 'get event attendee amount']
+Real label: ['get event', 'get contact']
+------
+418
+what time should i leave if i want to get to tyler ##s school down the road from wal mart by 315 today
+Predicted label: ['get location', 'get estimated departure', 'get event attendee', 'get info route']
+Real label: ['get location', 'get estimated departure', 'get location school']
+------
+419
+how long is the drive the to school
+Predicted label: ['get estimated duration', 'get location', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+420
+how is the traffic from work audrey ##s school
+Predicted label: ['get location home', 'get info traffic', 'get location work', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location work', 'get location school']
+------
+421
+what can we do as a family for a birthday party for my husband
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+422
+how long will it take for me to get to school on the c train
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+423
+what events can i attend with my family in boston area
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+424
+add stop at grocery store to my route
+Predicted label: ['get location', 'get directions']
+Real label: ['get location', 'update directions']
+------
+425
+how is traffic from home to school
+Predicted label: ['get location home', 'get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get location home', 'get info traffic', 'get location school']
+------
+426
+if i leave at 10 am will i make it to my first class in school at noon
+Predicted label: ['get estimated arrival', 'get event', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get event', 'get location school']
+------
+427
+give me another way to get to the airport please
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+428
+will my kids get to school on time if i leave the house at 71 ##5
+Predicted label: ['get estimated arrival', 'get location home', 'get event attendee', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location home', 'get location school']
+------
+429
+what is an alternative route to get to the beach to avoid the traffic
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+430
+where are the ho ##v lane exits between here and dallas
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'get info route']
+------
+431
+re ##rou ##te to avoid traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+432
+help me plan an alternate route that avoids all construction delays on the major highways
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+433
+what is the com ##mute time to get to school if i left now
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+434
+find an alternate route home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+435
+how can i avoid the accident that ##s on my way to school
+Predicted label: ['get directions', 'get event attendee']
+Real label: ['get directions', 'get location school']
+------
+436
+any traffic problems between here and my sisters wedding
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get location', 'get info traffic', 'get event', 'get contact']
+------
+437
+is there a faster route home
+Predicted label: ['get location home', 'get directions', 'update directions']
+Real label: ['get location home', 'update directions']
+------
+438
+how many miles is it from my home to school
+Predicted label: ['get location home', 'get directions', 'get distance', 'get contact', 'get location school']
+Real label: ['get location home', 'get distance', 'get location school']
+------
+439
+im getting a lot of traffic can you show me another way to my destination
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+440
+how long will it take me to drive to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+441
+can i get my daughter 3 pm lesson if i start driving through round road at 2 pm
+Predicted label: ['get event', 'update directions', 'get contact']
+Real label: ['get estimated arrival', 'get event', 'get contact']
+------
+442
+what roads are closed due to the hurricane between home and teresa ##s school
+Predicted label: ['get location', 'get location home', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get location home', 'get info traffic', 'get location school']
+------
+443
+should i take an alternate route
+Predicted label: ['unsupported navigation']
+Real label: ['update directions']
+------
+444
+find me an alternate route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+445
+how long will it take me to get to school if i left immediately
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+446
+if i leave now what time would i arrive at school
+Predicted label: ['get estimated arrival', 'update directions', 'get contact', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+447
+is there a faster way to work
+Predicted label: ['get directions', 'get location work', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+448
+how long is my ride to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+449
+is there any traffic on my way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+450
+im trying to get to class on time what are my route options that would get me there by 330
+Predicted label: ['get directions', 'get event', 'get info route']
+Real label: ['get directions', 'get location school']
+------
+451
+find all toll ##s along the fastest route from los angles to las vegas
+Predicted label: ['get directions', 'get contact']
+Real label: ['get location', 'get info route']
+------
+452
+is there a faster path around this traffic
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+453
+walking distance to timmy ##s school
+Predicted label: ['get location', 'get directions', 'get distance', 'get location school', 'get event attendee amount']
+Real label: ['get distance', 'get location school']
+------
+454
+avoid construction
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+455
+what is my driving time from work to school
+Predicted label: ['get estimated duration', 'get location work', 'get location school']
+Real label: ['get estimated duration', 'get location work', 'get location school']
+------
+456
+is there an alternative route that is quicker
+Predicted label: ['unsupported navigation', 'get directions']
+Real label: ['update directions']
+------
+457
+are there any alternate routes to avoid traffic jam ##s today
+Predicted label: ['get info traffic', 'get directions', 'get contact']
+Real label: ['update directions']
+------
+458
+show alternative route home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+459
+quick ##est way walking to my daughters high school reunion ##s at 730 on 7th and dr
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'get directions', 'get event', 'get contact']
+------
+460
+how is my com ##mute to school today
+Predicted label: ['get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+461
+find me a alternative route home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+462
+are there toll roads on the way to lawrence kansas
+Predicted label: ['get info traffic', 'get contact']
+Real label: ['get location', 'get info route']
+------
+463
+has the snow caused there to be a delay on my route to school
+Predicted label: ['get info traffic', 'get event attendee', 'update directions', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+464
+is there a different way i can take to work
+Predicted label: ['get directions', 'get location work', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+465
+is there an alternate route to avoid the traffic on i ##15
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+466
+is there a shorter way to home
+Predicted label: ['get location home', 'get directions', 'update directions']
+Real label: ['get location home', 'update directions']
+------
+467
+what other road can i take
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+468
+what time will i likely arrive at school if i were to leave right now
+Predicted label: ['get location', 'get estimated arrival', 'update directions', 'get location school']
+Real label: ['get estimated arrival', 'get location school']
+------
+469
+i need a traffic update for my school com ##mute
+Predicted label: ['get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+470
+how long to get to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+471
+send me an alternate route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+472
+are there any alternate routes for me to get to work
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+473
+any accidents on my route to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+474
+is there a better route home
+Predicted label: ['get location home', 'get directions']
+Real label: ['get location home', 'update directions']
+------
+475
+please find an alternate route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+476
+any short ##cut ##s to su ##wan ##ee
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+477
+is there traffic on my route to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+478
+is there an alternate route around disney
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+479
+is there an alternate route to avoid traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+480
+re ##rou ##te to hospital
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+481
+is there a faster route to get to my doctors appointment so i can be there by 3
+Predicted label: ['get directions', 'get event']
+Real label: ['get event', 'update directions']
+------
+482
+alternate route to sugar grove
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+483
+are there any accidents on my way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+484
+how long will it take to get to school if i leave at 8 ##am
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+485
+are there any traffic problems reported along the route to school
+Predicted label: ['get location', 'get info traffic', 'get event attendee', 'get contact']
+Real label: ['get info traffic', 'get location school']
+------
+486
+is kentucky state university on the way while driving to florida from home
+Predicted label: ['get location', 'get location home', 'get event attendee', 'get contact']
+Real label: ['get location', 'get location home', 'get info route']
+------
+487
+re ##rou ##te me around accidents
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+488
+alternate routes to te ##me ##cula from here
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+489
+re ##rou ##te my destination
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+490
+big accident up ahead re ##rou ##te me to my destination
+Predicted label: ['get info traffic', 'get event attendee', 'update directions', 'get contact']
+Real label: ['update directions']
+------
+491
+is there another way home
+Predicted label: ['get location home', 'get directions', 'update directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+492
+please avoid toll ##s
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+493
+if i want to arrive at school at 7 ##am what time should i leave home
+Predicted label: ['get location', 'get location home', 'get estimated departure', 'get event attendee', 'update directions', 'get info route']
+Real label: ['get location home', 'get estimated departure', 'get location school']
+------
+494
+what is an alternate route i could go
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+495
+please show me a route with less traffic
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+496
+show me an alternate route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+497
+are there any delays on my com ##mute to school
+Predicted label: ['get info traffic', 'get event attendee', 'update directions', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+498
+how long is the drive time to school this morning
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+499
+what landmarks are on the way to my destination
+Predicted label: ['get contact']
+Real label: ['get location', 'get info route']
+------
+500
+how many rest areas are available from south of the border to columbia sc
+Predicted label: []
+Real label: ['get location', 'get info route']
+------
+501
+what route should i take to get to school the fastest
+Predicted label: ['get directions', 'get info route']
+Real label: ['get directions', 'get location school']
+------
+502
+how long will it take me to get to school
+Predicted label: ['get estimated duration', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+503
+how long will it take me to get home from school
+Predicted label: ['get estimated duration', 'get location home', 'update directions', 'get location school']
+Real label: ['get estimated duration', 'get location home', 'get location school']
+------
+504
+is there a better route
+Predicted label: ['get directions']
+Real label: ['update directions']
+------
+505
+add a gas stop to my route
+Predicted label: ['unsupported navigation']
+Real label: ['get location', 'update directions']
+------
+506
+friends birthday parties next month
+Predicted label: ['get event']
+Real label: ['get event', 'get contact']
+------
+507
+should i take an alternate route to work
+Predicted label: ['get directions', 'get location work', 'get info route']
+Real label: ['get location work', 'update directions']
+------
+508
+are there any new years eve parties being thrown by any of my contacts
+Predicted label: ['unsupported', 'get contact', 'get event attendee amount']
+Real label: ['get event', 'get contact']
+------
+509
+is there traffic on my way to school
+Predicted label: ['get info traffic', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get info traffic', 'get location school']
+------
+510
+what events are my friends attending
+Predicted label: ['unsupported', 'get event attendee amount']
+Real label: ['get event', 'get contact']
+------
+511
+estimate drive time from my apartment to school please
+Predicted label: ['get estimated duration', 'get location home', 'get contact', 'get location school']
+Real label: ['get estimated duration', 'get location home', 'get location school']
+------
+512
+how many miles is it from my house to school
+Predicted label: ['get location home', 'get directions', 'get distance', 'get event attendee', 'get contact', 'get location school']
+Real label: ['get location home', 'get distance', 'get location school']
+------
+513
+find me an alternate route to the office
+Predicted label: ['get directions', 'get location work', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+514
+where is the next gas station along my route
+Predicted label: ['get location']
+Real label: ['get location', 'get info route']
+------
+515
+is there another route that i can take that will get me to portland by noon if i leave by 9
+Predicted label: ['get directions', 'update directions', 'get contact']
+Real label: ['update directions']
+------
+516
+give me a route without det ##ours
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+517
+alternate route home
+Predicted label: ['get location home', 'get directions', 'get contact']
+Real label: ['get location home', 'update directions']
+------
+518
+are there any gas stations at the next exit
+Predicted label: ['get location']
+Real label: ['get location', 'get info route']
+------
+519
+is there another way that i can get to work this morning
+Predicted label: ['get directions', 'get location work', 'get contact', 'get location school']
+Real label: ['get location work', 'update directions']
+------
+520
+what time should i leave to make it to my sisters recital by 8 ##pm
+Predicted label: ['get location', 'get estimated departure', 'get event', 'get event attendee amount']
+Real label: ['get estimated departure', 'get event', 'get contact']
+------
+521
+please provide alternative routes to my ob ##gy ##n clinic address
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+522
+what ##s an alternate route to the beach
+Predicted label: ['get location', 'get directions', 'get contact']
+Real label: ['get location', 'update directions']
+------
+523
+take me to school
+Predicted label: ['get directions', 'get contact']
+Real label: ['get directions', 'get location school']
+------
+524
+how long will it take me to get the kids to school
+Predicted label: ['get estimated duration', 'get location home', 'get location school']
+Real label: ['get estimated duration', 'get location school']
+------
+525
+give me the route to school with the least traffic
+Predicted label: ['get location', 'get directions', 'get contact', 'get info route']
+Real label: ['get directions', 'get location school']
+------
+526
+re ##rou ##te going no toll
+Predicted label: ['get directions', 'get contact']
+Real label: ['update directions']
+------
+527
+what is the best route to get to school
+Predicted label: ['get directions']
+Real label: ['get directions', 'get location school']
+------
+528
+what are my alternate routes
+Predicted label: ['get directions', 'get contact', 'get info route']
+Real label: ['update directions']
+------
+529
+is there an atm on my route home
+Predicted label: ['get location home', 'get contact', 'get location school']
+Real label: ['get location', 'get location home', 'get info route']
+------

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 The Hong Kong Polytechnic University (Xuandi Fu)
 #
+"""CDSSM baseline"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

@@ -9,6 +9,8 @@ Ting-Wei Wu, Ruolin Su and Biing-Hwang Juang, "A Label-Aware BERT Attention Netw
 
 It is published in [EMNLP 2021](https://2021.emnlp.org/).
 
+(Under construction. More to update.)
+
 ## 1. Intro
 
 
@@ -34,7 +36,6 @@ LABAN/
        ├── baseline_cdssm.py
        ├── baseline_multi.py
        ├── baseline_zs_lstm.py
-       ├── bert_model.py
        ├── bert_model_zsl.py
     └── visualization/
        ├── visualize.ipynb 
@@ -85,6 +86,7 @@ There are three use cases for experiments for LABAN:
 Specify the mode in `config.py`:
 
 1. `datatype`: data to use (semantic, mixatis, mixsnips, e2e, sgd) <br>
+2. `data_mode`: 
 2. `is_zero_shot`: whether to use zero-shot (True/False) <br>
 3. `real_num`: real number of seen intents <br>
 4. `ratio`: parameter for splitting train/test labels <br>
@@ -114,9 +116,11 @@ Locate in data/
     (We do not provide sgd in data.zip since it exceeds upload limit, please
     download sgd dataset [here](https://github.com/google-research-datasets/dstc8-schema-guided-dialogue).)
     >
-        python dialogue_data.py
+        python dialogue_data.py -d [data_type]
 
 ### D. Multi-intent detection
+
+We now support the multi-intent detection in all five datasets.
 
 Set `is_zero_shot`: False.
 
@@ -131,6 +135,8 @@ To test:
 
 ### E. Zero-shot detection
 
+We now support the zero-shot detection in `semantic`, `mixatis`, `mixsnips` dataset.
+
 Set `is_zero_shot`: True. <br>
 Specify `real_num` and `ratio`.
 
@@ -143,6 +149,8 @@ To test:
     python bert_zsl.py test
 
 ### F. Few-shot detection
+
+We now support the few-shot detection in `semantic`, `mixatis`, `mixsnips` dataset.
 
 Set `is_zero_shot`: True. <br>
 Set `is_few_shot`: True. <br>
