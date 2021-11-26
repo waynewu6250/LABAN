@@ -1,3 +1,4 @@
+"""Main Zero-shot model pipeline"""
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -6,6 +7,7 @@ import numpy as np
 from transformers import BertTokenizer, BertModel, AutoModel, AlbertModel
 
 class BertZSL(nn.Module):
+    """Main LABAN model"""
     
     def __init__(self, config, opt, num_labels=2):
         super(BertZSL, self).__init__()
@@ -13,8 +15,11 @@ class BertZSL(nn.Module):
         self.num_labels = num_labels
 
         self.bert = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
+        # You can share the utterance and label encoder by removing the following encoder
         self.bertlabelencoder = BertModel.from_pretrained('bert-base-uncased', output_hidden_states=True, output_attentions=True)
-        
+        # for param in self.bertlabelencoder.parameters():
+        #     param.requires_grad = False
+
         # Uncomment the following line to use TOD-BERT as bert encoder
         # self.tod_bert = AutoModel.from_pretrained("TODBERT/TOD-BERT-JNT-V1", output_hidden_states=True, output_attentions=True)
         # self.tod_bert_label = AutoModel.from_pretrained("TODBERT/TOD-BERT-JNT-V1", output_hidden_states=True, output_attentions=True)
@@ -23,6 +28,7 @@ class BertZSL(nn.Module):
         # self.albert = AlbertModel.from_pretrained('albert-base-v2', output_hidden_states=True, output_attentions=True)
         # self.albert_label = AlbertModel.from_pretrained('albert-base-v2', output_hidden_states=True, output_attentions=True)
 
+        
         self.dropout = nn.Dropout(0.1)
         self.classifier = nn.Linear(config.hidden_size, num_labels)
         nn.init.xavier_normal_(self.classifier.weight)
@@ -53,8 +59,8 @@ class BertZSL(nn.Module):
         self.pre = False
 
         print('Surface encoder mode: ', self.mode)
-        print('Inference mode: ', self.mode2)
-        print('Use pretrained: ', self.pre)
+        print('Label aware layer mode: ', self.mode2)
+        print('Use weights from models pretrained with in-domain data: ', self.pre)
 
         # Self-attentive
         if self.mode == 'self-attentive':
@@ -141,6 +147,7 @@ class BertZSL(nn.Module):
         return last_hidden_states, pooled_output, logits, clusters
     
     def transform(self, last_hidden_states, pooled_output, hidden_states, attentions, mask):
+        """Fuse the token-level hidden states into sentence representation."""
         
         if self.mode == 'max-pooling':
             # Method 1: max pooling
@@ -201,11 +208,13 @@ class BertZSL(nn.Module):
             pooled_output, indexes = torch.max(final_vectors * mask[:,:,None], dim=1)
         
         else:
+            # Baseline: Use [CLS] head
             pooled_output = pooled_output
             
         return pooled_output
 
     def multi_learn(self, pooled_output, clusters, labels):
+        """Interact with the label embeddings."""
     
         if self.mode2 == 'gram':
             gram = torch.mm(clusters, clusters.permute(1,0)) # (n, n)
@@ -242,7 +251,6 @@ class BertZSL(nn.Module):
         
         pooled_output_d = self.dropout(pooled_output)
         logits = self.classifier(pooled_output_d)
-        # logits = nn.Sigmoid()(logits)
 
         return logits
 

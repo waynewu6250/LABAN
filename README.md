@@ -9,8 +9,14 @@ Ting-Wei Wu, Ruolin Su and Biing-Hwang Juang, "A Label-Aware BERT Attention Netw
 
 It is published in [EMNLP 2021](https://2021.emnlp.org/).
 
+(Under construction. More to update.)
+
 ## 1. Intro
 
+The work proposes to adopt the linear approximation method by projecting an spoken utterance onto a intent semantic space to solve intent detection problem. It can handle the normal and zero-shot multi-intent detection cases where intents are unseen during training.
+
+
+![image](visualization/model.png)
 
 
 
@@ -26,15 +32,12 @@ LABAN/
        └── SNIPS
        └── top-dataset-semantic-parsing
     └── data/
-       ├── train_data.py ()
-       ├── train_data_zero_shot.py ()
-       ├── train_data_baseline.py ()
-       ├── dialogue_data.py ()
+       ├── train_data.py (For normal detection)
+       ├── train_data_zero_shot.py (For zero-shot detection)
+       ├── train_data_baseline.py (For baseline data)
+       ├── dialogue_data.py (For e2e/sgd)
     └── model/
-       ├── baseline_cdssm.py
        ├── baseline_multi.py
-       ├── baseline_zs_lstm.py
-       ├── bert_model.py
        ├── bert_model_zsl.py
     └── visualization/
        ├── visualize.ipynb 
@@ -85,6 +88,7 @@ There are three use cases for experiments for LABAN:
 Specify the mode in `config.py`:
 
 1. `datatype`: data to use (semantic, mixatis, mixsnips, e2e, sgd) <br>
+2. `data_mode`: 
 2. `is_zero_shot`: whether to use zero-shot (True/False) <br>
 3. `real_num`: real number of seen intents <br>
 4. `ratio`: parameter for splitting train/test labels <br>
@@ -114,9 +118,11 @@ Locate in data/
     (We do not provide sgd in data.zip since it exceeds upload limit, please
     download sgd dataset [here](https://github.com/google-research-datasets/dstc8-schema-guided-dialogue).)
     >
-        python dialogue_data.py
+        python dialogue_data.py -d [data_type]
 
 ### D. Multi-intent detection
+
+We now support the multi-intent detection in all five datasets.
 
 Set `is_zero_shot`: False.
 
@@ -131,6 +137,8 @@ To test:
 
 ### E. Zero-shot detection
 
+We now support the zero-shot detection in `semantic`, `mixatis`, `mixsnips` dataset.
+
 Set `is_zero_shot`: True. <br>
 Specify `real_num` and `ratio`.
 
@@ -144,6 +152,8 @@ To test:
 
 ### F. Few-shot detection
 
+We now support the few-shot detection in `semantic`, `mixatis`, `mixsnips` dataset.
+
 Set `is_zero_shot`: True. <br>
 Set `is_few_shot`: True. <br>
 Specify `few_shot_ratio`.
@@ -155,22 +165,6 @@ To test:
 (`retrain`: True)
 >
     python bert_zsl.py test
-
-
-### G. Run baselines
-
-There are four zero-shot baselines that are available to test (see more details in the paper):
-
-Set `run_baseline` to the following:
-1. zero-shot lstm: zslstm
-2. CDSSM: cdssm
-3. zero-shot bert: zsbert
-4. CDSSM bert: cdssmbert
-
-* For CDSSM, one will need to first download [fasttext pretrained vector](https://fasttext.cc/docs/en/pretrained-vectors.html) and save `vectors.kv` in local.
-
-Then run `python bert_laban.py train`.
-
 
 
 # Citation
@@ -192,5 +186,3 @@ Please cite if you use the above resources for your research:
     pages = "4884--4896"
 }
 ```
-
-

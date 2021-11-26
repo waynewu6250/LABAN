@@ -129,10 +129,7 @@ dmypy.json
 .pyre/
 
 *.pth
-vectors.kv
-vectors.kv.vectors.npy
+*.pkl
 
-# data pkl
-data/*/*.pkl
-data/*/*/*.pkl
-error_analysis/*/*.pkl
+*.kv
+*.npy
