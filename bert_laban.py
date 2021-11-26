@@ -19,43 +19,10 @@ from tqdm import tqdm
 from model import BertZSL
 from all_data import get_dataloader
 from config import opt
-
-def load_data(X, maxlen):
-
-    input_ids = pad_sequences(X, maxlen=maxlen, dtype="long", truncating="post", padding="post")
-    
-    attention_masks = []
-    for seq in input_ids:
-        seq_mask = [float(i>0) for i in seq]
-        attention_masks.append(seq_mask)
-    return (input_ids, attention_masks)
-
-def calc_score(outputs, labels):
-    corrects = 0
-    totals = 0
-    preds = 0
-    acc = 0
-    if opt.data_mode == 'single':
-        corrects += torch.sum(torch.max(outputs, 1)[1] == labels)
-    else:
-        for i, logits in enumerate(outputs):
-            log = torch.sigmoid(logits)
-            correct = (labels[i][torch.where(log>0.5)[0]]).sum()
-            total = len(torch.where(labels[i]==1)[0])
-            pred = len(torch.where(log>0.5)[0])
-            corrects += correct
-            totals += total
-            preds += pred
-            
-            p = (torch.where(log>0.5)[0])
-            r = (torch.where(labels[i]==1)[0])
-            if len(p) == len(r) and (p == r).all():
-                acc += 1
-    return corrects, totals, preds, acc
-
-#####################################################################
+from utils import *
 
 def train(**kwargs):
+    """Main training pipeline"""
     
     # attributes
     for k, v in kwargs.items():
@@ -67,7 +34,6 @@ def train(**kwargs):
     print('Dataset to use: ', opt.train_path)
     print('Dictionary to use: ', opt.dic_path_with_tokens)
     print('Data Mode: ', opt.data_mode)
-    print('Sentence Mode: ', opt.sentence_mode)
 
     # dataset
     with open(opt.dic_path_with_tokens, 'rb') as f:
@@ -82,57 +48,31 @@ def train(**kwargs):
     X_lengths_test = None
     if opt.datatype == "semantic":
         # Semantic parsing Dataset
-        # X_train, y_train = zip(*train_data)
-        # X_test, y_test = zip(*test_data)
         X, y = zip(*train_data)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    
     elif opt.datatype == "e2e" or opt.datatype == "sgd":
         # Microsoft Dialogue Dataset / SGD Dataset
         all_data = []
-        if not opt.dialog_data_mode:
-            dialogue_id = {}
-            dialogue_counter = 0
-            counter = 0
-            for data in train_data:
-                for instance in data:
-                    all_data.append(instance)
-                    dialogue_id[counter] = dialogue_counter
-                    counter += 1
-                dialogue_counter += 1
-            X, y, _ = zip(*all_data)
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-        else:
-            X_lengths = []
-            for dialog in train_data:
-                X_lengths.extend([len(dialog)]*25)
-                if len(dialog) < opt.max_dialog_size:
-                    pad_num = opt.max_dialog_size-len(dialog)
-                    # Pad dummy sentences
-                    pad = ([101,0,0,102], [0], [0])
-                    dialog.extend([pad]*pad_num)
-                all_data.append(dialog)
-            all_data = [sent for dialog in all_data for sent in dialog]
-            
-            X, y, _ = zip(*all_data)
-            train_num = int(len(train_data)*0.7)*25
-            X_train = X[:train_num]
-            y_train = y[:train_num]
-            X_test = X[train_num:]
-            y_test = y[train_num:]
-            X_lengths_train = X_lengths[:train_num]
-            X_lengths_test = X_lengths[train_num:]
-    elif 'mix' in opt.datatype:
-        # Mix dataset
+        dialogue_id = {}
+        dialogue_counter = 0
+        counter = 0
+        for data in train_data:
+            for instance in data:
+                all_data.append(instance)
+                dialogue_id[counter] = dialogue_counter
+                counter += 1
+            dialogue_counter += 1
+        X, y, _ = zip(*all_data)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    
+    else:
+        # Mix dataset or single setence dataset
         X_train, y_train, _ = zip(*train_data)
         X_test, y_test, _ = zip(*test_data)
     
     X_train, mask_train = load_data(X_train, opt.maxlen)
     X_test, mask_test = load_data(X_test, opt.maxlen)
-    
-    # length = int(len(X_train)*0.1)
-    # X_train = X_train[:length]
-    # y_train = y_train[:length]
-    # mask_train = mask_train[:length]
     
     train_loader = get_dataloader(X_train, y_train, mask_train, len(dic), opt, X_lengths=X_lengths_train)
     val_loader = get_dataloader(X_test, y_test, mask_test, len(dic), opt, X_lengths=X_lengths_test)
@@ -151,10 +91,7 @@ def train(**kwargs):
     config = BertConfig(vocab_size_or_config_json_file=32000, hidden_size=768,
         num_hidden_layers=12, num_attention_heads=12, intermediate_size=3072)
     
-    if not opt.dialog_data_mode:
-        model = BertZSL(config, len(dic))
-    else:
-        model = BertDST(config, opt, len(dic))
+    model = BertZSL(config, opt, len(dic))
     
     if opt.model_path:
         model.load_state_dict(torch.load(opt.model_path))
@@ -164,16 +101,6 @@ def train(**kwargs):
     model = model.to(device)
 
     # optimizer, criterion
-    # param_optimizer = list(model.named_parameters())
-    # no_decay = ['bias', 'gamma', 'beta']
-    # optimizer_grouped_parameters = [
-    #     {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)],
-    #     'weight_decay_rate': 0.01},
-    #     {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)],
-    #     'weight_decay_rate': 0.0}
-    # ]
-    # optimizer = BertAdam(optimizer_grouped_parameters,lr=opt.learning_rate_bert, warmup=.1)
-
     optimizer = AdamW(model.parameters(), weight_decay=0.01, lr=opt.learning_rate_bert)
     if opt.data_mode == 'single':
         criterion = nn.CrossEntropyLoss().to(device)
@@ -202,7 +129,7 @@ def train(**kwargs):
 
             optimizer.zero_grad()
 
-            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+            _, _, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             train_loss = criterion(outputs, labels)
 
             train_loss.backward()
@@ -241,7 +168,7 @@ def train(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss
@@ -348,7 +275,7 @@ def test(**kwargs):
     if not opt.dialog_data_mode:
         # with open('data/MixATIS_clean/intent2id_multi_ma_with_tokens.pkl', 'rb') as f:
         #     dicc = pickle.load(f)
-        model = BertZSL(config, len(dic))
+        model = BertZSL(config, opt, len(dic))
     else:
         model = BertDST(config, opt, len(dic))
 
@@ -397,6 +324,9 @@ def test(**kwargs):
         preds = 0
         total_acc = 0
         model.eval()
+
+        f_output = []
+        all_labels = []
         for i, (captions_t, labels, masks) in enumerate(test_loader):
             print('Run prediction: ', i)
 
@@ -405,7 +335,7 @@ def test(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs, clusters = model(captions_t, masks, intent_tokens, mask_tokens, labels)
 
             co, to, pr, acc = calc_score(outputs, labels)
             val_corrects += co
@@ -413,11 +343,20 @@ def test(**kwargs):
             preds += pr
             total_acc += acc
 
+            f_output.append(outputs)
+            all_labels.append(labels)
+
+        f_output = torch.cat(f_output,dim=0)
+        all_labels = torch.cat(all_labels,dim=0)
+        dic = {'outputs': f_output, 'clusters': clusters, 'labels': all_labels}
+
         recall = val_corrects.double() / totals
         precision = val_corrects.double() / preds
         f1 = 2 * (precision*recall) / (precision + recall)
         print(f'P = {precision:.4f}, R = {recall:.4f}, F1 = {f1:.4f}')
         print('Accuracy: ', total_acc/test_loader.dataset.num_data)
+
+        torch.save(dic, 'result.pth')
     
     # Run test classification
     elif opt.test_mode == "data":
@@ -526,35 +465,6 @@ def test(**kwargs):
     
     
 
-
-
-
-
 if __name__ == '__main__':
     import fire
     fire.Fire()
-    
-
-
-            
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-    
-
-
-    

@@ -1,3 +1,4 @@
+"""Data script for parsing zero-shot multi-intent dataset"""
 import torch as t
 from torch.autograd import Variable
 import numpy as np
@@ -9,10 +10,13 @@ import json
 import os
 import csv
 import spacy
-from transformers import BertTokenizer, BertModel, BertForMaskedLM
+from transformers import BertTokenizer, BertModel, BertForMaskedLM, AutoTokenizer, AlbertTokenizer
+# from gensim.models.keyedvectors import KeyedVectors
+# from nltk import word_tokenize
 import time
 
 class Data:
+    """Main data abstract class"""
 
     def __init__(self, data_path, rawdata_path, intent2id_path):
 
@@ -22,6 +26,11 @@ class Data:
         self.REPLACE_BY_SPACE_RE = re.compile(r'[/(){}\[\]\|@,;]')
         self.BAD_SYMBOLS_RE = re.compile(r'[^0-9a-z #+_]')
         self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
+        # Uncomment the following lines to use other tokenizer
+        # self.tokenizer = AutoTokenizer.from_pretrained("TODBERT/TOD-BERT-JNT-V1")
+        # self.tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2')
+        # self.w2v = self.load_w2v('../vectors.kv')
+
 
     #==================================================#
     #                   Text Prepare                   #
@@ -29,15 +38,16 @@ class Data:
     
     #pure virtual function
     def prepare_text(self):
+        """transform the text into pickle files"""
         raise NotImplementedError("Please define virtual function!!")
 
     # prepare text
-    def text_prepare(self, text, mode):
-        """
-            text: a string       
-            return: modified string
-        """
-        
+    def text_prepare(self, text, mode, snips_intent=False):
+        """preprocess the text"""
+
+        if snips_intent:
+            text = re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))', text)
+            text = ' '.join(text)
         text = text.lower() # lowercase text
         text = re.sub(self.REPLACE_BY_SPACE_RE, ' ', text) # replace REPLACE_BY_SPACE_RE symbols by space in text
         text = re.sub(self.BAD_SYMBOLS_RE, '', text) # delete symbols which are in BAD_SYMBOLS_RE from text
@@ -50,113 +60,43 @@ class Data:
             tokenized_text = self.tokenizer.tokenize(text)
             tokenized_ids = self.tokenizer.convert_tokens_to_ids(tokenized_text)
             text = tokenized_ids
+        elif mode == "fasttext":
+            text = text.replace('_', ' ')
+            tokenized_text = word_tokenize(text)
+            text = []
+            for w in tokenized_text:
+                if w in self.w2v.key_to_index:
+                    text.append(self.w2v.key_to_index[w])
+                else:
+                    text.append(len(self.w2v.key_to_index))
         return text
     
-
-############################################################################
-
-class ATISData(Data):
-
-    def __init__(self, data_path, rawdata_path, intent2id_path, mode, input_path=None, embedding_path=None, done=True):
-
-        super(ATISData, self).__init__(data_path, rawdata_path, intent2id_path)
-        
-        self.raw_data, self.intent2id = self.prepare_text(mode, done)
-        self.intents = [data[1] for data in self.raw_data]
-        self.num_labels = len(self.intent2id)
-
-        if mode == "Starspace":
-            # Run the following to get starspace embedding
-            # > ./starspace train -trainFile data.txt -model modelSaveFile -label '#'
-            self.embedding_path = embedding_path
-            self.input_path = input_path
-            self.write_files()
-            self.load_embeddings()
-        
-        if mode == "Bert":
-            pass
-
-
-    #==================================================#
-    #                   Prepare Text                   #
-    #==================================================#
-    
-    def prepare_text(self, mode, done):
-
-        if done:
-            with open(self.rawdata_path, "rb") as f:
-                raw_data = pickle.load(f)
-            with open(self.intent2id_path, "rb") as f:
-                intent2id = pickle.load(f)
-            return raw_data, intent2id
-
-        ptime = time.time()
-
-        with open(self.data_path, 'r') as f:
-            data = json.load(f)
-        
-        raw_data = []
-        if os.path.exists(self.intent2id_path):
-            with open(self.intent2id_path, "rb") as f:
-                intent2id = pickle.load(f)
-            counter = len(intent2id)
-        else:
-            intent2id = {}
-            counter = 0
-        
-        for sample in data['rasa_nlu_data']['common_examples']:
-            if sample['intent'] not in intent2id:
-                intent2id[sample['intent']] = counter
-                counter += 1
-            raw_data.append((self.text_prepare(sample['text'], mode), intent2id[sample['intent']], sample['entities']))
-        
-        with open(self.rawdata_path, "wb") as f:
-            pickle.dump(raw_data, f)
-        with open(self.intent2id_path, "wb") as f:
-            pickle.dump(intent2id, f)
-        
-        print("Process time: ", time.time()-ptime)
-        
-        return raw_data, intent2id
-    
-    #==================================================#
-    #                    Starspace                     #
-    #==================================================#
-
-    def write_files(self):
-        with open(self.input_path, 'w') as f:
-            for text, intent, _ in self.raw_data:
-                f.write(text+" __label__{}".format(intent)+"\n")
-
-    def load_embeddings(self):
-        
-        # Load embeddings
-        self.word_embeddings = {}
-        with open(self.embedding_path) as tsvfile:
-            reader = csv.reader(tsvfile, delimiter='\t')
-            for row in reader:
-                self.word_embeddings[row[0]] = [float(i) for i in row[1:]]
-        
-        # Embed the texts into sentence embeddings
-        self.embedded_data = np.zeros((len(self.raw_data), 100))
-        for i, data in enumerate(self.raw_data):
-            self.embedded_data[i,:] = np.mean([self.word_embeddings[txt] for txt in data[0].split()], axis=0)
-    
+    def load_w2v(self, file_name):
+        """ load w2v model
+            input: model file name
+            output: w2v model
+        """
+        # w2v = KeyedVectors.load_word2vec_format(file_name, binary=False, limit=500000)
+        w2v = KeyedVectors.load(file_name)
+        return w2v
 
 
 ############################################################################
 
 
 class SemanticData(Data):
+    """FSPS dataset"""
 
-    def __init__(self, data_path, rawdata_path, intent2id_path, rawdata_path2=None, intent2id_path2=None, done=True):
+    def __init__(self, data_path, rawdata_path, intent2id_path, rawdata_path2=None, intent2id_path2=None, ratio=None, done=True):
 
         super(SemanticData, self).__init__(data_path, rawdata_path, intent2id_path)
+        self.ratio = int(ratio)
         self.rawdata_path2 = rawdata_path2
         self.intent2id_path2 = intent2id_path2
         self.raw_data, self.intent2id = self.prepare_text(done)
     
     def prepare_text(self, done):
+        """transform the text into pickle files"""
 
         if done:
             with open(self.rawdata_path, "rb") as f:
@@ -172,15 +112,8 @@ class SemanticData(Data):
         
         raw_data = []
 
-        ######################### normal setting #########################
-        if os.path.exists(self.intent2id_path):
-            print('Load intent2id...')
-            with open(self.intent2id_path, "rb") as f:
-                intent2id = pickle.load(f)
-            icounter = len(intent2id)
-        else:
-            intent2id = {}
-            counter = 0
+        ######################### zero-shot setting #########################
+        intent_set = {}
         for i, (text, intents) in enumerate(zip(data["question"].values, data["intent"].values)):
             # single intent:
             # if intent not in intent2id:
@@ -191,100 +124,80 @@ class SemanticData(Data):
             # multi intents
             intents = [intent.lower().replace('_', ' ') for intent in intents.split('@')]
             for intent in intents:
-                if intent not in intent2id:
-                    intent2id[intent] = (counter, self.text_prepare(intent, 'Bert')) #counter
-                    counter += 1
-            raw_data.append((self.text_prepare(text, "Bert"), [intent2id[intent][0] for intent in intents]))
+                if intent not in intent_set:
+                    intent_set[intent] = 0
+            raw_data.append((self.text_prepare(text, "Bert"), intents))
             
             print("Finish: ", i)
+        
+        ############ split data into seen and unseen labels ############
+        counter1 = 0
+        counter2 = 0
+        train_intent2id = {}
+        test_intent2id = {}
+        # intent_set = sorted(list(intent_set))
+        train_set = []
+        test_set = []
 
+        # use the ratio to split seen and unseen intents
+        for i, intent in enumerate(intent_set):
+            if i < self.ratio:
+                train_set.append(intent)
+            elif i > self.ratio and i % 2 == 0:
+                train_set.append(intent)
+            else:
+                test_set.append(intent)
+        test_set = train_set + test_set
+
+        for intent in train_set:
+            train_intent2id[intent] = (counter1, self.text_prepare(intent, "Bert"))
+            counter1 += 1
+        for intent in test_set:
+            test_intent2id[intent] = (counter2, self.text_prepare(intent, "Bert"))
+            counter2 += 1
+
+        train_data = []
+        test_data = []
+        for text, intents in raw_data:
+            key = True
+            for intent in intents:
+                # If one of intent is not in train, push it to the test data
+                if intent not in train_intent2id:
+                    key = False
+            if key:
+                train_data.append((text, [train_intent2id[intent][0] for intent in intents]))
+            else:
+                test_data.append((text, [test_intent2id[intent][0] for intent in intents]))
+        self.new_train_data = train_data#[:int(0.7*len(train_data))]
+        self.new_test_data = test_data# train_data[int(0.7*len(train_data)):] + test_data
+        print('Number of the train data: ', len(self.new_train_data))
+        print('Number of the test data: ', len(self.new_test_data))
+        print('Intent dictionary of the train data: \n', train_intent2id)
+        print('Intent dictionary of the test data: \n', test_intent2id)
+        print('Number of the train intents:', len(train_intent2id))
+        print('Number of the test intents: ', len(test_intent2id))
+        
         with open(self.rawdata_path, "wb") as f:
-            pickle.dump(raw_data, f)
+            pickle.dump(self.new_train_data, f)
         with open(self.intent2id_path, "wb") as f:
-            pickle.dump(intent2id, f)
-        ######################### normal setting #########################
+            pickle.dump(train_intent2id, f)
 
-        ######################### zero-shot setting #########################
-        # intent_set = {}
-        # for i, (text, intents) in enumerate(zip(data["question"].values, data["intent"].values)):
-        #     # single intent:
-        #     # if intent not in intent2id:
-        #     #     intent2id[intent] = counter
-        #     #     counter += 1
-        #     # raw_data.append((self.text_prepare(text, "Bert"), intent2id[intent]))
-
-        #     # multi intents
-        #     intents = [intent.lower().replace('_', ' ') for intent in intents.split('@')]
-        #     for intent in intents:
-        #         if intent not in intent_set:
-        #             intent_set[intent] = 0
-        #     raw_data.append((self.text_prepare(text, "Bert"), intents))
-            
-        #     print("Finish: ", i)
-        
-        # # split data into seen and unseen labels
-        # counter1 = 0
-        # counter2 = 0
-        # train_intent2id = {}
-        # test_intent2id = {}
-        # # intent_set = sorted(list(intent_set))
-        # train_set = []
-        # test_set = []
-
-        # for i, intent in enumerate(intent_set):
-        #     if i < 18:
-        #         train_set.append(intent)
-        #     elif i > 18 and i % 2 == 0:
-        #         train_set.append(intent)
-        #     else:
-        #         test_set.append(intent)
-        # test_set = train_set + test_set
-
-        # for intent in train_set:
-        #     train_intent2id[intent] = (counter1, self.text_prepare(intent, "Bert"))
-        #     counter1 += 1
-        # for intent in test_set:
-        #     test_intent2id[intent] = (counter2, self.text_prepare(intent, "Bert"))
-        #     counter2 += 1
-
-        # train_data = []
-        # test_data = []
-        # for text, intents in raw_data:
-        #     key = True
-        #     for intent in intents:
-        #         if intent not in train_intent2id:
-        #             key = False
-        #     if key:
-        #         train_data.append((text, [train_intent2id[intent][0] for intent in intents]))
-        #     else:
-        #         test_data.append((text, [test_intent2id[intent][0] for intent in intents]))
-        # new_train_data = train_data#[:int(0.7*len(train_data))]
-        # new_test_data = test_data# train_data[int(0.7*len(train_data)):] + test_data
-        # print(len(new_train_data))
-        # print(len(new_test_data))
-        # print(train_intent2id)
-        # print(test_intent2id)
-        
-        # with open(self.rawdata_path, "wb") as f:
-        #     pickle.dump(new_train_data, f)
-        # with open(self.intent2id_path, "wb") as f:
-        #     pickle.dump(train_intent2id, f)
-
-        # with open(self.rawdata_path2, "wb") as f:
-        #     pickle.dump(new_test_data, f)
-        # with open(self.intent2id_path2, "wb") as f:
-        #     pickle.dump(test_intent2id, f)
+        with open(self.rawdata_path2, "wb") as f:
+            pickle.dump(self.new_test_data, f)
+        with open(self.intent2id_path2, "wb") as f:
+            pickle.dump(test_intent2id, f)
         ######################### zero-shot setting #########################
         
         print("Process time: ", time.time()-ptime)
         
-        return raw_data, intent2id
+        return raw_data, train_intent2id
 
 
 ############################################################################
 
 
 class MIXData(Data):
+    """Main pipeline for MixATIS, MixSNIPS"""
 
     def __init__(self, data_path, rawdata_path, intent2id_path, rawdata_path2=None, intent2id_path2=None, ratio=None, done=True):
 
@@ -317,6 +230,7 @@ class MIXData(Data):
         return tokenized_sentence, tokenized_ids, labels
     
     def prepare_text(self, done):
+        """transform the text into pickle files"""
 
         if done:
             with open(self.rawdata_path, "rb") as f:
@@ -328,14 +242,8 @@ class MIXData(Data):
         ptime = time.time()
 
         raw_data = []
-        if os.path.exists(self.intent2id_path):
-            print('Load intent2id...')
-            with open(self.intent2id_path, "rb") as f:
-                intent2id = pickle.load(f)
-            icounter = len(intent2id)
-        else:
-            intent2id = {}
-            icounter = 0
+        intent2id = {}
+        icounter = 0
 
         with open(self.data_path, 'r') as f:
             text = []
@@ -362,7 +270,7 @@ class MIXData(Data):
                     text.append(line.split(' ')[0])
                     tag.append(line.split(' ')[1].strip('\n'))
         
-        # split data into seen and unseen labels
+        ############ split data into seen and unseen labels ############
         counter1 = 0
         counter2 = 0
         train_intent2id = {}
@@ -370,8 +278,8 @@ class MIXData(Data):
         # intent_set = sorted(list(intent_set))
         train_set = []
         test_set = []
-        print(len(intent2id))
 
+        # use the ratio to split seen and unseen intents
         for i, (intent,_) in enumerate(intent2id.items()):
             if i < self.ratio:
                 train_set.append(intent)
@@ -382,10 +290,10 @@ class MIXData(Data):
         test_set = train_set + test_set
 
         for intent in train_set:
-            train_intent2id[intent] = (counter1, self.text_prepare(intent, "Bert"))
+            train_intent2id[intent] = (counter1, self.text_prepare(intent, "Bert", snips_intent=False))
             counter1 += 1
         for intent in test_set:
-            test_intent2id[intent] = (counter2, self.text_prepare(intent, "Bert"))
+            test_intent2id[intent] = (counter2, self.text_prepare(intent, "Bert", snips_intent=False))
             counter2 += 1
 
         train_data = []
@@ -393,26 +301,29 @@ class MIXData(Data):
         for text, intents in raw_data:
             key = True
             for intent in intents:
+                # If one of intent is not in train, push it to the test data
                 if intent not in train_intent2id:
                     key = False
             if key:
                 train_data.append((text, [train_intent2id[intent][0] for intent in intents]))
             else:
                 test_data.append((text, [test_intent2id[intent][0] for intent in intents]))
-        new_train_data = train_data#[:int(0.7*len(train_data))]
-        new_test_data = test_data# train_data[int(0.7*len(train_data)):] + test_data
-        print(len(new_train_data))
-        print(len(new_test_data))
-        print(train_intent2id)
-        print(test_intent2id)
+        self.new_train_data = train_data#[:int(0.7*len(train_data))]
+        self.new_test_data = test_data# train_data[int(0.7*len(train_data)):] + test_data
+        print('Number of the train data: ', len(self.new_train_data))
+        print('Number of the test data: ', len(self.new_test_data))
+        print('Intent dictionary of the train data: \n', train_intent2id)
+        print('Intent dictionary of the test data: \n', test_intent2id)
+        print('Number of the train intents:', len(train_intent2id))
+        print('Number of the test intents: ', len(test_intent2id))
         
         with open(self.rawdata_path, "wb") as f:
-            pickle.dump(new_train_data, f)
+            pickle.dump(self.new_train_data, f)
         with open(self.intent2id_path, "wb") as f:
             pickle.dump(train_intent2id, f)
 
         with open(self.rawdata_path2, "wb") as f:
-            pickle.dump(new_test_data, f)
+            pickle.dump(self.new_test_data, f)
         with open(self.intent2id_path2, "wb") as f:
             pickle.dump(test_intent2id, f)
         ######################### zero-shot setting #########################
@@ -424,46 +335,52 @@ class MIXData(Data):
 
 if __name__ == "__main__":
 
-    # semantic zero-shot
-    # ratio = '18'
-    # data_path = "../raw_datasets/top-dataset-semantic-parsing/train.tsv"
-    # rawdata_path = "semantic/zeroshot/raw_data_multi_se_zst_train{}.pkl".format(ratio)
-    # rawdata_path2 = "semantic/zeroshot/raw_data_multi_se_zst_test{}.pkl".format(ratio)
-    # intent2id_path = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(ratio)
-    # intent2id_path2 = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(ratio)
-    # data = SemanticData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, done=False)
+    import argparse
 
-    # mixatis
-    # ratio = '8'
-    # data_path = "../raw_datasets/MixATIS_clean/train.txt"
-    # rawdata_path = "MixATIS_clean/zeroshot/raw_data_multi_ma_train{}.pkl".format(ratio)
-    # rawdata_path2 = "MixATIS_clean/zeroshot/raw_data_multi_ma_test{}.pkl".format(ratio)
-    # intent2id_path = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_train{}.pkl".format(ratio)
-    # intent2id_path2 = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_test{}.pkl".format(ratio)
-    # data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, ratio, done=False)
+    parser = argparse.ArgumentParser(description='Put arguments to parse data')
 
-    # mixsnips
-    # data_path = "../raw_datasets/MixSNIPS_clean/test.txt"a
-    # rawdata_path = "MixSNIPS_clean/raw_data_multi_sn_test.pkl"
-    # intent2id_path = "MixSNIPS_clean/intent2id_multi_sn_with_tokens.pkl"
-    # data = MIXData(data_path, rawdata_path, intent2id_path, done=False)
-    ratio = '0'
-    data_path = "../raw_datasets/MixSNIPS_clean/train.txt"
-    rawdata_path = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_train{}.pkl".format(ratio)
-    rawdata_path2 = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_test{}.pkl".format(ratio)
-    intent2id_path = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_train{}.pkl".format(ratio)
-    intent2id_path2 = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_test{}.pkl".format(ratio)
-    data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, ratio, done=False)
+    # For data/mode
+    parser.add_argument('-d', '--data', default='atis', dest='mode')
+    parser.add_argument('-r', '--ratio', default='18', dest='ratio')
+    args = parser.parse_args()
+
+    dirs = ['MixATIS_clean/zeroshot/', 'MixSNIPS_clean/zeroshot/', 'semantic/zeroshot/']
+    for dir in dirs:
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+
+    if args.mode == 'semantic':
+
+        # semantic zero-shot
+        data_path = "../raw_datasets/top-dataset-semantic-parsing/train.tsv"
+        rawdata_path = "semantic/zeroshot/raw_data_multi_se_zst_train{}.pkl".format(args.ratio)
+        rawdata_path2 = "semantic/zeroshot/raw_data_multi_se_zst_test{}.pkl".format(args.ratio)
+        intent2id_path = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_train{}.pkl".format(args.ratio)
+        intent2id_path2 = "semantic/zeroshot/intent2id_multi_se_with_tokens_zst_test{}.pkl".format(args.ratio)
+        data = SemanticData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, args.ratio, done=False)
     
-    # print(data.raw_data[10])
-    # print(data.intent2id)
+    elif args.mode == 'mixatis':
 
+        # mixatis
+        data_path = "../raw_datasets/MixATIS_clean/train.txt"
+        rawdata_path = "MixATIS_clean/zeroshot/raw_data_multi_ma_train{}.pkl".format(args.ratio)
+        rawdata_path2 = "MixATIS_clean/zeroshot/raw_data_multi_ma_test{}.pkl".format(args.ratio)
+        intent2id_path = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_train{}.pkl".format(args.ratio)
+        intent2id_path2 = "MixATIS_clean/zeroshot/intent2id_multi_ma_with_tokens_test{}.pkl".format(args.ratio)
+        data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, args.ratio, done=False)
+    
+    elif args.mode == 'mixsnips':
 
-
-
-
-        
-
-
-
-
+        # mixsnips
+        data_path = "../raw_datasets/MixSNIPS_clean/train.txt"
+        rawdata_path = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_train{}.pkl".format(args.ratio)
+        rawdata_path2 = "MixSNIPS_clean/zeroshot/raw_data_multi_sn_test{}.pkl".format(args.ratio)
+        intent2id_path = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_train{}.pkl".format(args.ratio)
+        intent2id_path2 = "MixSNIPS_clean/zeroshot/intent2id_multi_sn_with_tokens_test{}.pkl".format(args.ratio)
+        data = MIXData(data_path, rawdata_path, intent2id_path, rawdata_path2, intent2id_path2, args.ratio, done=False)
+    
+    print('Dataset parsed: ', args.mode)
+    print('============ Sample data ============')
+    print(data.new_train_data[0])
+    print('============ Sample dictionary ============')
+    print(data.intent2id)

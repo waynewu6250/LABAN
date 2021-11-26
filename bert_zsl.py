@@ -19,73 +19,10 @@ from tqdm import tqdm
 from model import BertZSL
 from all_data import get_dataloader
 from config import opt
-
-def load_data(X, maxlen):
-
-    input_ids = pad_sequences(X, maxlen=maxlen, dtype="long", truncating="post", padding="post")
-    
-    attention_masks = []
-    for seq in input_ids:
-        seq_mask = [float(i>0) for i in seq]
-        attention_masks.append(seq_mask)
-    return (input_ids, attention_masks)
-
-def calc_score(outputs, labels):
-    corrects = 0
-    totals = 0
-    preds = 0
-    acc = 0
-    if opt.data_mode == 'single':
-        corrects += torch.sum(torch.max(outputs, 1)[1] == labels)
-    else:
-        for i, logits in enumerate(outputs):
-            log = torch.sigmoid(logits)
-            correct = (labels[i][torch.where(log>0.5)[0]]).sum()
-            total = len(torch.where(labels[i]==1)[0])
-            pred = len(torch.where(log>0.5)[0])
-            corrects += correct
-            totals += total
-            preds += pred
-            
-            p = (torch.where(log>0.5)[0])
-            r = (torch.where(labels[i]==1)[0])
-            if len(p) == len(r) and (p == r).all():
-                acc += 1
-    return corrects, totals, preds, acc
-
-def f1_score_intents(outputs, labels):
-    
-    P, R, F1, acc = 0, 0, 0, 0
-    outputs = torch.sigmoid(outputs)
-
-    for i in range(outputs.shape[0]):
-        TP, FP, FN = 0, 0, 0
-        for j in range(outputs.shape[1]):
-            if outputs[i][j] > 0.5 and labels[i][j] == 1:
-                TP += 1
-            elif outputs[i][j] <= 0.5 and labels[i][j] == 1:
-                FN += 1
-            elif outputs[i][j] > 0.5 and labels[i][j] == 0:
-                FP += 1
-        precision = TP / float(TP + FP) if (TP + FP) != 0 else 0
-        recall = TP / float(TP + FN) if (TP + FN) != 0 else 0
-        F1 += 2 * precision * recall / float(precision + recall) if (precision + recall) != 0 else 0
-        P += precision
-        R += recall
-
-        p = (torch.where(outputs[i]>0.5)[0])
-        r = (torch.where(labels[i]==1)[0])
-        if len(p) == len(r) and (p == r).all():
-            acc += 1
-        
-    P /= outputs.shape[0]
-    R /= outputs.shape[0]
-    F1 /= outputs.shape[0]
-    return P, R, F1, acc
-
-#####################################################################
+from utils import *
 
 def train(**kwargs):
+    """Main zero-shot training pipeline"""
     
     # attributes
     for k, v in kwargs.items():
@@ -124,41 +61,6 @@ def train(**kwargs):
         # X_test, y_test = zip(*test_data)
         X, y = zip(*train_data)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-    elif opt.datatype == "e2e" or opt.datatype == "sgd":
-        # Microsoft Dialogue Dataset / SGD Dataset
-        all_data = []
-        if not opt.dialog_data_mode:
-            dialogue_id = {}
-            dialogue_counter = 0
-            counter = 0
-            for data in train_data:
-                for instance in data:
-                    all_data.append(instance)
-                    dialogue_id[counter] = dialogue_counter
-                    counter += 1
-                dialogue_counter += 1
-            X, y, _ = zip(*all_data)
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-        else:
-            X_lengths = []
-            for dialog in train_data:
-                X_lengths.extend([len(dialog)]*25)
-                if len(dialog) < opt.max_dialog_size:
-                    pad_num = opt.max_dialog_size-len(dialog)
-                    # Pad dummy sentences
-                    pad = ([101,0,0,102], [0], [0])
-                    dialog.extend([pad]*pad_num)
-                all_data.append(dialog)
-            all_data = [sent for dialog in all_data for sent in dialog]
-            
-            X, y, _ = zip(*all_data)
-            train_num = int(len(train_data)*0.7)*25
-            X_train = X[:train_num]
-            y_train = y[:train_num]
-            X_test = X[train_num:]
-            y_test = y[train_num:]
-            X_lengths_train = X_lengths[:train_num]
-            X_lengths_test = X_lengths[train_num:]
     elif 'mix' in opt.datatype:
         # Mix dataset
         X, y = zip(*train_data)
@@ -166,11 +68,6 @@ def train(**kwargs):
     
     X_train, mask_train = load_data(X_train, opt.maxlen)
     X_test, mask_test = load_data(X_test, opt.maxlen)
-    
-    # length = int(len(X_train)*0.1)
-    # X_train = X_train[:length]
-    # y_train = y_train[:length]
-    # mask_train = mask_train[:length]
     
     train_loader = get_dataloader(X_train, y_train, mask_train, len(dic), opt, X_lengths=X_lengths_train)
     val_loader = get_dataloader(X_test, y_test, mask_test, len(dic), opt, X_lengths=X_lengths_test)
@@ -202,16 +99,6 @@ def train(**kwargs):
     model = model.to(device)
 
     # optimizer, criterion
-    # param_optimizer = list(model.named_parameters())
-    # no_decay = ['bias', 'gamma', 'beta']
-    # optimizer_grouped_parameters = [
-    #     {'params': [p for n, p in param_optimizer if not any(nd in n for nd in no_decay)],
-    #     'weight_decay_rate': 0.01},
-    #     {'params': [p for n, p in param_optimizer if any(nd in n for nd in no_decay)],
-    #     'weight_decay_rate': 0.0}
-    # ]
-    # optimizer = BertAdam(optimizer_grouped_parameters,lr=opt.learning_rate_bert, warmup=.1)
-
     optimizer = AdamW(model.parameters(), weight_decay=0.01, lr=opt.learning_rate_bert)
     if opt.data_mode == 'single':
         criterion = nn.CrossEntropyLoss().to(device)
@@ -331,39 +218,21 @@ def test(**kwargs):
         train_dic = pickle.load(f)
     with open(opt.dic_path_with_tokens_test, 'rb') as f:
         dic = pickle.load(f)
-    print(train_dic)
-    print(dic)
-    print('Number of labels: ', len(train_dic))
-    print('Number of labels: ', len(dic))
+    print('Train dictionary: \n', train_dic)
+    print('Test dictionary: \n', dic)
+    print('Number of training labels: ', len(train_dic))
+    print('Number of testing labels: ', len(dic))
     reverse_dic = {v[0]: k for k,v in dic.items()}
     with open(opt.test_path, 'rb') as f:
         test_data = pickle.load(f)
         if opt.is_few_shot:
             test_data = test_data[int(len(test_data)*opt.few_shot_ratio):]
 
-    if opt.datatype == "atis":
-        # ATIS Dataset
-        X_train, y_train, _ = zip(*train_data)
-        X_test, y_test, _ = zip(*test_data)
-    elif opt.datatype == "semantic":
+    if opt.datatype == "semantic":
         # Semantic parsing Dataset
         # X, y = zip(*test_data)
         # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         X_test, y_test = zip(*test_data)
-    elif opt.datatype == "e2e" or opt.datatype == "sgd":
-        # Microsoft Dialogue Dataset / SGD Dataset
-        all_data = []
-        dialogue_id = {}
-        dialogue_counter = 0
-        counter = 0
-        for data in train_data:
-            for instance in data:
-                all_data.append(instance)
-                dialogue_id[counter] = dialogue_counter
-                counter += 1
-            dialogue_counter += 1
-        X, y, _ = zip(*all_data)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
     elif 'mix' in opt.datatype:
         # Mix dataset
         X_test, y_test = zip(*test_data)
@@ -617,11 +486,6 @@ def test(**kwargs):
                 pooled_output, outputs = model(captions_t, mask)
             print("Predicted label: ", reverse_dic[torch.max(outputs, 1)[1].item()])
             print("=================================")    
-    
-    
-
-
-
 
 
 if __name__ == '__main__':

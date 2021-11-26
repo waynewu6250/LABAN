@@ -13,6 +13,7 @@ from train_data import Data
 import time 
 
 class E2EData(Data):
+    """E2E dataset"""
 
     def __init__(self, data_path, rawdata_path, intent2id_path, done=True):
 
@@ -21,6 +22,7 @@ class E2EData(Data):
         self.num_labels = len(self.intent2id)
     
     def prepare(self, data_path, intent2id, counter):
+        """generate a list containing data"""
 
         print('Parsing file: ', data_path)
 
@@ -74,7 +76,9 @@ class E2EData(Data):
     
     def prepare_dialogue(self, done):
         """
-        train_data:
+        transform the text into pickle files
+        
+        train_data format:
         
         a list of dialogues
         for each dialogue:
@@ -118,6 +122,7 @@ class E2EData(Data):
 
 
 class SGDData(Data):
+    """SGD dataset"""
 
     def __init__(self, data_path, rawdata_path, intent2id_path, turn_path, done=True):
 
@@ -127,6 +132,7 @@ class SGDData(Data):
         self.num_labels = len(self.intent2id)
     
     def build_ids(self, items, item2id, counter):
+        """Build dictionary"""
         for item in items:
             if item not in item2id:
                 item2id[item] = (counter, self.text_prepare(item, 'Bert')) # counter
@@ -136,7 +142,8 @@ class SGDData(Data):
     
     def prepare_dialogue(self, done):
         """
-        train_data:
+        transform the text into pickle files
+        train_data format:
         
         a list of dialogues (utterance-level)
         for each dialogue:
@@ -262,18 +269,33 @@ class SGDData(Data):
     
     
 if __name__ == "__main__":
-    # e2e dataset
-    # data_path = "../raw_datasets/e2e_dialogue/"
-    # rawdata_path = "e2e_dialogue/dialogue_data_multi.pkl"
-    # intent2id_path = "e2e_dialogue/intent2id_multi_with_tokens.pkl"
-    # data = E2EData(data_path, rawdata_path, intent2id_path, done=False)
+    import argparse
 
-    # sgd dataset
-    data_path = "../raw_datasets/dstc8-schema-guided-dialogue/test"
-    rawdata_path = "sgd_dialogue/dialogue_data_multi_test.pkl"
-    intent2id_path = "sgd_dialogue/intent2id_multi_with_tokens.pkl"
-    turn_path = "sgd_dialogue/turns.pkl"
-    data = SGDData(data_path, rawdata_path, intent2id_path, turn_path, done=False)
-    print(data.turn_data_all['turns'][0])
-    # print(data.train_data[100])
-    # print(data.intent2id)
+    parser = argparse.ArgumentParser(description='Put arguments to parase data')
+
+    # For data/mode
+    parser.add_argument('-d', '--data', default='atis', dest='mode')
+    args = parser.parse_args()
+
+    dirs = ['atis/', 'snips/', 'MixATIS_clean/', 'MixSNIPS_clean/', 'semantic/', 'e2e_dialogue/', 'sgd_dialogue/']
+    for dir in dirs:
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+
+    if args.mode == 'e2e':
+        # e2e dataset
+        data_path = "../raw_datasets/e2e_dialogue/"
+        rawdata_path = "e2e_dialogue/dialogue_data_multi.pkl"
+        intent2id_path = "e2e_dialogue/intent2id_multi_with_tokens.pkl"
+        data = E2EData(data_path, rawdata_path, intent2id_path, done=False)
+    elif args.mode == 'sgd':
+        # sgd dataset
+        data_path = "../raw_datasets/dstc8-schema-guided-dialogue/train"
+        rawdata_path = "sgd_dialogue/dialogue_data_multi.pkl"
+        intent2id_path = "sgd_dialogue/intent2id_multi_with_tokens.pkl"
+        turn_path = "sgd_dialogue/turns.pkl"
+        data = SGDData(data_path, rawdata_path, intent2id_path, turn_path, done=False)
+        # print(data.turn_data_all['turns'][0])
+        
+    print(data.train_data[100])
+    print(data.intent2id)

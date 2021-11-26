@@ -1,7 +1,7 @@
-Keras==2.4.3
+keras==2.4.3
 pandas==1.1.2
 fire==0.3.1
-torch==1.7.0
+torch==1.4.0
 tqdm==4.48.2
 transformers==3.3.1
 spacy==2.3.2
@@ -11,3 +11,7 @@ ordered_set==4.0.2
 pytorch_pretrained_bert==0.6.2
 pytorch_transformers==1.2.0
 scikit_learn==0.23.2
+tensorflow==2.3.0
+nltk==2.5.0
+gensim
+python-Levenshtein

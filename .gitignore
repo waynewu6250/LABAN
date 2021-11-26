@@ -130,3 +130,6 @@ dmypy.json
 
 *.pth
 *.pkl
+
+*.kv
+*.npy
