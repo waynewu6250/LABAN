@@ -2,7 +2,7 @@ class Config:
 
     #################### For BERT fine-tuning ####################
     # control
-    datatype = "semantic"
+    datatype = "mixatis"
     data_mode = "multi" #"single"      # single or multi intent in data
     retrain = False                     # Reuse trained model weights
     test_mode = "data"            # "embedding", "validation", "data"
@@ -12,7 +12,7 @@ class Config:
     # semantic: (19/13), (17/9), (15/5), (14/3)
     # mixatis:  (16/15), (14/12), (13/10), (12/8)
     # mixsnips: (6/6), (5/4), (4/2), (3/0)
-    is_zero_shot = True                
+    is_zero_shot = False                
     real_num = 19
     ratio = '13'
 
@@ -103,13 +103,13 @@ class Config:
     if not is_zero_shot:
         model_path = None if not retrain else "checkpoints/best_{}_{}.pth".format(datatype, data_mode)
     else:
-        model_path = None if not retrain else "checkpoints/best_{}_{}_{}.pth".format(datatype, data_mode, ratio)
+        model_path = None if not retrain else "checkpoints/BEST/best_{}_{}_{}.pth".format(datatype, data_mode, ratio)
 
     # model_path = "checkpoints/best_mixatis_multi.pth"
 
     maxlen = 50 #20
-    batch_size = 128 #16
-    epochs = 30 #30, 5
+    batch_size = 32 #16, 128
+    epochs = 15 #30, 5
     learning_rate_bert = 2e-5 #1e-3
     learning_rate_classifier = 1e-3
     max_dialog_size = 25 if datatype == "e2e" else 50

@@ -91,7 +91,7 @@ def train(**kwargs):
     config = BertConfig(vocab_size_or_config_json_file=32000, hidden_size=768,
         num_hidden_layers=12, num_attention_heads=12, intermediate_size=3072)
     
-    model = BertZSL(config, opt, len(dic))
+    model = BertZSL(config, len(dic))
     
     if opt.model_path:
         model.load_state_dict(torch.load(opt.model_path))
@@ -129,7 +129,7 @@ def train(**kwargs):
 
             optimizer.zero_grad()
 
-            _, _, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+            _, _, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             train_loss = criterion(outputs, labels)
 
             train_loss.backward()
@@ -168,7 +168,7 @@ def train(**kwargs):
             masks = masks.to(device)
             
             with torch.no_grad():
-                _, pooled_output, outputs, _ = model(captions_t, masks, intent_tokens, mask_tokens, labels)
+                _, pooled_output, outputs = model(captions_t, masks, intent_tokens, mask_tokens, labels)
             val_loss = criterion(outputs, labels)
 
             total_val_loss += val_loss

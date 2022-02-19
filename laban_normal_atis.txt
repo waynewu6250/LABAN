@@ -1,0 +1,135 @@
+Dataset to use:  data/MixATIS_clean/raw_data_multi_ma_train.pkl
+Dictionary to use:  data/MixATIS_clean/intent2id_multi_ma_with_tokens.pkl
+Data Mode:  multi
+Surface encoder mode:  normal
+Label aware layer mode:  zero-shot
+Use weights from models pretrained with in-domain data:  False
+Train from scratch...
+====== epoch 1 / 15: ======
+Average train loss: 11.5289 
+P = 0.2519, R = 0.4642, F1 = 0.3266
+Accuracy:  0.06799878437927366
+Average val loss: 2.4929 
+P = 0.9016, R = 0.7190, F1 = 0.8000
+Accuracy:  0.45694444444444443
+saving with loss of 1794.8778076171875 improved over previous 100
+
+====== epoch 2 / 15: ======
+Average train loss: 1.6771 
+P = 0.9107, R = 0.8610, F1 = 0.8852
+Accuracy:  0.6252849111077344
+Average val loss: 0.8430 
+P = 0.9677, R = 0.9298, F1 = 0.9484
+Accuracy:  0.8375
+saving with loss of 606.9461669921875 improved over previous 1794.8778076171875
+
+====== epoch 3 / 15: ======
+Average train loss: 0.4374 
+P = 0.9824, R = 0.9683, F1 = 0.9753
+Accuracy:  0.9026743655979335
+Average val loss: 0.9124 
+P = 0.9683, R = 0.9477, F1 = 0.9579
+Accuracy:  0.8805555555555555
+saving with loss of 656.9547119140625 improved over previous 606.9461669921875
+
+====== epoch 4 / 15: ======
+Average train loss: 0.2095 
+P = 0.9925, R = 0.9869, F1 = 0.9897
+Accuracy:  0.9581370612368941
+Average val loss: 1.1153 
+P = 0.9676, R = 0.9463, F1 = 0.9568
+Accuracy:  0.8805555555555555
+
+====== epoch 5 / 15: ======
+Average train loss: 0.1317 
+P = 0.9959, R = 0.9920, F1 = 0.9939
+Accuracy:  0.9751557514055614
+Average val loss: 1.2700 
+P = 0.9636, R = 0.9477, F1 = 0.9556
+Accuracy:  0.8902777777777777
+saving with loss of 914.427001953125 improved over previous 656.9547119140625
+
+====== epoch 6 / 15: ======
+Average train loss: 0.0913 
+P = 0.9970, R = 0.9944, F1 = 0.9957
+Accuracy:  0.9822975231727701
+Average val loss: 1.2864 
+P = 0.9682, R = 0.9442, F1 = 0.9561
+Accuracy:  0.8777777777777778
+
+====== epoch 7 / 15: ======
+Average train loss: 0.0711 
+P = 0.9976, R = 0.9955, F1 = 0.9966
+Accuracy:  0.9856404801701869
+Average val loss: 1.4799 
+P = 0.9590, R = 0.9497, F1 = 0.9543
+Accuracy:  0.8763888888888889
+
+====== epoch 8 / 15: ======
+Average train loss: 0.0568 
+P = 0.9982, R = 0.9966, F1 = 0.9974
+Accuracy:  0.9892113660537912
+Average val loss: 1.2743 
+P = 0.9671, R = 0.9518, F1 = 0.9594
+Accuracy:  0.8916666666666667
+saving with loss of 917.5289306640625 improved over previous 914.427001953125
+
+====== epoch 9 / 15: ======
+Average train loss: 0.0476 
+P = 0.9986, R = 0.9971, F1 = 0.9979
+Accuracy:  0.9914906549156663
+Average val loss: 1.7224 
+P = 0.9696, R = 0.9456, F1 = 0.9575
+Accuracy:  0.8875
+
+====== epoch 10 / 15: ======
+Average train loss: 0.0414 
+P = 0.9989, R = 0.9977, F1 = 0.9983
+Accuracy:  0.993010180823583
+Average val loss: 1.4452 
+P = 0.9636, R = 0.9470, F1 = 0.9552
+Accuracy:  0.8930555555555556
+saving with loss of 1040.5784912109375 improved over previous 917.5289306640625
+
+====== epoch 11 / 15: ======
+Average train loss: 0.0444 
+P = 0.9984, R = 0.9971, F1 = 0.9977
+Accuracy:  0.9909588208478954
+Average val loss: 1.2266 
+P = 0.9597, R = 0.9504, F1 = 0.9550
+Accuracy:  0.8916666666666667
+
+====== epoch 12 / 15: ======
+Average train loss: 0.0448 
+P = 0.9981, R = 0.9973, F1 = 0.9977
+Accuracy:  0.9908068682571037
+Average val loss: 1.6467 
+P = 0.9609, R = 0.9477, F1 = 0.9542
+Accuracy:  0.8805555555555555
+
+====== epoch 13 / 15: ======
+Average train loss: 0.0459 
+P = 0.9985, R = 0.9975, F1 = 0.9980
+Accuracy:  0.9917945600972496
+Average val loss: 1.2801 
+P = 0.9473, R = 0.9532, F1 = 0.9502
+Accuracy:  0.8819444444444444
+
+====== epoch 14 / 15: ======
+Average train loss: 0.0240 
+P = 0.9991, R = 0.9987, F1 = 0.9989
+Accuracy:  0.9957453274578332
+Average val loss: 1.5600 
+P = 0.9569, R = 0.9477, F1 = 0.9522
+Accuracy:  0.8916666666666667
+
+====== epoch 15 / 15: ======
+Average train loss: 0.0354 
+P = 0.9984, R = 0.9979, F1 = 0.9982
+Accuracy:  0.9923263941650206
+Average val loss: 1.3217 
+P = 0.9611, R = 0.9525, F1 = 0.9568
+Accuracy:  0.8902777777777777
+
+Best total val loss: 951.6284
+Best Test Accuracy: 0.8931
