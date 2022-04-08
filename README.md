@@ -7,7 +7,7 @@ https://aclanthology.org/2021.emnlp-main.399/
 Ting-Wei Wu, Ruolin Su and Biing-Hwang Juang, "A Label-Aware BERT Attention Network for Zero-Shot Multi-Intent Detection in Spoken Language Understanding". In EMNLP 2021 (Main Conference)
 ```
 
-It is published in [EMNLP 2021](https://2021.emnlp.org/).
+It was published in [EMNLP 2021](https://2021.emnlp.org/).
 
 (Under construction. More to update.)
 
